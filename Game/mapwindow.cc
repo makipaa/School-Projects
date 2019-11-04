@@ -1,9 +1,12 @@
 #include "mapwindow.hh"
 #include "ui_mapwindow.h"
+#include "tiles/forest.h"
 
 #include "graphics/simplemapitem.h"
 
 #include <math.h>
+#include <QGeoServiceProvider>
+
 
 MapWindow::MapWindow(QWidget *parent,
                      std::shared_ptr<Course::iGameEventHandler> handler):
@@ -17,6 +20,8 @@ MapWindow::MapWindow(QWidget *parent,
     Course::SimpleGameScene* sgs_rawptr = m_simplescene.get();
 
     m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
+    
+    
 }
 
 MapWindow::~MapWindow()
