@@ -7,10 +7,22 @@ CONFIG += c++14
 
 SOURCES += \
     main.cpp \
-    mapwindow.cc
+    mapwindow.cc \
+    Game/main.cpp \
+    main.cpp \
+    mapwindow.cc \
+    main.cpp \
+    mapwindow.cc \
+    main.cpp \
+    mapwindow.cc \
+    core/worldmap.cpp
 
 HEADERS += \
-    mapwindow.hh
+    mapwindow.hh \
+    mapwindow.hh \
+    mapwindow.hh \
+    mapwindow.hh \
+    core/worldmap.h
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib

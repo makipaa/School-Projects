@@ -6,6 +6,10 @@ class worldmap
 {
 public:
     worldmap();
+
+
+private:
+
 };
 
 #endif // WORLDMAP_H
