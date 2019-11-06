@@ -37,6 +37,9 @@ public:
     void removeItem( std::shared_ptr<Course::GameObject> obj);
     void updateItem( std::shared_ptr<Course::GameObject> obj);
 
+signals:
+    void spawn_tile();
+
 
 private:
     Ui::MapWindow* m_ui;

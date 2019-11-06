@@ -1,28 +1,24 @@
 TEMPLATE = app
 TARGET = TheGame
 
-QT += core gui widgets
+QT += core gui widgets \
+      location
 
 CONFIG += c++14
 
 SOURCES += \
     main.cpp \
     mapwindow.cc \
-    Game/main.cpp \
-    main.cpp \
-    mapwindow.cc \
-    main.cpp \
-    mapwindow.cc \
-    main.cpp \
-    mapwindow.cc \
-    core/worldmap.cpp
+    core/worldmap.cpp \
+    gameeventhandler.cpp \
+    objectmanager.cpp
 
 HEADERS += \
     mapwindow.hh \
-    mapwindow.hh \
-    mapwindow.hh \
-    mapwindow.hh \
-    core/worldmap.h
+    core/worldmap.h \
+    gameeventhandler.h \
+    objectmanager.h
+
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
