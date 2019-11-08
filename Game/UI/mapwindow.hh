@@ -13,12 +13,17 @@
 #include "interfaces/igameeventhandler.h"
 #include "Graphics/gamescene.h"
 #include "Graphics/mapitem.h"
+#include "objectmanager.h"
+#include "gameeventhandler.h"
+#include "UI/dialog.h"
+#include "tiles/forest.h"
+#include "tiles/grassland.h"
 
 namespace Ui {
 class MapWindow;
 }
 
-namespace Student {
+
 
 class MapWindow : public QMainWindow
 {
@@ -53,6 +58,6 @@ private:
 
 };
 
-}
+
 #endif // MapWINDOW_HH
 

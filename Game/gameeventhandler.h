@@ -3,7 +3,7 @@
 
 #include "interfaces/igameeventhandler.h"
 #include "core/gameobject.h"
-
+#include "core/worldgenerator.h"
 
 namespace Student {
 
@@ -18,10 +18,11 @@ public:
 
     virtual bool modifyResource(std::shared_ptr<Course::PlayerBase> player,
                                 Course::BasicResource resource,
-                                int amount) = 0;
+                                int amount)=0;
 
     virtual bool modifyResources(std::shared_ptr<Course::PlayerBase> player,
-                                 Course::ResourceMap resources) = 0;
+                                 Course::ResourceMap resources)=0;
+
 
 };
 }

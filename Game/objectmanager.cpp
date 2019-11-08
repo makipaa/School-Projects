@@ -25,6 +25,12 @@ std::vector<std::shared_ptr<Course::TileBase>> ObjectManager::getTiles
     return found_tiles;
 }
 
+std::vector<std::shared_ptr<Course::TileBase>> ObjectManager::getTiles()
+{
+    return tiles_;
+}
+
+
 std::shared_ptr<Course::TileBase> ObjectManager::getTile(const Course::ObjectId &id)
 {
     for(std::shared_ptr<Course::TileBase> tile : tiles_){

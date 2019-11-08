@@ -23,12 +23,7 @@ GameScene::GameScene(QWidget* parent,
     setSize(width, height);
     setScale(scale);
 }
-/*
-void GameScene::scaleScene()
-{
-    QGraphicsView::fitInView()
-}
-*/
+
 void GameScene::setSize(int width, int height)
 {
     if ( width >= SCENE_WIDTH_LIMITS.first && width <= SCENE_WIDTH_LIMITS.second )

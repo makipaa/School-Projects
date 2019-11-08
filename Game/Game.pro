@@ -9,7 +9,6 @@ CONFIG += c++14
 SOURCES += \
     main.cpp \
     UI/mapwindow.cc \
-    mapwindow.cc \
     core/worldmap.cpp \
     gameeventhandler.cpp \
     objectmanager.cpp \
@@ -19,7 +18,6 @@ SOURCES += \
 
 HEADERS += \
     UI/mapwindow.hh \
-    mapwindow.hh \
     core/worldmap.h \
     gameeventhandler.h \
     objectmanager.h \
@@ -53,5 +51,5 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 FORMS += \
-    mapwindow.ui \
+    UI/mapwindow.ui \
     UI/dialog.ui

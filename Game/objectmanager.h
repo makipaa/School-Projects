@@ -13,19 +13,20 @@ public:
     virtual ~ObjectManager() = default;
 
     virtual void addTiles(
-            const std::vector<std::shared_ptr<Course::TileBase>>& tiles) = 0;
+            const std::vector<std::shared_ptr<Course::TileBase>>& tiles);
 
     virtual std::shared_ptr<Course::TileBase> getTile(
-            const Course::Coordinate& coordinate) = 0;
+            const Course::Coordinate& coordinate);
 
-    virtual std::shared_ptr<Course::TileBase> getTile(const Course::ObjectId& id) = 0;
+    virtual std::shared_ptr<Course::TileBase> getTile(const Course::ObjectId& id);
 
     virtual std::vector<std::shared_ptr<Course::TileBase>> getTiles(
-            const std::vector<Course::Coordinate>& coordinates) = 0;
+            const std::vector<Course::Coordinate>& coordinates);
+
+    std::vector<std::shared_ptr<Course::TileBase>> getTiles();
 
 private:
     std::vector<std::shared_ptr<Course::TileBase>> tiles_;
-
 
 };
 

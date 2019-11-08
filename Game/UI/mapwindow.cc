@@ -1,11 +1,9 @@
 #include "UI/mapwindow.hh"
 #include "ui_mapwindow.h"
-#include "dialog.h"
-#include "Graphics/gamescene.h"
 
 #include <math.h>
 
-namespace Student {
+
 
 MapWindow::MapWindow(QWidget *parent,
                      std::shared_ptr<Course::iGameEventHandler> handler):
@@ -23,6 +21,21 @@ MapWindow::MapWindow(QWidget *parent,
     Dialog dialogwindow;
     connect(&dialogwindow, SIGNAL(sendValue(int, int)), this, SLOT(setSize(int,int)));
     dialogwindow.exec();
+
+    std::shared_ptr<Student::ObjectManager> objM = std::make_shared<Student::ObjectManager>();
+
+    Course::WorldGenerator* worldG = &Course::WorldGenerator::getInstance();
+    worldG->addConstructor<Course::Forest>(1);
+    worldG->addConstructor<Course::Grassland>(1);
+    worldG->generateMap(10,10,1,objM, m_GEHandler);
+
+    std::vector<std::shared_ptr<Course::TileBase>> tiilet = objM->getTiles();
+    for(auto brikki : tiilet)
+    {
+        sgs_rawptr->drawItem(brikki);
+    }
+
+
     
 }
 
@@ -67,4 +80,4 @@ void MapWindow::drawItem( std::shared_ptr<Course::GameObject> obj)
     m_scene->drawItem(obj);
 }
 
-}
+

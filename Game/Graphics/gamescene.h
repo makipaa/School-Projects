@@ -28,8 +28,6 @@ public:
 
     ~GameScene() = default;
 
-    void scaleScene();
-
     void setSize(int width, int height);
 
     void setScale(int scale);
