@@ -8,14 +8,20 @@ CONFIG += c++14
 
 SOURCES += \
     main.cpp \
-    mapwindow.cc \
+    UI/mapwindow.cc \
     gameeventhandler.cpp \
-    objectmanager.cpp
+    objectmanager.cpp \
+    UI/dialog.cpp \
+    Graphics/gamescene.cpp \
+    Graphics/mapitem.cpp
 
 HEADERS += \
-    mapwindow.hh \
+    UI/mapwindow.hh \
     gameeventhandler.h \
-    objectmanager.h
+    objectmanager.h \
+    UI/dialog.h \
+    Graphics/gamescene.h \
+    Graphics/mapitem.h
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -42,4 +48,5 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 FORMS += \
-    mapwindow.ui
+    mapwindow.ui \
+    UI/dialog.ui

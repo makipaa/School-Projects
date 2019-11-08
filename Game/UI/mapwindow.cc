@@ -1,26 +1,28 @@
-#include "mapwindow.hh"
+#include "UI/mapwindow.hh"
 #include "ui_mapwindow.h"
-#include "tiles/forest.h"
-
-#include "graphics/simplemapitem.h"
+#include "dialog.h"
+#include "Graphics/gamescene.h"
 
 #include <math.h>
-#include <QGeoServiceProvider>
 
+namespace Student {
 
 MapWindow::MapWindow(QWidget *parent,
                      std::shared_ptr<Course::iGameEventHandler> handler):
     QMainWindow(parent),
     m_ui(new Ui::MapWindow),
     m_GEHandler(handler),
-    m_simplescene(new Course::SimpleGameScene(this))
+    m_scene(new Student::GameScene(this))
 {
     m_ui->setupUi(this);
 
-    Course::SimpleGameScene* sgs_rawptr = m_simplescene.get();
+    Student::GameScene* sgs_rawptr = m_scene.get();
 
     m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
     
+    Dialog dialogwindow;
+    connect(&dialogwindow, SIGNAL(sendValue(int, int)), this, SLOT(setSize(int,int)));
+    dialogwindow.exec();
     
 }
 
@@ -37,30 +39,32 @@ void MapWindow::setGEHandler(
 
 void MapWindow::setSize(int width, int height)
 {
-    m_simplescene->setSize(width, height);
+    m_scene->setSize(width, height);
 }
 
 void MapWindow::setScale(int scale)
 {
-    m_simplescene->setScale(scale);
+    m_scene->setScale(scale);
 }
 
 void MapWindow::resize()
 {
-    m_simplescene->resize();
+    m_scene->resize();
 }
 
 void MapWindow::updateItem(std::shared_ptr<Course::GameObject> obj)
 {
-    m_simplescene->updateItem(obj);
+    m_scene->updateItem(obj);
 }
 
 void MapWindow::removeItem(std::shared_ptr<Course::GameObject> obj)
 {
-    m_simplescene->removeItem(obj);
+    m_scene->removeItem(obj);
 }
 
 void MapWindow::drawItem( std::shared_ptr<Course::GameObject> obj)
 {
-    m_simplescene->drawItem(obj);
+    m_scene->drawItem(obj);
+}
+
 }
