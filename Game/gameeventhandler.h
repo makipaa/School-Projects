@@ -3,6 +3,8 @@
 
 #include "interfaces/igameeventhandler.h"
 #include "core/gameobject.h"
+#include "core/player.h"
+#include "core/basicresources.h"
 
 
 namespace Student {
@@ -23,6 +25,10 @@ public:
     virtual bool modifyResources(std::shared_ptr<Course::PlayerBase> player,
                                  Course::ResourceMap resources) = 0;
 
+private:
+
+    std::map<std::shared_ptr<Course::PlayerBase>,
+    Course::ResourceMap> resources_ ;
 };
 }
 #endif // GAMEEVENTHANDLER_H

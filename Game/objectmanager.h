@@ -2,6 +2,8 @@
 #define OBJECTMANAGER_H
 #include "interfaces/iobjectmanager.h"
 #include "tiles/tilebase.h"
+#include "core/playerbase.h"
+#include "core/basicresources.h"
 
 namespace Student
 {
@@ -25,6 +27,9 @@ public:
 
 private:
     std::vector<std::shared_ptr<Course::TileBase>> tiles_;
+
+
+
 
 
 };

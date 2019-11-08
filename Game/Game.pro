@@ -11,13 +11,15 @@ SOURCES += \
     mapwindow.cc \
     core/worldmap.cpp \
     gameeventhandler.cpp \
-    objectmanager.cpp
+    objectmanager.cpp \
+    core/player.cpp
 
 HEADERS += \
     mapwindow.hh \
     core/worldmap.h \
     gameeventhandler.h \
-    objectmanager.h
+    objectmanager.h \
+    core/player.h
 
 
 win32:CONFIG(release, debug|release): LIBS += \
