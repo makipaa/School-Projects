@@ -11,11 +11,19 @@
 #include <map>
 
 #include "interfaces/igameeventhandler.h"
-#include "graphics/simplegamescene.h"
+#include "Graphics/gamescene.h"
+#include "Graphics/mapitem.h"
+#include "objectmanager.h"
+#include "gameeventhandler.h"
+#include "UI/dialog.h"
+#include "tiles/forest.h"
+#include "tiles/grassland.h"
 
 namespace Ui {
 class MapWindow;
 }
+
+
 
 class MapWindow : public QMainWindow
 {
@@ -29,13 +37,15 @@ public:
 
     void setGEHandler(std::shared_ptr<Course::iGameEventHandler> nHandler);
 
-    void setSize(int width, int height);
     void setScale(int scale);
     void resize();
 
     void drawItem( std::shared_ptr<Course::GameObject> obj);
     void removeItem( std::shared_ptr<Course::GameObject> obj);
     void updateItem( std::shared_ptr<Course::GameObject> obj);
+
+public slots:
+    void setSize(int width, int height);
 
 signals:
     void spawn_tile();
@@ -44,9 +54,10 @@ signals:
 private:
     Ui::MapWindow* m_ui;
     std::shared_ptr<Course::iGameEventHandler> m_GEHandler = nullptr;
-    std::shared_ptr<Course::SimpleGameScene> m_simplescene = nullptr;
+    std::shared_ptr<Student::GameScene> m_scene = nullptr;
 
 };
+
 
 #endif // MapWINDOW_HH
 

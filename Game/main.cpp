@@ -1,7 +1,6 @@
-#include "mapwindow.hh"
+#include "UI/mapwindow.hh"
 
 #include <QApplication>
-
 
 int main(int argc, char* argv[])
 {
