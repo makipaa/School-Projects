@@ -17,7 +17,8 @@ MapWindow::MapWindow(QWidget *parent,
     Student::GameScene* sgs_rawptr = m_scene.get();
 
     m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
-    
+    m_ui->graphicsView->showMaximized();
+
     Dialog dialogwindow;
     connect(&dialogwindow, SIGNAL(sendValue(int, int)), this, SLOT(setSize(int,int)));
     dialogwindow.exec();
@@ -27,7 +28,7 @@ MapWindow::MapWindow(QWidget *parent,
     Course::WorldGenerator* worldG = &Course::WorldGenerator::getInstance();
     worldG->addConstructor<Course::Forest>(1);
     worldG->addConstructor<Course::Grassland>(1);
-    worldG->generateMap(10,10,1,objM, m_GEHandler);
+    worldG->generateMap(5,5,1,objM, m_GEHandler);
 
     std::vector<std::shared_ptr<Course::TileBase>> tiilet = objM->getTiles();
     for(auto brikki : tiilet)
@@ -35,8 +36,6 @@ MapWindow::MapWindow(QWidget *parent,
         sgs_rawptr->drawItem(brikki);
     }
 
-
-    
 }
 
 MapWindow::~MapWindow()
@@ -48,6 +47,10 @@ void MapWindow::setGEHandler(
         std::shared_ptr<Course::iGameEventHandler> nHandler)
 {
     m_GEHandler = nHandler;
+}
+
+int MapWindow::getSize(){
+    return m_scene->width();
 }
 
 void MapWindow::setSize(int width, int height)

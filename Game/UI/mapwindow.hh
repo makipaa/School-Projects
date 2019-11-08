@@ -37,6 +37,7 @@ public:
 
     void setGEHandler(std::shared_ptr<Course::iGameEventHandler> nHandler);
 
+    int getSize();
     void setScale(int scale);
     void resize();
 
