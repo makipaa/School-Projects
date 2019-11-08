@@ -12,6 +12,7 @@ SOURCES += \
     core/worldmap.cpp \
     gameeventhandler.cpp \
     objectmanager.cpp \
+    core/player.cpp \
     UI/dialog.cpp \
     Graphics/gamescene.cpp \
     Graphics/mapitem.cpp
@@ -21,6 +22,7 @@ HEADERS += \
     core/worldmap.h \
     gameeventhandler.h \
     objectmanager.h \
+    core/player.h \
     UI/dialog.h \
     Graphics/gamescene.h \
     Graphics/mapitem.h
