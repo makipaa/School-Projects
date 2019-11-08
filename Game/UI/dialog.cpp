@@ -20,7 +20,7 @@ Dialog::~Dialog()
 void Dialog::accept(){
 
     int value = ui->mapSizeSlider->value();
-    emit sendValue(value, value);
+    emit sendValue(value);
     QDialog::accept();
 }
 

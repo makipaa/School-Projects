@@ -38,6 +38,7 @@ public:
     void setGEHandler(std::shared_ptr<Course::iGameEventHandler> nHandler);
 
     int getSize();
+    void setSize(int width, int height);
     void setScale(int scale);
     void resize();
 
@@ -46,7 +47,7 @@ public:
     void updateItem( std::shared_ptr<Course::GameObject> obj);
 
 public slots:
-    void setSize(int width, int height);
+    void setGridSize(int value);
 
 signals:
     void spawn_tile();
@@ -56,6 +57,7 @@ private:
     Ui::MapWindow* m_ui;
     std::shared_ptr<Course::iGameEventHandler> m_GEHandler = nullptr;
     std::shared_ptr<Student::GameScene> m_scene = nullptr;
+    int m_size = 0;
 
 };
 
