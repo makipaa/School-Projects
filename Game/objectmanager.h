@@ -1,6 +1,7 @@
 #ifndef OBJECTMANAGER_H
 #define OBJECTMANAGER_H
 #include "interfaces/iobjectmanager.h"
+#include "tiles/tilebase.h"
 
 namespace Student
 {
@@ -21,6 +22,10 @@ public:
 
     virtual std::vector<std::shared_ptr<Course::TileBase>> getTiles(
             const std::vector<Course::Coordinate>& coordinates) = 0;
+
+private:
+    std::vector<std::shared_ptr<Course::TileBase>> tiles_;
+
 
 };
 

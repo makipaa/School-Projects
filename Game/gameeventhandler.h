@@ -2,6 +2,8 @@
 #define GAMEEVENTHANDLER_H
 
 #include "interfaces/igameeventhandler.h"
+#include "core/gameobject.h"
+
 
 namespace Student {
 
