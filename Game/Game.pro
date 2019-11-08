@@ -9,6 +9,8 @@ CONFIG += c++14
 SOURCES += \
     main.cpp \
     UI/mapwindow.cc \
+    mapwindow.cc \
+    core/worldmap.cpp \
     gameeventhandler.cpp \
     objectmanager.cpp \
     UI/dialog.cpp \
@@ -17,11 +19,14 @@ SOURCES += \
 
 HEADERS += \
     UI/mapwindow.hh \
+    mapwindow.hh \
+    core/worldmap.h \
     gameeventhandler.h \
     objectmanager.h \
     UI/dialog.h \
     Graphics/gamescene.h \
     Graphics/mapitem.h
+
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
