@@ -14,20 +14,22 @@ MapWindow::MapWindow(QWidget *parent,
 {
     m_ui->setupUi(this);
 
-    Student::GameScene* sgs_rawptr = m_scene.get();
 
-    m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
 
     Dialog dialogwindow;
     connect(&dialogwindow, SIGNAL(sendValue(int)), this, SLOT(setGridSize(int)));
     dialogwindow.exec();
 
-    std::shared_ptr<Student::ObjectManager> objM = std::make_shared<Student::ObjectManager>();
+    Student::GameScene* sgs_rawptr = m_scene.get();
+    m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
+    this->setSize(2*m_size,m_size);
+    this->setScale(800/m_size);
 
+    std::shared_ptr<Student::ObjectManager> objM = std::make_shared<Student::ObjectManager>();
     Course::WorldGenerator* worldG = &Course::WorldGenerator::getInstance();
     worldG->addConstructor<Course::Forest>(1);
     worldG->addConstructor<Course::Grassland>(1);
-    worldG->generateMap(getSize(),getSize(),1,objM, m_GEHandler);
+    worldG->generateMap(2*m_size,m_size,1,objM, m_GEHandler);
 
     std::vector<std::shared_ptr<Course::TileBase>> tiilet = objM->getTiles();
     for(auto brikki : tiilet)
