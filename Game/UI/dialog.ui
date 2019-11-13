@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>160</x>
-     <y>260</y>
+     <y>290</y>
      <width>84</width>
      <height>28</height>
     </rect>
@@ -26,60 +26,100 @@
     <string>Accept</string>
    </property>
   </widget>
-  <widget class="QLabel" name="mapLabel">
+  <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>110</y>
-     <width>81</width>
-     <height>20</height>
+     <x>9</x>
+     <y>9</y>
+     <width>401</width>
+     <height>81</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Map size</string>
-   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="4" column="2">
+     <widget class="QLCDNumber" name="lcdMapSize"/>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="headingLabel">
+      <property name="text">
+       <string>Set map size</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QSlider" name="mapSizeSlider">
+      <property name="minimum">
+       <number>10</number>
+      </property>
+      <property name="maximum">
+       <number>100</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="3" alignment="Qt::AlignHCenter">
+     <widget class="QLabel" name="mapLabel">
+      <property name="text">
+       <string>Map size</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <widget class="QLabel" name="headingLabel">
+  <widget class="QWidget" name="gridLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>10</y>
-     <width>101</width>
-     <height>21</height>
+     <x>10</x>
+     <y>140</y>
+     <width>401</width>
+     <height>116</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Set map size</string>
-   </property>
-  </widget>
-  <widget class="QSlider" name="mapSizeSlider">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>110</y>
-     <width>160</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="minimum">
-    <number>10</number>
-   </property>
-   <property name="maximum">
-    <number>100</number>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QLCDNumber" name="lcdMapSize">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>110</y>
-     <width>64</width>
-     <height>23</height>
-    </rect>
-   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="1" column="0">
+     <widget class="QLabel" name="nameLabel">
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="color_label">
+      <property name="text">
+       <string>Color</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLineEdit" name="nameInput"/>
+    </item>
+    <item row="0" column="0" colspan="2" alignment="Qt::AlignHCenter">
+     <widget class="QLabel" name="addplayers_label">
+      <property name="text">
+       <string>Add players</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QComboBox" name="comboBox"/>
+    </item>
+    <item row="3" column="1">
+     <widget class="QPushButton" name="addPlayersButton">
+      <property name="text">
+       <string>Add</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="infoLabel">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
