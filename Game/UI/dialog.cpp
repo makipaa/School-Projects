@@ -10,6 +10,7 @@ Dialog::Dialog(QWidget *parent) :
     connect(ui->mapSizeSlider, &QSlider::valueChanged, this, &Dialog::showValue);
 
     ui->lcdMapSize->display(ui->mapSizeSlider->value());
+    ui->mapSizeSlider->setMaximum(50);
 }
 
 Dialog::~Dialog()

@@ -23,6 +23,7 @@ MapWindow::MapWindow(QWidget *parent,
 
     Student::GameScene* sgs_rawptr = m_scene.get();
     m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
+<<<<<<< HEAD
     this->setSize(2*m_size, m_size);
     this->setScale(800/m_size);
 
@@ -36,6 +37,15 @@ MapWindow::MapWindow(QWidget *parent,
     worldG->addConstructor<Student::Swamp>(1);
     worldG->addConstructor<Student::Water>(1);
     worldG->addConstructor<Student::Cobblestone>(1);
+=======
+    this->setSize(2*m_size,m_size);
+    this->setScale(800/m_size);
+
+    std::shared_ptr<Student::ObjectManager> objM = std::make_shared<Student::ObjectManager>();
+    Course::WorldGenerator* worldG = &Course::WorldGenerator::getInstance();
+    worldG->addConstructor<Course::Forest>(1);
+    worldG->addConstructor<Course::Grassland>(1);
+>>>>>>> d7211801fe236968d7d7054e1457fafafe1ad06e
     worldG->generateMap(2*m_size,m_size,1,objM, m_GEHandler);
 
     std::vector<std::shared_ptr<Course::TileBase>> tiilet = objM->getTiles();
