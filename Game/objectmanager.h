@@ -30,6 +30,6 @@ public:
 private:
     std::vector<std::shared_ptr<Course::TileBase>> tiles_;
 };
-
-#endif // OBJECTMANAGER_H
 }
+#endif // OBJECTMANAGER_H
+

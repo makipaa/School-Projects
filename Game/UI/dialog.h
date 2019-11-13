@@ -22,7 +22,7 @@ public slots:
    virtual void showValue();
 
 signals:
-    void sendValue(int heigth);
+    void sendValue(int size);
 
 private:
     Ui::Dialog *ui;

@@ -15,7 +15,10 @@ SOURCES += \
     core/player.cpp \
     UI/dialog.cpp \
     Graphics/gamescene.cpp \
-    Graphics/mapitem.cpp
+    Graphics/mapitem.cpp \
+    Student_tiles/swamp.cpp \
+    Student_tiles/water.cpp \
+    Student_tiles/cobblestone.cpp
 
 HEADERS += \
     UI/mapwindow.hh \
@@ -25,7 +28,11 @@ HEADERS += \
     core/player.h \
     UI/dialog.h \
     Graphics/gamescene.h \
-    Graphics/mapitem.h
+    Graphics/mapitem.h \
+    Student_tiles/swamp.h \
+    core/resourcemaps.h \
+    Student_tiles/water.h \
+    Student_tiles/cobblestone.h
 
 
 win32:CONFIG(release, debug|release): LIBS += \
