@@ -23,8 +23,9 @@ public slots:
    virtual void showValue();
 
 signals:
-    void sendValue(int heigth);
     void sendPlayers(std::vector<std::shared_ptr<Student::Player>> players);
+    void sendValue(int size);
+
 
 private:
     void updateColorOptions();

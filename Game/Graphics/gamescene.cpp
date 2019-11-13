@@ -15,8 +15,8 @@ GameScene::GameScene(QWidget* parent,
 
     QGraphicsScene(parent),
     m_mapBoundRect(nullptr),
-    m_width(10),
-    m_height(10),
+    m_width(21),
+    m_height(11),
     m_scale(50)
 {
 
@@ -54,8 +54,7 @@ void GameScene::resize()
 
     // Calculates rect with middle at (0,0).
     // Basically left upper corner coords and then width and height
-    QRect rect = QRect(0, 0,
-                        m_width * m_scale, m_height * m_scale);
+    QRect rect = QRect(0, 0, m_width * m_scale, m_height * m_scale);
 
     addRect(rect, QPen(Qt::black));
     setSceneRect(rect);

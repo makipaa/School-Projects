@@ -18,6 +18,10 @@
 #include "UI/dialog.h"
 #include "tiles/forest.h"
 #include "tiles/grassland.h"
+#include "Student_tiles/swamp.h"
+#include "Student_tiles/water.h"
+#include "Student_tiles/cobblestone.h"
+
 
 namespace Ui {
 class MapWindow;
@@ -37,7 +41,7 @@ public:
 
     void setGEHandler(std::shared_ptr<Course::iGameEventHandler> nHandler);
 
-    int getSize();
+    int getGridSize();
     void setSize(int width, int height);
     void setScale(int scale);
     void resize();
@@ -47,11 +51,7 @@ public:
     void updateItem( std::shared_ptr<Course::GameObject> obj);
 
 public slots:
-    void setGridSize(int value);
-
-signals:
-    void spawn_tile();
-
+    void setGridSize(int size);
 
 private:
     Ui::MapWindow* m_ui;
