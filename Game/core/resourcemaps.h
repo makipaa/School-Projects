@@ -48,6 +48,43 @@ const ResourceMap OUTPOST_PRODUCTION = {
     {BasicResource::FOOD, -2}
 };
 
+// Building - Mine
+const ResourceMap MINE_BUILD_COST = {
+    {BasicResource::MONEY, 75},
+    {BasicResource::FOOD, 150},
+    {BasicResource::WOOD, 100},
+    {BasicResource::STONE, 100}
+};
+
+const ResourceMap MINE_PRODUCTION = {
+    {BasicResource::MONEY, 5},
+    {BasicResource::STONE, 20}
+};
+
+// Building - Trawler
+const ResourceMap TRAWLER_BUILD_COST = {
+    {BasicResource::MONEY, 50},
+    {BasicResource::FOOD, 100},
+    {BasicResource::WOOD, 200}
+
+};
+
+const ResourceMap TRAWLER_PRODUCTION = {
+    {BasicResource::MONEY, 5},
+    {BasicResource::FOOD, 10}
+};
+
+// Building - Sawmill
+const ResourceMap SAWMILL_BUILD_COST = {
+    {BasicResource::MONEY, 50},
+    {BasicResource::FOOD, 100},
+    {BasicResource::WOOD, 250}
+};
+
+const ResourceMap SAWMILL_PRODUCTION = {
+    {BasicResource::MONEY, 5},
+    {BasicResource::WOOD, 25}
+};
 
 // Worker - BasicWorker
 const ResourceMapDouble BW_WORKER_EFFICIENCY = {

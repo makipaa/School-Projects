@@ -1,5 +1,6 @@
 #include "UI/mapwindow.hh"
 #include "ui_mapwindow.h"
+#include "iostream"
 
 #include <math.h>
 
@@ -25,6 +26,9 @@ MapWindow::MapWindow(QWidget *parent,
 
     dialogwindow.exec();
 
+    QStringList buildings = {"Headquarter", "Outpost", "Farm", "Mine", "Trawler", "Sawmill"};
+    m_ui->buildingsComboBox->addItems(buildings);
+
     Student::GameScene* sgs_rawptr = m_scene.get();
     m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
     this->setSize(2*m_size, m_size);
@@ -43,10 +47,10 @@ MapWindow::MapWindow(QWidget *parent,
 
     worldG->generateMap(2*m_size,m_size,1,objM, m_GEHandler);
 
-    std::vector<std::shared_ptr<Course::TileBase>> tiilet = objM->getTiles();
-    for(auto brikki : tiilet)
+    std::vector<std::shared_ptr<Course::TileBase>> tiles = objM->getTiles();
+    for(auto brick : tiles)
     {
-        sgs_rawptr->drawItem(brikki);
+        sgs_rawptr->drawItem(brick);
     }
 
 }

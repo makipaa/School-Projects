@@ -9,7 +9,7 @@ GameEventHandler::GameEventHandler()
 
 void GameEventHandler::add_players(std::vector<std::shared_ptr<Player>> players)
 {
-    players_ = players;
+    //players_ = players;
 }
 
 void GameEventHandler::new_round()

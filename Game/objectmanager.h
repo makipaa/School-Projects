@@ -25,10 +25,16 @@ public:
     virtual std::vector<std::shared_ptr<Course::TileBase>> getTiles(
             const std::vector<Course::Coordinate>& coordinates);
 
+    void addBuildings(
+            const std::vector<std::shared_ptr<Course::BuildingBase>>& buildings);
+
+    std::vector<std::shared_ptr<Course::BuildingBase>> getBuildings();
+
     std::vector<std::shared_ptr<Course::TileBase>> getTiles();
 
 private:
     std::vector<std::shared_ptr<Course::TileBase>> tiles_;
+    std::vector<std::shared_ptr<Course::BuildingBase>> buildings_;
 };
 }
 #endif // OBJECTMANAGER_H
