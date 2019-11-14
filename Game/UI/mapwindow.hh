@@ -52,6 +52,7 @@ public:
 
 public slots:
     void setGridSize(int size);
+    void getPlayers(std::vector<std::shared_ptr<Student::Player>> players);
 
 private:
     Ui::MapWindow* m_ui;

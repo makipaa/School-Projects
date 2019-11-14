@@ -7,6 +7,13 @@ GameEventHandler::GameEventHandler()
 
 }
 
+void GameEventHandler::add_players(std::vector<std::shared_ptr<Player>> players)
+{
+    for (auto player: players){
+        players_.push_back(player);
+    }
+}
+
 bool GameEventHandler::modifyResources(std::shared_ptr<Course::PlayerBase> player,
                                        Course::ResourceMap resources)
 {

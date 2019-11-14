@@ -59,6 +59,11 @@ void MapWindow::setGridSize(int size){
     m_size = size;
 }
 
+void MapWindow::getPlayers(std::vector<std::shared_ptr<Student::Player> > players)
+{
+
+}
+
 void MapWindow::setGEHandler(std::shared_ptr<Course::iGameEventHandler> nHandler)
 {
     m_GEHandler = nHandler;
