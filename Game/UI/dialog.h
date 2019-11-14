@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "mapwindow.hh"
+#include "core/player.h"
 
 
 namespace Ui {
@@ -22,10 +23,21 @@ public slots:
    virtual void showValue();
 
 signals:
+    void sendPlayers(std::vector<std::shared_ptr<Student::Player>> players);
     void sendValue(int size);
 
+
 private:
+    void updateColorOptions();
+    void addPlayer();
+    void showMessage(QString message);
+
     Ui::Dialog *ui;
+    std::vector<std::shared_ptr<Student::Player>> players_;
+
+    std::vector<QColor> colorOptions_;
+;
+
 };
 
 

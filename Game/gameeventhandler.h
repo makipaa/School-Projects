@@ -31,6 +31,8 @@ private:
 
     std::map<std::shared_ptr<Course::PlayerBase>,
     Course::ResourceMap> resources_ ;
+
+    std::vector<std::shared_ptr<Student::Player>> players_;
 };
 }
 #endif // GAMEEVENTHANDLER_H
