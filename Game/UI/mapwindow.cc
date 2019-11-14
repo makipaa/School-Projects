@@ -36,6 +36,7 @@ MapWindow::MapWindow(QWidget *parent,
     worldG->addConstructor<Student::Swamp>(1);
     worldG->addConstructor<Student::Water>(1);
     worldG->addConstructor<Student::Cobblestone>(1);
+
     worldG->generateMap(2*m_size,m_size,1,objM, m_GEHandler);
 
     std::vector<std::shared_ptr<Course::TileBase>> tiilet = objM->getTiles();
