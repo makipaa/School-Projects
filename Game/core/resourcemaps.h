@@ -13,7 +13,7 @@ const ResourceMap EMPTY = {};
 const ResourceMap FARM_BUILD_COST = {
     {BasicResource::MONEY, 50},
     {BasicResource::FOOD, 100},
-    {BasicResource::WOOD, 25}
+    {BasicResource::WOOD, 25},
 };
 const ResourceMap FARM_PRODUCTION = {
     {BasicResource::MONEY, 1},
@@ -68,7 +68,6 @@ const ResourceMap FOREST_BP = {
     {FOOD, 3},
     {WOOD, 5},
     {STONE, 1},
-    {ORE, 0},
 };
 
 const ResourceMap GRASSLAND_BP = {
@@ -76,7 +75,6 @@ const ResourceMap GRASSLAND_BP = {
     {FOOD, 5},
     {WOOD, 1},
     {STONE, 1},
-    {ORE, 0},
 };
 
 const ResourceMap SWAMP_BP = {
