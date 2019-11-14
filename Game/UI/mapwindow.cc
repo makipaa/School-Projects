@@ -3,8 +3,6 @@
 
 #include <math.h>
 
-
-
 MapWindow::MapWindow(QWidget *parent,
                      std::shared_ptr<Student::GameEventHandler> handler):
     QMainWindow(parent),
@@ -13,14 +11,13 @@ MapWindow::MapWindow(QWidget *parent,
     m_scene(new Student::GameScene(this))
 {
     m_ui->setupUi(this);
-
-
+    m_GEHandler = std::make_shared<Student::GameEventHandler>(Student::GameEventHandler());
 
     Dialog dialogwindow;
     connect(&dialogwindow, SIGNAL(sendValue(int)), this,
             SLOT(setGridSize(int)));
-    connect(&dialogwindow, SIGNAL(sendPlayers(std::vector<std::shared_ptr<Student::Player>>)),
-                           this, SLOT(getPlayers(std::vector<std::shared_ptr<Student::Player> >)));
+    connect(&dialogwindow, SIGNAL(sendPlayer(std::vector<std::shared_ptr<Student::Player>>)),
+                           this, SLOT(getPlayer(std::vector<std::shared_ptr<Student::Player>>)));
     connect(m_ui->endTurnPushButton, SIGNAL(clicked(bool)), this, SLOT(changeTurn()));
 
     dialogwindow.exec();
@@ -49,6 +46,9 @@ MapWindow::MapWindow(QWidget *parent,
         sgs_rawptr->drawItem(brikki);
     }
 
+    std::shared_ptr<Student::Player> playerInTurn = m_GEHandler->getPlayerInTurn();
+    this->updateLabels(playerInTurn->getResources(),playerInTurn->getName(),
+                       m_GEHandler->getRoundNumber());
 }
 
 MapWindow::~MapWindow()
@@ -64,9 +64,9 @@ void MapWindow::setGridSize(int size){
     m_size = size;
 }
 
-void MapWindow::getPlayers(std::vector<std::shared_ptr<Student::Player> > players)
+void MapWindow::getPlayer(std::vector<std::shared_ptr<Student::Player>> players)
 {
-    m_GEHandler->add_players(players);
+    m_GEHandler->add_player(players);
 }
 
 void MapWindow::changeTurn()

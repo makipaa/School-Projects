@@ -23,7 +23,7 @@ public slots:
    virtual void showValue();
 
 signals:
-    void sendPlayers(std::vector<std::shared_ptr<Student::Player>> players);
+    void sendPlayer(std::vector<std::shared_ptr<Student::Player>> players);
     void sendValue(int size);
 
 

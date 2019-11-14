@@ -7,9 +7,15 @@ GameEventHandler::GameEventHandler()
 
 }
 
-void GameEventHandler::add_players(std::vector<std::shared_ptr<Player>> players)
+void GameEventHandler::add_player(std::vector<std::shared_ptr<Student::Player>> players)
 {
-    players_ = players;
+   players_ = std::vector<std::shared_ptr<Student::Player>>(players);
+
+   /*
+    players_.push_back(std::make_shared<Student::Player>(
+           Student::Player("asd",{},Qt::red)));
+   */
+   playerInTurn_ = players_.at(0);
 }
 
 void GameEventHandler::new_round()
@@ -24,9 +30,10 @@ void GameEventHandler::changeTurn()
         this->new_round();
     }
     else{
-        for (int i = 0; i < int(players_.size()); i++){
-            if (players_.at(i) == playerInTurn_){
+        for (int i = 0; i < int(players_.size()) - 1; i++){
+            if (players_.at(i)->getName() == playerInTurn_->getName()){
                 playerInTurn_ = players_.at(i+1);
+                break;
             }
         }
     }

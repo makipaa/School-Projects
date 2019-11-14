@@ -53,9 +53,10 @@ public:
 
     void updateLabels(Course::ResourceMap resources, std::string playerName, int roundNumber);
 
+
 public slots:
     void setGridSize(int size);
-    void getPlayers(std::vector<std::shared_ptr<Student::Player>> players);
+    void getPlayer(std::vector<std::shared_ptr<Student::Player>> players);
     void changeTurn();
 
 private:
