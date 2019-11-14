@@ -9,6 +9,7 @@ namespace ConstResourceMaps {
 
 const ResourceMap EMPTY = {};
 
+
 // Building - Farm
 const ResourceMap FARM_BUILD_COST = {
     {BasicResource::MONEY, 50},

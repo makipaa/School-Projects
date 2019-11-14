@@ -28,12 +28,19 @@ public:
 
     void add_players(std::vector<std::shared_ptr<Student::Player>> players);
 
+    void new_round();
+
+    void changeTurn();
+
+    std::shared_ptr<Student::Player> getPlayerInTurn();
+
+    int getRoundNumber();
+
 private:
+    std::vector<std::shared_ptr<Student::Player>> players_ = {};
+    std::shared_ptr<Student::Player> playerInTurn_ = players_[0];
 
-    std::map<std::shared_ptr<Course::PlayerBase>,
-    Course::ResourceMap> resources_ ;
-
-    std::vector<std::shared_ptr<Student::Player>> players_;
+    int roundNumber_ = 1;
 };
 }
 #endif // GAMEEVENTHANDLER_H

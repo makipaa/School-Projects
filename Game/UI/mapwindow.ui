@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>811</width>
-    <height>598</height>
+    <width>1300</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>9</x>
       <y>35</y>
-      <width>611</width>
-      <height>461</height>
+      <width>1050</width>
+      <height>525</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -33,8 +33,8 @@
    <widget class="QPushButton" name="endTurnPushButton">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>500</y>
+      <x>1080</x>
+      <y>640</y>
       <width>191</width>
       <height>41</height>
      </rect>
@@ -43,76 +43,11 @@
      <string>End Turn</string>
     </property>
    </widget>
-   <widget class="QLabel" name="resourcesLabel">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>510</y>
-      <width>71</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Resources</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="moneyLabel">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>530</y>
-      <width>48</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Money:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="roundLabel">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>42</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Round</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="foodLabel">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>530</y>
-      <width>63</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Food:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="turnLabel">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>10</y>
-      <width>63</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Turn:</string>
-    </property>
-   </widget>
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>480</y>
+      <x>1080</x>
+      <y>550</y>
       <width>191</width>
       <height>20</height>
      </rect>
@@ -121,31 +56,120 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="woodLabel">
+   <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>530</y>
-      <width>63</width>
-      <height>20</height>
+      <x>10</x>
+      <y>600</y>
+      <width>951</width>
+      <height>80</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Wood:</string>
-    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="1" column="1">
+      <widget class="QLabel" name="moneyAmountLabel">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QLabel" name="woodLabel">
+       <property name="text">
+        <string>Wood:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QLabel" name="foodAmountLabel">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="6">
+      <widget class="QLabel" name="stoneLabel">
+       <property name="text">
+        <string>Stone:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="5">
+      <widget class="QLabel" name="woodAmountLabel">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="moneyLabel">
+       <property name="text">
+        <string>Money:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLabel" name="foodLabel">
+       <property name="text">
+        <string>Food:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="7">
+      <widget class="QLabel" name="stoneAmountLabel">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0" colspan="8" alignment="Qt::AlignHCenter">
+      <widget class="QLabel" name="resourcesLabel">
+       <property name="text">
+        <string>Resources</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <widget class="QLabel" name="stoneLabel">
+   <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>530</y>
-      <width>63</width>
-      <height>20</height>
+      <x>10</x>
+      <y>0</y>
+      <width>491</width>
+      <height>31</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Stone:</string>
-    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="roundLabel">
+       <property name="text">
+        <string>Round:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="roundNumberLabel">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="turnLabel">
+       <property name="text">
+        <string>Turn:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="turnNameLabel">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -153,7 +177,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>811</width>
+     <width>1300</width>
      <height>25</height>
     </rect>
    </property>

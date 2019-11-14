@@ -14,9 +14,13 @@ public:
     Player(const std::string& name,
            const std::vector<std::shared_ptr<Course::GameObject>> objects,
            const QColor color);
+    Course::ResourceMap getResources();
+    bool modifyResources(Course::ResourceMap resources);
+    bool modifyResource(Course::BasicResource resource, int amount);
 
 private:
     QColor color_;
+    Course::ResourceMap resources_;
 
 };
 
