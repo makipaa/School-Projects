@@ -18,7 +18,8 @@ SOURCES += \
     Graphics/mapitem.cpp \
     Student_tiles/swamp.cpp \
     Student_tiles/water.cpp \
-    Student_tiles/cobblestone.cpp
+    Student_tiles/cobblestone.cpp \
+    Workers/fisher.cpp
 
 HEADERS += \
     UI/mapwindow.hh \
@@ -32,7 +33,8 @@ HEADERS += \
     Student_tiles/swamp.h \
     core/resourcemaps.h \
     Student_tiles/water.h \
-    Student_tiles/cobblestone.h
+    Student_tiles/cobblestone.h \
+    Workers/fisher.h
 
 
 win32:CONFIG(release, debug|release): LIBS += \

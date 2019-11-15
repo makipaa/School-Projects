@@ -1,3 +1,4 @@
+
 #include "UI/mapwindow.hh"
 #include "ui_mapwindow.h"
 
@@ -25,8 +26,7 @@ MapWindow::MapWindow(QWidget *parent,
     Student::GameScene* sgs_rawptr = m_scene.get();
     m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
     this->setSize(2*m_size, m_size);
-    this->setScale((525)/m_size);
-
+    this->setScale((m_ui->graphicsView->height())/m_size-1);
 
 
     m_objM = std::make_shared<Student::ObjectManager>();
