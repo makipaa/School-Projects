@@ -57,10 +57,12 @@ const Course::ResourceMapDouble Fisher::tileWorkAction()
 
 bool Fisher::canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) const
 {
-    return false;
+    return target->getOwner() == getOwner() and
+            WorkerBase::canBePlacedOnTile(target) and
+            target->getType() == "Water";
 }
 
 std::string Fisher::getType() const
 {
-    return "not made yet";
+    return "Fisher";
 }

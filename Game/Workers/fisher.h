@@ -3,6 +3,7 @@
 #include "workers/workerbase.h"
 #include "core/resourcemaps.h"
 #include "interfaces/igameeventhandler.h"
+#include "Student_tiles/water.h"
 
 class Fisher : public Course::WorkerBase
 {

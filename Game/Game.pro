@@ -1,4 +1,4 @@
-TEMPLATE = app
+  TEMPLATE = app
 TARGET = TheGame
 
 QT += core gui widgets \
@@ -21,7 +21,7 @@ SOURCES += \
     Student_tiles/cobblestone.cpp \
     Buildings/mine.cpp \
     Buildings/trawler.cpp \
-    Buildings/sawmill.cpp
+    Buildings/sawmill.cpp \
     Workers/fisher.cpp
 
 HEADERS += \
@@ -39,7 +39,7 @@ HEADERS += \
     Student_tiles/cobblestone.h \
     Buildings/mine.h \
     Buildings/trawler.h \
-    Buildings/sawmill.h
+    Buildings/sawmill.h \
     Workers/fisher.h
 
 
@@ -70,3 +70,14 @@ else:unix: PRE_TARGETDEPS += \
 FORMS += \
     UI/mapwindow.ui \
     UI/dialog.ui
+
+DISTFILES += \
+    Images/farm.png \
+    Images/farm.png \
+    Images/forest.png \
+    Images/grass.png \
+    Images/headquarters.png \
+    Images/mountain.png \
+    Images/outpost.png \
+    Images/swamp.png \
+    Images/water.png
