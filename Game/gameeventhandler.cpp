@@ -25,6 +25,8 @@ void GameEventHandler::new_round()
             tile->generateResources();
         }
     }
+    auto tile = objM_->getTile(1);
+    tile->setOwner(playerInTurn_);
 
     roundNumber_ ++;
 }

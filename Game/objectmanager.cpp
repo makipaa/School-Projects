@@ -59,19 +59,4 @@ void ObjectManager::addTiles(const std::vector<std::shared_ptr<Course::TileBase>
     }
 }
 
-
-void ObjectManager::addBuildings(const std::vector<std::shared_ptr<Course::BuildingBase>> &buildings){
-
-    for(std::shared_ptr<Course::BuildingBase> building : buildings){
-        buildings_.push_back(building);
-    }
-
-}
-
-std::vector<std::shared_ptr<Course::BuildingBase>> ObjectManager::getBuildings()
-{
-    return buildings_;
-}
-
-
 } // student

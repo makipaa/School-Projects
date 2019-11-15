@@ -21,6 +21,7 @@ MapWindow::MapWindow(QWidget *parent,
     connect(&dialogwindow, SIGNAL(sendPlayer(std::vector<std::shared_ptr<Student::Player>>)),
                            this, SLOT(getPlayer(std::vector<std::shared_ptr<Student::Player>>)));
     connect(m_ui->endTurnPushButton, SIGNAL(clicked(bool)), this, SLOT(changeTurn()));
+    connect(m_ui->buildPushButton, SIGNAL(clicked(bool)), this, SLOT(actionBuild()));
 
 
     dialogwindow.exec();
@@ -56,6 +57,7 @@ MapWindow::MapWindow(QWidget *parent,
     std::shared_ptr<Student::Player> playerInTurn = m_GEHandler->getPlayerInTurn();
     this->updateLabels(playerInTurn->getResources(),playerInTurn->getName(),
                        m_GEHandler->getRoundNumber());
+
 }
 
 MapWindow::~MapWindow()
@@ -87,7 +89,34 @@ void MapWindow::changeTurn()
 
 void MapWindow::getId(unsigned int Id)
 {
-    tileId_ = Id;
+    clickedTileObj = m_objM->getTile(Id);
+}
+
+void MapWindow::actionBuild()
+{
+    QString temporary = m_ui->buildingsComboBox->currentText();
+    std::string wantedBuilding = temporary.toStdString();
+
+    if(wantedBuilding == "Headquarter"){
+        clickedTileObj->addBuilding(std::make_shared<Course::HeadQuarters>(m_GEHandler,
+                                    m_objM, m_GEHandler->getPlayerInTurn()));
+    }
+//    else if(wantedBuilding == "Outpost"){
+//        clickedTileObj->addBuilding();
+//    }
+//    else if(wantedBuilding == "Farm"){
+//        clickedTileObj->addBuilding();
+//    }
+//    else if(wantedBuilding == "Mine"){
+//        clickedTileObj->addBuilding();
+//    }
+//    else if(wantedBuilding == "Trawler"){
+//        clickedTileObj->addBuilding();
+//    }
+//    else if(wantedBuilding == "Sawmill" ){
+//        clickedTileObj->addBuilding();
+//    }
+
 }
 
 void MapWindow::setGEHandler(std::shared_ptr<Student::GameEventHandler> nHandler)

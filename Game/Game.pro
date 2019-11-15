@@ -21,7 +21,7 @@ SOURCES += \
     Student_tiles/cobblestone.cpp \
     Buildings/mine.cpp \
     Buildings/trawler.cpp \
-    Buildings/sawmill.cpp
+    Buildings/sawmill.cpp \
     Workers/fisher.cpp
 
 HEADERS += \
@@ -39,7 +39,7 @@ HEADERS += \
     Student_tiles/cobblestone.h \
     Buildings/mine.h \
     Buildings/trawler.h \
-    Buildings/sawmill.h
+    Buildings/sawmill.h \
     Workers/fisher.h
 
 
