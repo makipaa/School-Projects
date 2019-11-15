@@ -19,7 +19,6 @@ GameScene::GameScene(QWidget* parent,
     m_height(11),
     m_scale(50)
 {
-
     setSize(width, height);
     setScale(scale);
 }
@@ -110,6 +109,10 @@ bool GameScene::event(QEvent *event)
                 qDebug() << "ObjID: " <<
                             static_cast<Student::MapItem*>(pressed)
                             ->getBoundObject()->ID  << " pressed.";
+
+                emit sendID(static_cast<Student::MapItem*>(pressed)
+                            ->getBoundObject()->ID);
+
                 return true;
             }
 

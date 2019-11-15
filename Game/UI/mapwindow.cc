@@ -24,6 +24,7 @@ MapWindow::MapWindow(QWidget *parent,
                            this, SLOT(getPlayers(std::vector<std::shared_ptr<Student::Player> >)));
     connect(m_ui->endTurnPushButton, SIGNAL(clicked(bool)), this, SLOT(changeTurn()));
 
+
     dialogwindow.exec();
 
     QStringList buildings = {"Headquarter", "Outpost", "Farm", "Mine", "Trawler", "Sawmill"};
@@ -34,7 +35,7 @@ MapWindow::MapWindow(QWidget *parent,
     this->setSize(2*m_size, m_size);
     this->setScale((525)/m_size);
 
-
+    connect(sgs_rawptr, SIGNAL(sendID(unsigned int)), this, SLOT(getId(unsigned int)));
 
     std::shared_ptr<Student::ObjectManager> objM =
             std::make_shared<Student::ObjectManager>();
@@ -46,6 +47,8 @@ MapWindow::MapWindow(QWidget *parent,
     worldG->addConstructor<Student::Cobblestone>(1);
 
     worldG->generateMap(2*m_size,m_size,1,objM, m_GEHandler);
+
+
 
     std::vector<std::shared_ptr<Course::TileBase>> tiles = objM->getTiles();
     for(auto brick : tiles)
@@ -80,6 +83,11 @@ void MapWindow::changeTurn()
     std::shared_ptr<Student::Player> playerInTurn = m_GEHandler->getPlayerInTurn();
     this->updateLabels(playerInTurn->getResources(),playerInTurn->getName(),
                        m_GEHandler->getRoundNumber());
+}
+
+void MapWindow::getId(unsigned int Id)
+{
+    tileId_ = Id;
 }
 
 void MapWindow::setGEHandler(std::shared_ptr<Student::GameEventHandler> nHandler)
@@ -140,5 +148,4 @@ void MapWindow::drawItem( std::shared_ptr<Course::GameObject> obj)
 {
     m_scene->drawItem(obj);
 }
-
 

@@ -9,6 +9,7 @@
 #include <memory>
 
 #include "core/gameobject.h"
+#include "tiles/tilebase.h"
 
 namespace Student {
 
@@ -45,6 +46,9 @@ public:
     void updateItem( std::shared_ptr<Course::GameObject> obj);
 
     virtual bool event(QEvent* event) override;
+
+signals:
+    void sendID(unsigned int);
 
 private:
 
