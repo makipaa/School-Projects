@@ -22,7 +22,8 @@ SOURCES += \
     Buildings/mine.cpp \
     Buildings/trawler.cpp \
     Buildings/sawmill.cpp \
-    Workers/fisher.cpp
+    Workers/fisher.cpp \
+    Workers/miner.cpp
 
 HEADERS += \
     UI/mapwindow.hh \
@@ -40,7 +41,8 @@ HEADERS += \
     Buildings/mine.h \
     Buildings/trawler.h \
     Buildings/sawmill.h \
-    Workers/fisher.h
+    Workers/fisher.h \
+    Workers/miner.h
 
 
 win32:CONFIG(release, debug|release): LIBS += \
