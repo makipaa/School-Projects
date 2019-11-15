@@ -29,8 +29,9 @@ MapWindow::MapWindow(QWidget *parent,
 
 
 
-    std::shared_ptr<Student::ObjectManager> objM =
-            std::make_shared<Student::ObjectManager>();
+    m_objM = std::make_shared<Student::ObjectManager>();
+    m_GEHandler->setObjectManager(m_objM);
+
     Course::WorldGenerator* worldG = &Course::WorldGenerator::getInstance();
     worldG->addConstructor<Course::Forest>(1);
     worldG->addConstructor<Course::Grassland>(1);
@@ -38,9 +39,9 @@ MapWindow::MapWindow(QWidget *parent,
     worldG->addConstructor<Student::Water>(1);
     worldG->addConstructor<Student::Cobblestone>(1);
 
-    worldG->generateMap(2*m_size,m_size,1,objM, m_GEHandler);
+    worldG->generateMap(2*m_size, m_size,1, m_objM, m_GEHandler);
 
-    std::vector<std::shared_ptr<Course::TileBase>> tiilet = objM->getTiles();
+    std::vector<std::shared_ptr<Course::TileBase>> tiilet = m_objM->getTiles();
     for(auto brikki : tiilet)
     {
         sgs_rawptr->drawItem(brikki);

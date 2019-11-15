@@ -62,6 +62,7 @@ public slots:
 private:
     Ui::MapWindow* m_ui;
     std::shared_ptr<Student::GameEventHandler> m_GEHandler = nullptr;
+    std::shared_ptr<Student::ObjectManager> m_objM = nullptr;
     std::shared_ptr<Student::GameScene> m_scene = nullptr;
     int m_size = 0;
 

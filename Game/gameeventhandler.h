@@ -6,6 +6,7 @@
 #include "core/player.h"
 #include "core/basicresources.h"
 #include "core/worldgenerator.h"
+#include "objectmanager.h"
 
 
 namespace Student {
@@ -28,6 +29,8 @@ public:
 
     void add_player(std::vector<std::shared_ptr<Student::Player>> players);
 
+    void setObjectManager(std::shared_ptr<Student::ObjectManager> objM);
+
     void new_round();
 
     void changeTurn();
@@ -40,7 +43,10 @@ private:
     std::vector<std::shared_ptr<Student::Player>> players_ = {};
     std::shared_ptr<Student::Player> playerInTurn_;
 
+    std::shared_ptr<Student::ObjectManager> objM_;
+
     int roundNumber_ = 1;
+
 };
 }
 #endif // GAMEEVENTHANDLER_H

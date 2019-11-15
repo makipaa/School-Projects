@@ -10,16 +10,22 @@ GameEventHandler::GameEventHandler()
 void GameEventHandler::add_player(std::vector<std::shared_ptr<Student::Player>> players)
 {
    players_ = std::vector<std::shared_ptr<Student::Player>>(players);
-
-   /*
-    players_.push_back(std::make_shared<Student::Player>(
-           Student::Player("asd",{},Qt::red)));
-   */
    playerInTurn_ = players_.at(0);
+}
+
+void GameEventHandler::setObjectManager(std::shared_ptr<ObjectManager> objM)
+{
+    objM_ = objM;
 }
 
 void GameEventHandler::new_round()
 {
+    for (auto tile : objM_->getTiles()){
+        if(tile->getOwner()){
+            tile->generateResources();
+        }
+    }
+
     roundNumber_ ++;
 }
 
