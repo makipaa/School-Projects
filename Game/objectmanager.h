@@ -34,7 +34,6 @@ public:
 
 private:
     std::vector<std::shared_ptr<Course::TileBase>> tiles_;
-    std::vector<std::shared_ptr<Course::BuildingBase>> buildings_;
 };
 }
 #endif // OBJECTMANAGER_H

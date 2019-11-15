@@ -22,12 +22,12 @@
 #include "Student_tiles/water.h"
 #include "Student_tiles/cobblestone.h"
 #include "core/basicresources.h"
+#include "buildings/headquarters.h"
 
 
 namespace Ui {
 class MapWindow;
 }
-
 
 
 class MapWindow : public QMainWindow
@@ -53,12 +53,12 @@ public:
 
     void updateLabels(Course::ResourceMap resources, std::string playerName, int roundNumber);
 
-
 public slots:
     void setGridSize(int size);
     void getPlayer(std::vector<std::shared_ptr<Student::Player>> players);
     void changeTurn();
     void getId(unsigned int Id);
+    void actionBuild();
 
 private:
     Ui::MapWindow* m_ui;
@@ -66,7 +66,8 @@ private:
     std::shared_ptr<Student::ObjectManager> m_objM = nullptr;
     std::shared_ptr<Student::GameScene> m_scene = nullptr;
     int m_size = 0;
-    unsigned int tileId_ = 0;
+    std::shared_ptr<Course::TileBase> clickedTileObj = nullptr;
+
 };
 
 
