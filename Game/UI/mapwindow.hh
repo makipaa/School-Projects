@@ -53,15 +53,17 @@ public:
 
     void updateLabels(Course::ResourceMap resources, std::string playerName, int roundNumber);
 
+
 public slots:
     void setGridSize(int size);
-    void getPlayers(std::vector<std::shared_ptr<Student::Player>> players);
+    void getPlayer(std::vector<std::shared_ptr<Student::Player>> players);
     void changeTurn();
     void getId(unsigned int Id);
 
 private:
     Ui::MapWindow* m_ui;
     std::shared_ptr<Student::GameEventHandler> m_GEHandler = nullptr;
+    std::shared_ptr<Student::ObjectManager> m_objM = nullptr;
     std::shared_ptr<Student::GameScene> m_scene = nullptr;
     int m_size = 0;
     unsigned int tileId_ = 0;

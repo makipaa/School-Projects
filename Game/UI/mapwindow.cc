@@ -1,10 +1,9 @@
+
 #include "UI/mapwindow.hh"
 #include "ui_mapwindow.h"
 #include "iostream"
 
 #include <math.h>
-
-
 
 MapWindow::MapWindow(QWidget *parent,
                      std::shared_ptr<Student::GameEventHandler> handler):
@@ -14,14 +13,13 @@ MapWindow::MapWindow(QWidget *parent,
     m_scene(new Student::GameScene(this))
 {
     m_ui->setupUi(this);
-
-
+    m_GEHandler = std::make_shared<Student::GameEventHandler>(Student::GameEventHandler());
 
     Dialog dialogwindow;
     connect(&dialogwindow, SIGNAL(sendValue(int)), this,
             SLOT(setGridSize(int)));
-    connect(&dialogwindow, SIGNAL(sendPlayers(std::vector<std::shared_ptr<Student::Player>>)),
-                           this, SLOT(getPlayers(std::vector<std::shared_ptr<Student::Player> >)));
+    connect(&dialogwindow, SIGNAL(sendPlayer(std::vector<std::shared_ptr<Student::Player>>)),
+                           this, SLOT(getPlayer(std::vector<std::shared_ptr<Student::Player>>)));
     connect(m_ui->endTurnPushButton, SIGNAL(clicked(bool)), this, SLOT(changeTurn()));
 
 
@@ -33,12 +31,13 @@ MapWindow::MapWindow(QWidget *parent,
     Student::GameScene* sgs_rawptr = m_scene.get();
     m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
     this->setSize(2*m_size, m_size);
-    this->setScale((525)/m_size);
+    this->setScale((m_ui->graphicsView->height())/m_size-1);
 
     connect(sgs_rawptr, SIGNAL(sendID(unsigned int)), this, SLOT(getId(unsigned int)));
 
-    std::shared_ptr<Student::ObjectManager> objM =
-            std::make_shared<Student::ObjectManager>();
+    m_objM = std::make_shared<Student::ObjectManager>();
+    m_GEHandler->setObjectManager(m_objM);
+
     Course::WorldGenerator* worldG = &Course::WorldGenerator::getInstance();
     worldG->addConstructor<Course::Forest>(1);
     worldG->addConstructor<Course::Grassland>(1);
@@ -46,16 +45,17 @@ MapWindow::MapWindow(QWidget *parent,
     worldG->addConstructor<Student::Water>(1);
     worldG->addConstructor<Student::Cobblestone>(1);
 
-    worldG->generateMap(2*m_size,m_size,1,objM, m_GEHandler);
+    worldG->generateMap(2*m_size, m_size,1, m_objM, m_GEHandler);
 
-
-
-    std::vector<std::shared_ptr<Course::TileBase>> tiles = objM->getTiles();
+    std::vector<std::shared_ptr<Course::TileBase>> tiles = m_objM->getTiles();
     for(auto brick : tiles)
     {
         sgs_rawptr->drawItem(brick);
     }
 
+    std::shared_ptr<Student::Player> playerInTurn = m_GEHandler->getPlayerInTurn();
+    this->updateLabels(playerInTurn->getResources(),playerInTurn->getName(),
+                       m_GEHandler->getRoundNumber());
 }
 
 MapWindow::~MapWindow()
@@ -71,9 +71,9 @@ void MapWindow::setGridSize(int size){
     m_size = size;
 }
 
-void MapWindow::getPlayers(std::vector<std::shared_ptr<Student::Player> > players)
+void MapWindow::getPlayer(std::vector<std::shared_ptr<Student::Player>> players)
 {
-    m_GEHandler->add_players(players);
+    m_GEHandler->add_player(players);
 }
 
 void MapWindow::changeTurn()

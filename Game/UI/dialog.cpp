@@ -1,6 +1,8 @@
 #include "dialog.h"
 #include "ui_dialog.h"
 
+
+
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog)
@@ -39,7 +41,7 @@ void Dialog::accept(){
 
     int value = ui->mapSizeSlider->value();
     emit sendValue(value);
-    emit sendPlayers(players_);
+    emit sendPlayer(players_);
     QDialog::accept();
 }
 
@@ -76,8 +78,11 @@ void Dialog::addPlayer()
     }
     players_.push_back(std::make_shared<Student::Player>(
             Student::Player(name,{},colorOptions_[ui->comboBox->currentIndex()])));
+
     colorOptions_.erase(colorOptions_.begin() + ui->comboBox->currentIndex());
     updateColorOptions();
+
+
 
     ui->acceptButton->setEnabled(true);
 

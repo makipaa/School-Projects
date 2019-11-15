@@ -6,6 +6,7 @@
 #include "core/player.h"
 #include "core/basicresources.h"
 #include "core/worldgenerator.h"
+#include "objectmanager.h"
 
 
 namespace Student {
@@ -21,12 +22,14 @@ public:
 
     virtual bool modifyResource(std::shared_ptr<Course::PlayerBase> player,
                                 Course::BasicResource resource,
-                                int amount)=0;
+                                int amount);
 
     virtual bool modifyResources(std::shared_ptr<Course::PlayerBase> player,
-                                 Course::ResourceMap resources)=0;
+                                 Course::ResourceMap resources);
 
-    void add_players(std::vector<std::shared_ptr<Student::Player>> players);
+    void add_player(std::vector<std::shared_ptr<Student::Player>> players);
+
+    void setObjectManager(std::shared_ptr<Student::ObjectManager> objM);
 
     void new_round();
 
@@ -38,9 +41,12 @@ public:
 
 private:
     std::vector<std::shared_ptr<Student::Player>> players_ = {};
-    std::shared_ptr<Student::Player> playerInTurn_ = players_[0];
+    std::shared_ptr<Student::Player> playerInTurn_;
+
+    std::shared_ptr<Student::ObjectManager> objM_;
 
     int roundNumber_ = 1;
+
 };
 }
 #endif // GAMEEVENTHANDLER_H
