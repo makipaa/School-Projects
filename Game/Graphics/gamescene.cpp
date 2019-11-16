@@ -109,6 +109,9 @@ bool GameScene::event(QEvent *event)
                 qDebug() << "ObjID: " <<
                             static_cast<Student::MapItem*>(pressed)
                             ->getBoundObject()->ID  << " pressed.";
+                qDebug() << "Type: " <<
+                            (static_cast<Student::MapItem*>(pressed)
+                            ->getBoundObject()->getType()).c_str();
 
                 emit sendID(static_cast<Student::MapItem*>(pressed)
                             ->getBoundObject()->ID);

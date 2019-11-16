@@ -39,6 +39,9 @@ public:
 
     int getRoundNumber();
 
+    Course::ResourceMap resourcemapMakeNegative
+        (Course::ResourceMap resourcemap);
+
 private:
     std::vector<std::shared_ptr<Student::Player>> players_ = {};
     std::shared_ptr<Student::Player> playerInTurn_;

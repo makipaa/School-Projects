@@ -19,7 +19,7 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 {
     Q_UNUSED( option ); Q_UNUSED( widget );
     painter->setBrush(QBrush(c_mapcolors.at(m_gameobject->getType())));
-    if ( m_gameobject->getType() == "" ){
+    if ( m_gameobject->getType() == "Headquarters" ){
         // Draw different types in different shapes
     }
     painter->drawRect(boundingRect());

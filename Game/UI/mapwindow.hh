@@ -23,6 +23,7 @@
 #include "Student_tiles/cobblestone.h"
 #include "core/basicresources.h"
 #include "buildings/headquarters.h"
+#include "core/resourcemaps.h"
 
 
 namespace Ui {
@@ -51,7 +52,8 @@ public:
     void removeItem( std::shared_ptr<Course::GameObject> obj);
     void updateItem( std::shared_ptr<Course::GameObject> obj);
 
-    void updateLabels(Course::ResourceMap resources, std::string playerName, int roundNumber);
+    void updateLabels();
+    void showTileInfo(std::shared_ptr<Course::TileBase> tile);
 
 public slots:
     void setGridSize(int size);

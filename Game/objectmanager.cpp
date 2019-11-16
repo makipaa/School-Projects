@@ -15,7 +15,7 @@ std::vector<std::shared_ptr<Course::TileBase>> ObjectManager::getTiles
 
     for(Course::Coordinate coordinate : coordinates){
         for(std::shared_ptr<Course::TileBase> tile : tiles_){
-            if ((*tile).getCoordinate() == coordinate){
+            if (tile->getCoordinate() == coordinate){
                 found_tiles.push_back(tile);
                 break;
             }
@@ -25,10 +25,17 @@ std::vector<std::shared_ptr<Course::TileBase>> ObjectManager::getTiles
     return found_tiles;
 }
 
+void ObjectManager::addBuilding(const std::shared_ptr<Course::BuildingBase> &building)
+{
+    buildings_.push_back(building);
+}
+
 std::vector<std::shared_ptr<Course::TileBase>> ObjectManager::getTiles()
 {
     return tiles_;
 }
+
+
 
 
 std::shared_ptr<Course::TileBase> ObjectManager::getTile(const Course::ObjectId &id)

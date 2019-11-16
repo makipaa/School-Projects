@@ -22,7 +22,7 @@ MapWindow::MapWindow(QWidget *parent,
                            this, SLOT(getPlayer(std::vector<std::shared_ptr<Student::Player>>)));
     connect(m_ui->endTurnPushButton, SIGNAL(clicked(bool)), this, SLOT(changeTurn()));
     connect(m_ui->buildPushButton, SIGNAL(clicked(bool)), this, SLOT(actionBuild()));
-
+    
 
     dialogwindow.exec();
 
@@ -55,8 +55,7 @@ MapWindow::MapWindow(QWidget *parent,
     }
 
     std::shared_ptr<Student::Player> playerInTurn = m_GEHandler->getPlayerInTurn();
-    this->updateLabels(playerInTurn->getResources(),playerInTurn->getName(),
-                       m_GEHandler->getRoundNumber());
+    this->updateLabels();
 
 }
 
@@ -83,23 +82,45 @@ void MapWindow::changeTurn()
     m_GEHandler->changeTurn();
 
     std::shared_ptr<Student::Player> playerInTurn = m_GEHandler->getPlayerInTurn();
-    this->updateLabels(playerInTurn->getResources(),playerInTurn->getName(),
-                       m_GEHandler->getRoundNumber());
+    this->updateLabels();
+
+    clickedTileObj = nullptr;
+    m_ui->tileInfoLabel->clear();
 }
 
 void MapWindow::getId(unsigned int Id)
 {
     clickedTileObj = m_objM->getTile(Id);
+    if (clickedTileObj->getOwner()){
+        qDebug() << "Owner: " << (clickedTileObj->getOwner()->getName()).c_str();
+        qDebug() << "# of buildings: " << clickedTileObj->getBuildingCount();
+    }
+    showTileInfo(clickedTileObj);
 }
 
 void MapWindow::actionBuild()
 {
+    if (!clickedTileObj){
+        return;
+    }
+
     QString temporary = m_ui->buildingsComboBox->currentText();
     std::string wantedBuilding = temporary.toStdString();
 
-    if(wantedBuilding == "Headquarter"){
-        clickedTileObj->addBuilding(std::make_shared<Course::HeadQuarters>(m_GEHandler,
-                                    m_objM, m_GEHandler->getPlayerInTurn()));
+    if(wantedBuilding == "Headquarter" && m_GEHandler->modifyResources
+            (m_GEHandler->getPlayerInTurn(),m_GEHandler->resourcemapMakeNegative(
+             (Course::ConstResourceMaps::HQ_BUILD_COST)))){
+
+        clickedTileObj->setOwner(m_GEHandler->getPlayerInTurn());
+
+        std::shared_ptr<Course::HeadQuarters> building =
+                std::make_shared<Course::HeadQuarters>(m_GEHandler,
+                                                    m_objM, m_GEHandler->getPlayerInTurn());
+        m_objM->addBuilding(building);
+        clickedTileObj->addBuilding(building);
+        building->onBuildAction();
+
+        this->updateLabels();
     }
 //    else if(wantedBuilding == "Outpost"){
 //        clickedTileObj->addBuilding();
@@ -144,9 +165,13 @@ void MapWindow::updateItem(std::shared_ptr<Course::GameObject> obj)
     m_scene->updateItem(obj);
 }
 
-void MapWindow::updateLabels(Course::ResourceMap resources,
-                             std::string playerName, int roundNumber)
+void MapWindow::updateLabels()
 {
+    auto playerInTurn = m_GEHandler->getPlayerInTurn();
+    auto resources = playerInTurn->getResources();
+    auto playerName = playerInTurn->getName();
+    auto roundNumber = m_GEHandler->getRoundNumber();
+
     m_ui->turnNameLabel->setText
             (QString::fromStdString(playerName));
 
@@ -167,6 +192,33 @@ void MapWindow::updateLabels(Course::ResourceMap resources,
     resource_amount = std::to_string(resources[Course::BasicResource::WOOD]);
     m_ui->woodAmountLabel->setText(QString::fromStdString(resource_amount));
 }
+
+void MapWindow::showTileInfo(std::shared_ptr<Course::TileBase> tile)
+{
+    QString type = QString::fromStdString(tile->getType());
+    QString x = QString::number(tile->getCoordinate().x());
+    QString y = QString::number(tile->getCoordinate().y());
+    QString owner;
+    if (tile->getOwner()){
+            owner = QString::fromStdString(tile->getOwner()->getName());
+    }
+    else{
+        owner = "None";
+    }
+    QStringList buildings;
+    for (auto building : tile->getBuildings()){
+        buildings.push_back(QString::fromStdString(building->getType()));
+    }
+    m_ui->tileInfoLabel->setText("(" + x + "," + y + ") " + type + "\n"
+                                 + "Owner: " + owner + "\n"
+                                 + "Buildings:"+ "\n");
+    for (auto building : buildings){
+        m_ui->tileInfoLabel->setText(m_ui->tileInfoLabel->text() + building + "\n");
+    }
+    m_ui->tileInfoLabel->setWordWrap(true);
+
+}
+
 
 void MapWindow::removeItem(std::shared_ptr<Course::GameObject> obj)
 {

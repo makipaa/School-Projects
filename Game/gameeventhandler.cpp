@@ -1,4 +1,5 @@
 #include "gameeventhandler.h"
+#include "iostream"
 
 namespace Student {
 
@@ -25,8 +26,6 @@ void GameEventHandler::new_round()
             tile->generateResources();
         }
     }
-    auto tile = objM_->getTile(1);
-    tile->setOwner(playerInTurn_);
 
     roundNumber_ ++;
 }
@@ -71,6 +70,16 @@ bool GameEventHandler::modifyResource(std::shared_ptr<Course::PlayerBase> player
     }
 
     return false;
+}
+
+Course::ResourceMap GameEventHandler::resourcemapMakeNegative
+    (Course::ResourceMap resourcemap)
+{
+    Course::ResourceMap result = resourcemap;
+    for ( std::pair<Course::BasicResource,int> pair : result){
+        result[pair.first] = -pair.second;
+    }
+    return result;
 }
 
 std::shared_ptr<Student::Player> GameEventHandler::getPlayerInTurn(){
