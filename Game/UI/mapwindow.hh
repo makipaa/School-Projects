@@ -53,7 +53,7 @@ public:
     void updateItem( std::shared_ptr<Course::GameObject> obj);
 
     void updateLabels();
-    void showTileInfo(std::shared_ptr<Course::TileBase> tile);
+    void updateTileInfo();
 
 public slots:
     void setGridSize(int size);

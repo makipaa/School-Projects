@@ -30,6 +30,10 @@ Dialog::Dialog(QWidget *parent) :
     updateColorOptions();
 
     ui->acceptButton->setDisabled(true);
+
+    ui->showPlayersLabel->setAlignment(Qt::AlignTop);
+    ui->showPlayersLabel->setText("Players: \n");
+    ui->showPlayersLabel->setWordWrap(true);
 }
 
 Dialog::~Dialog()
@@ -79,7 +83,11 @@ void Dialog::addPlayer()
     players_.push_back(std::make_shared<Student::Player>(
             Student::Player(name,{},colorOptions_[ui->comboBox->currentIndex()])));
 
+    ui->showPlayersLabel->setText(ui->showPlayersLabel->text() + ui->nameInput->text() + "\n");
+
     colorOptions_.erase(colorOptions_.begin() + ui->comboBox->currentIndex());
+    ui->nameInput->clear();
+
     updateColorOptions();
 
 

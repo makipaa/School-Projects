@@ -95,7 +95,7 @@ void MapWindow::getId(unsigned int Id)
         qDebug() << "Owner: " << (clickedTileObj->getOwner()->getName()).c_str();
         qDebug() << "# of buildings: " << clickedTileObj->getBuildingCount();
     }
-    showTileInfo(clickedTileObj);
+    this->updateTileInfo();
 }
 
 void MapWindow::actionBuild()
@@ -121,6 +121,7 @@ void MapWindow::actionBuild()
         building->onBuildAction();
 
         this->updateLabels();
+        this->updateTileInfo();
     }
 //    else if(wantedBuilding == "Outpost"){
 //        clickedTileObj->addBuilding();
@@ -193,8 +194,10 @@ void MapWindow::updateLabels()
     m_ui->woodAmountLabel->setText(QString::fromStdString(resource_amount));
 }
 
-void MapWindow::showTileInfo(std::shared_ptr<Course::TileBase> tile)
+void MapWindow::updateTileInfo()
 {
+    std::shared_ptr<Course::TileBase> tile = clickedTileObj;
+
     QString type = QString::fromStdString(tile->getType());
     QString x = QString::number(tile->getCoordinate().x());
     QString y = QString::number(tile->getCoordinate().y());
@@ -216,6 +219,7 @@ void MapWindow::showTileInfo(std::shared_ptr<Course::TileBase> tile)
         m_ui->tileInfoLabel->setText(m_ui->tileInfoLabel->text() + building + "\n");
     }
     m_ui->tileInfoLabel->setWordWrap(true);
+    m_ui->tileInfoLabel->setAlignment(Qt::AlignTop);
 
 }
 
