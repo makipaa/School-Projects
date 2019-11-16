@@ -40,6 +40,15 @@ private:
 
     static std::map<std::string, QColor> c_mapcolors;
     static void addNewColor(std::string type);
+
+        QImage imageForest_ = QImage("Images/forest.png");
+        QImage imageCobblestone_ = QImage("Images/mountain.png");
+        QImage imageWater_ = QImage("Images/water.png");
+        QImage imageSwamp_ = QImage("Images/swamp.png");
+        QImage imageGrass_ = QImage("Images/grass.png");
+        QImage imageHeadquarters_ = QImage("Images/headquarters.png");
+
+
 };
 } // Namespace
 #endif // MAPITEM_H

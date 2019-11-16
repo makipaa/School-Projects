@@ -5,6 +5,7 @@
 
 #include <math.h>
 
+
 MapWindow::MapWindow(QWidget *parent,
                      std::shared_ptr<Student::GameEventHandler> handler):
     QMainWindow(parent),
@@ -119,6 +120,11 @@ void MapWindow::actionBuild()
         m_objM->addBuilding(building);
         clickedTileObj->addBuilding(building);
         building->onBuildAction();
+
+        m_scene->drawItem(building);
+        m_ui->graphicsView->hide();
+        m_ui->graphicsView->show();
+
 
         this->updateLabels();
         this->updateTileInfo();

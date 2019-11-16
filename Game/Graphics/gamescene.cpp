@@ -103,18 +103,23 @@ bool GameScene::event(QEvent *event)
 
             QGraphicsItem* pressed = itemAt(point * m_scale, QTransform());
 
+
             if ( pressed == m_mapBoundRect ){
                 qDebug() << "Click on map area.";
-            }else{
-                qDebug() << "ObjID: " <<
-                            static_cast<Student::MapItem*>(pressed)
-                            ->getBoundObject()->ID  << " pressed.";
-                qDebug() << "Type: " <<
-                            (static_cast<Student::MapItem*>(pressed)
-                            ->getBoundObject()->getType()).c_str();
+            }
+            else{
+                auto clicked_object = static_cast<Student::MapItem*>(pressed)
+                        ->getBoundObject();
 
-                emit sendID(static_cast<Student::MapItem*>(pressed)
-                            ->getBoundObject()->ID);
+                // When building is clicked gets the location tile id
+                if(auto item = std::dynamic_pointer_cast<Course::BuildingBase>(clicked_object)){
+                    emit sendID(item->currentLocationTile()->ID);
+                }
+                // Tile was clicked
+                else{
+                    emit sendID(static_cast<Student::MapItem*>(pressed)
+                                ->getBoundObject()->ID);
+                }
 
                 return true;
             }
@@ -145,6 +150,7 @@ void GameScene::drawItem( std::shared_ptr<Course::GameObject> obj)
 {
     MapItem* nItem = new MapItem(obj, m_scale);
     addItem(nItem);
+
 }
 
 }

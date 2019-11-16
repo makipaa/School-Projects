@@ -1,8 +1,9 @@
 #include "mapitem.h"
-
+#include "qdebug.h"
 namespace Student {
 
 std::map<std::string, QColor> MapItem::c_mapcolors = {};
+
 
 MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, int size ):
     m_gameobject(obj), m_scenelocation(m_gameobject->getCoordinatePtr()->asQpoint()), m_size(size)
@@ -19,10 +20,29 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 {
     Q_UNUSED( option ); Q_UNUSED( widget );
     painter->setBrush(QBrush(c_mapcolors.at(m_gameobject->getType())));
-    if ( m_gameobject->getType() == "Headquarters" ){
-        // Draw different types in different shapes
+    if ( m_gameobject->getType() == "Forest" ){
+        painter->drawImage(boundingRect(), imageForest_);
     }
-    painter->drawRect(boundingRect());
+    else if ( m_gameobject->getType() == "Cobblestone" ){
+        painter->drawImage(boundingRect(), imageCobblestone_);
+    }
+    else if ( m_gameobject->getType() == "Water" ){
+        painter->drawImage(boundingRect(), imageWater_);
+    }
+    else if ( m_gameobject->getType() == "Swamp" ){
+        painter->drawImage(boundingRect(), imageSwamp_);
+    }
+    else if ( m_gameobject->getType() == "Grassland" ){
+        painter->drawImage(boundingRect(), imageGrass_);
+    }
+    else if ( m_gameobject->getType() == "HeadQuarters" ){
+        painter->drawImage(boundingRect(), imageHeadquarters_);
+        qDebug() << "HQ Drawn";
+    }
+    else {
+        painter->drawRect(boundingRect());
+    }
+
 }
 
 const std::shared_ptr<Course::GameObject> &MapItem::getBoundObject()
