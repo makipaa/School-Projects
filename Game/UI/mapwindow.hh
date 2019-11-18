@@ -23,7 +23,9 @@
 #include "Student_tiles/cobblestone.h"
 #include "core/basicresources.h"
 #include "buildings/headquarters.h"
+#include "buildings/outpost.h"
 #include "core/resourcemaps.h"
+#include "exceptions/illegalaction.h"
 
 
 namespace Ui {

@@ -127,7 +127,7 @@ bool GameScene::event(QEvent *event)
         }
     }
 
-    return false;
+    return QGraphicsScene::event(event);
 }
 
 

@@ -101,37 +101,27 @@ void MapWindow::getId(unsigned int Id)
 
 void MapWindow::actionBuild()
 {
-    if (!clickedTileObj){
+    if (!clickedTileObj ||
+        (clickedTileObj->getOwner()
+            && clickedTileObj->getOwner() != m_GEHandler->getPlayerInTurn())){
         return;
     }
 
     QString temporary = m_ui->buildingsComboBox->currentText();
     std::string wantedBuilding = temporary.toStdString();
 
-    if(wantedBuilding == "Headquarter" && m_GEHandler->modifyResources
-            (m_GEHandler->getPlayerInTurn(),m_GEHandler->resourcemapMakeNegative(
-             (Course::ConstResourceMaps::HQ_BUILD_COST)))){
+    std::shared_ptr<Course::BuildingBase> building;
 
-        clickedTileObj->setOwner(m_GEHandler->getPlayerInTurn());
-
-        std::shared_ptr<Course::HeadQuarters> building =
-                std::make_shared<Course::HeadQuarters>(m_GEHandler,
-                                                    m_objM, m_GEHandler->getPlayerInTurn());
-        m_objM->addBuilding(building);
-        clickedTileObj->addBuilding(building);
-        building->onBuildAction();
-
-        m_scene->drawItem(building);
-        m_ui->graphicsView->hide();
-        m_ui->graphicsView->show();
+    if(wantedBuilding == "Headquarter"){
 
 
-        this->updateLabels();
-        this->updateTileInfo();
+        building = std::make_shared<Course::HeadQuarters>(m_GEHandler,
+                                    m_objM, m_GEHandler->getPlayerInTurn());
     }
-//    else if(wantedBuilding == "Outpost"){
-//        clickedTileObj->addBuilding();
-//    }
+    else if(wantedBuilding == "Outpost"){
+        building = std::make_shared<Course::Outpost>(m_GEHandler,
+                                    m_objM, m_GEHandler->getPlayerInTurn());
+    }
 //    else if(wantedBuilding == "Farm"){
 //        clickedTileObj->addBuilding();
 //    }
@@ -144,6 +134,36 @@ void MapWindow::actionBuild()
 //    else if(wantedBuilding == "Sawmill" ){
 //        clickedTileObj->addBuilding();
 //    }
+
+    if(not building->canBePlacedOnTile(clickedTileObj)){
+        return;
+    }
+
+    if(not m_GEHandler->modifyResources(m_GEHandler->getPlayerInTurn(),
+       m_GEHandler->resourcemapMakeNegative(building->BUILD_COST))){
+        qDebug() << "Too few resources to build";
+        return;
+    }
+    if(not building->canBePlacedOnTile(clickedTileObj)){
+        return;
+    }
+    if(building->getType() == "HeadQuarters"){
+        clickedTileObj->setOwner(m_GEHandler->getPlayerInTurn());
+    }
+
+    clickedTileObj->addBuilding(building);
+
+
+    m_objM->addBuilding(building);
+
+    building->onBuildAction();
+
+    m_scene->drawItem(building);
+
+
+    this->updateLabels();
+    this->updateTileInfo();
+
 
 }
 

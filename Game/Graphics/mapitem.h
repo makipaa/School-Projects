@@ -47,6 +47,7 @@ private:
         QImage imageSwamp_ = QImage("Images/swamp.png");
         QImage imageGrass_ = QImage("Images/grass.png");
         QImage imageHeadquarters_ = QImage("Images/headquarters.png");
+        QImage imageOutpost_ = QImage("Images/outpost.png");
 
 
 };

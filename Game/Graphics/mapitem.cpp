@@ -37,7 +37,9 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     }
     else if ( m_gameobject->getType() == "HeadQuarters" ){
         painter->drawImage(boundingRect(), imageHeadquarters_);
-        qDebug() << "HQ Drawn";
+    }
+    else if ( m_gameobject->getType() == "Outpost" ){
+        painter->drawImage(boundingRect(), imageOutpost_);
     }
     else {
         painter->drawRect(boundingRect());
