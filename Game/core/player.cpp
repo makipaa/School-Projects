@@ -45,6 +45,11 @@ bool Player::modifyResource(Course::BasicResource resource, int amount)
 
 }
 
+QColor Player::getColor()
+{
+    return color_;
+}
+
 
 
 

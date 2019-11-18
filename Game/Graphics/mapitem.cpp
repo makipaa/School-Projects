@@ -44,7 +44,6 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     else {
         painter->drawRect(boundingRect());
     }
-
 }
 
 const std::shared_ptr<Course::GameObject> &MapItem::getBoundObject()

@@ -4,12 +4,17 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QDebug>
+#include <QEvent>
+#include <QGraphicsSceneMouseEvent>
 
+#include <math.h>
 #include <map>
 #include <memory>
 
 #include "core/gameobject.h"
 #include "tiles/tilebase.h"
+#include "Graphics/mapitem.h"
+#include"Graphics/tileborder.h"
 
 namespace Student {
 
@@ -40,6 +45,10 @@ public:
     std::pair<int,int> getSize() const;
 
     void drawItem( std::shared_ptr<Course::GameObject> obj);
+
+    void drawBorder(QColor color, QPoint location);
+
+    void removeBorder(QPoint location);
 
     void removeItem( std::shared_ptr<Course::GameObject> obj);
 

@@ -56,6 +56,7 @@ public:
 
     void updateLabels();
     void updateTileInfo();
+    void updateTileBorders();
 
 public slots:
     void setGridSize(int size);
