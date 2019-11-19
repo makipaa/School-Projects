@@ -26,5 +26,9 @@ std::string Mine::getType() const
     return "Mine";
 }
 
+bool Mine::canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) const
+{
+    return target->getType() == "Cobblestone";
+}
 
 } // namespace Student

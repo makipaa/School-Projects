@@ -20,14 +20,16 @@ public:
             const std::shared_ptr<ObjectManager>& objectmanager,
             const std::shared_ptr<Course::PlayerBase>& owner,
             const int& tilespaces = 1,
-            const Course::ResourceMap& buildcost = Course::ConstResourceMaps::FARM_BUILD_COST,
-            const Course::ResourceMap& production = Course::ConstResourceMaps::FARM_PRODUCTION
+            const Course::ResourceMap& buildcost = Course::ConstResourceMaps::TRAWLER_BUILD_COST,
+            const Course::ResourceMap& production = Course::ConstResourceMaps::TRAWLER_PRODUCTION
             );
 
     virtual ~Trawler() = default;
 
 
     virtual std::string getType() const override;
+
+    virtual bool canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) const;
 
 }; // class Trawler
 

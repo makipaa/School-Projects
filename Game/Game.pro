@@ -25,7 +25,10 @@ SOURCES += \
     Buildings/sawmill.cpp \
     Workers/fisher.cpp \
     Workers/miner.cpp \
-    Graphics/tileborder.cpp
+    Graphics/tileborder.cpp \
+    Buildings/studentOutpost.cpp \
+    Buildings/studentfarm.cpp \
+    Buildings/studentHeadQuarters.cpp
 
 HEADERS += \
     UI/mapwindow.hh \
@@ -45,7 +48,10 @@ HEADERS += \
     Buildings/sawmill.h \
     Workers/fisher.h \
     Workers/miner.h \
-    Graphics/tileborder.h
+    Graphics/tileborder.h \
+    Buildings/studentOutpost.h \
+    Buildings/studentfarm.h \
+    Buildings/studentHeadQuarters.h
 
 
 win32:CONFIG(release, debug|release): LIBS += \
@@ -91,4 +97,4 @@ DISTFILES += \
     Images/sawmill.png
 
 RESOURCES += \
-    resourcefile.qrc
+    resources.qrc

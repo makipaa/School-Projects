@@ -25,9 +25,10 @@
 
 #include "core/basicresources.h"
 
-#include "buildings/headquarters.h"
-#include "buildings/outpost.h"
-#include "buildings/farm.h"
+#include "Buildings/studentHeadQuarters.h"
+#include "Buildings/studentOutpost.h"
+#include "Buildings/studentfarm.h"
+
 #include "Buildings/mine.h"
 #include "Buildings/trawler.h"
 #include "Buildings/sawmill.h"
