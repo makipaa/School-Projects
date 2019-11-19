@@ -26,5 +26,10 @@ std::string Sawmill::getType() const
     return "Sawmill";
 }
 
+bool Sawmill::canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) const
+{
+    return target->getType() == "Forest";
+}
+
 
 } // namespace Student

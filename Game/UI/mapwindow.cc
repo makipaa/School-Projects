@@ -59,7 +59,7 @@ MapWindow::MapWindow(QWidget *parent,
     this->updateLabels();
 
     QMediaPlayer *mediaPlayer = new QMediaPlayer();
-    mediaPlayer->setMedia(QUrl("qrc:/sounds/flute_salad.mp3"));
+    mediaPlayer->setMedia(QUrl("qrc:/sounds/flute_salad.wav"));
     mediaPlayer->play();
 }
 
@@ -117,10 +117,17 @@ void MapWindow::actionBuild()
         qDebug() << "Cannot build the wanted building on this tile!";
         return;
     }
+
     if(!m_GEHandler->modifyResources(m_GEHandler->getPlayerInTurn(),
        m_GEHandler->resourcemapMakeNegative(building->BUILD_COST)))
     {
         qDebug() << "Too few resources to build";
+        return;
+    }
+
+    if(!clickedTileObj->hasSpaceForBuildings(1))
+    {
+        qDebug() << "Building capacity is already maxed";
         return;
     }
         clickedTileObj->setOwner(m_GEHandler->getPlayerInTurn());
@@ -144,17 +151,17 @@ void MapWindow::constructWantedBuilding(
 
     if(wantedBuilding == "HeadQuarters")
     {
-        building = std::make_shared<Course::HeadQuarters>(m_GEHandler,
+        building = std::make_shared<Student::StudentHeadQuarters>(m_GEHandler,
                                     m_objM, m_GEHandler->getPlayerInTurn());
     }
     else if(wantedBuilding == "Outpost")
     {
-        building = std::make_shared<Course::Outpost>(m_GEHandler,
+        building = std::make_shared<Student::StudentOutpost>(m_GEHandler,
                                     m_objM, m_GEHandler->getPlayerInTurn());
     }
     else if(wantedBuilding == "Farm")
     {
-        building = std::make_shared<Course::Farm>(m_GEHandler,
+        building = std::make_shared<Student::StudentFarm>(m_GEHandler,
                                     m_objM, m_GEHandler->getPlayerInTurn());
     }
     else if(wantedBuilding == "Mine")
