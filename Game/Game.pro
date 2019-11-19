@@ -2,7 +2,8 @@
 TARGET = TheGame
 
 QT += core gui widgets \
-      location
+      location \
+      multimedia
 
 CONFIG += c++14
 
@@ -82,4 +83,10 @@ DISTFILES += \
     Images/mountain.png \
     Images/outpost.png \
     Images/swamp.png \
-    Images/water.png
+    Images/water.png \
+    Images/trawler.png \
+    Images/mine.png \
+    Images/sawmill.png
+
+RESOURCES += \
+    resourcefile.qrc

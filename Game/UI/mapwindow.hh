@@ -7,7 +7,7 @@
 #include <QMouseEvent>
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
-
+#include <QMediaPlayer>
 #include <map>
 
 #include "interfaces/igameeventhandler.h"
@@ -24,6 +24,10 @@
 #include "core/basicresources.h"
 #include "buildings/headquarters.h"
 #include "buildings/outpost.h"
+#include "buildings/farm.h"
+#include "Buildings/mine.h"
+#include "Buildings/trawler.h"
+#include "Buildings/sawmill.h"
 #include "core/resourcemaps.h"
 #include "exceptions/illegalaction.h"
 
@@ -71,6 +75,8 @@ private:
     std::shared_ptr<Student::GameScene> m_scene = nullptr;
     int m_size = 0;
     std::shared_ptr<Course::TileBase> clickedTileObj = nullptr;
+
+    void constructWantedBuilding(std::shared_ptr<Course::BuildingBase> &building);
 
 };
 

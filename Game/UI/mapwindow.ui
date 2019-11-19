@@ -216,12 +216,6 @@
      <height>25</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuConquest_of_Pirkanmaa">
-    <property name="title">
-     <string>Colonizing Pirkanmaa</string>
-    </property>
-   </widget>
-   <addaction name="menuConquest_of_Pirkanmaa"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

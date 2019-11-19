@@ -13,38 +13,25 @@ MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, int size ):
 
 QRectF MapItem::boundingRect() const
 {
-    return QRectF(m_scenelocation * m_size, m_scenelocation * m_size + QPoint(m_size, m_size));
+    return QRectF(m_scenelocation * m_size, m_scenelocation * m_size +
+                  QPoint(m_size, m_size));
 }
 
-void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
+                    QWidget *widget)
 {
     Q_UNUSED( option ); Q_UNUSED( widget );
     painter->setBrush(QBrush(c_mapcolors.at(m_gameobject->getType())));
-    if ( m_gameobject->getType() == "Forest" ){
-        painter->drawImage(boundingRect(), imageForest_);
-    }
-    else if ( m_gameobject->getType() == "Cobblestone" ){
-        painter->drawImage(boundingRect(), imageCobblestone_);
-    }
-    else if ( m_gameobject->getType() == "Water" ){
-        painter->drawImage(boundingRect(), imageWater_);
-    }
-    else if ( m_gameobject->getType() == "Swamp" ){
-        painter->drawImage(boundingRect(), imageSwamp_);
-    }
-    else if ( m_gameobject->getType() == "Grassland" ){
-        painter->drawImage(boundingRect(), imageGrass_);
-    }
-    else if ( m_gameobject->getType() == "HeadQuarters" ){
-        painter->drawImage(boundingRect(), imageHeadquarters_);
-    }
-    else if ( m_gameobject->getType() == "Outpost" ){
-        painter->drawImage(boundingRect(), imageOutpost_);
+
+    std::map<std::string, QImage>::iterator iter = images_.find(
+                                        m_gameobject->getType());
+
+    if(iter != images_.end()){
+        painter->drawImage(boundingRect(), images_[m_gameobject->getType()]);
     }
     else {
         painter->drawRect(boundingRect());
     }
-
 }
 
 const std::shared_ptr<Course::GameObject> &MapItem::getBoundObject()
@@ -88,4 +75,4 @@ void MapItem::addNewColor(std::string type)
     }
 }
 
-}
+} // Namespace

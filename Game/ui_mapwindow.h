@@ -21,7 +21,6 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
@@ -59,7 +58,6 @@ public:
     QPushButton *buildPushButton;
     QLabel *tileInfoLabel;
     QMenuBar *menubar;
-    QMenu *menuConquest_of_Pirkanmaa;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MapWindow)
@@ -185,14 +183,10 @@ public:
         menubar = new QMenuBar(MapWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
         menubar->setGeometry(QRect(0, 0, 1300, 25));
-        menuConquest_of_Pirkanmaa = new QMenu(menubar);
-        menuConquest_of_Pirkanmaa->setObjectName(QStringLiteral("menuConquest_of_Pirkanmaa"));
         MapWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MapWindow);
         statusbar->setObjectName(QStringLiteral("statusbar"));
         MapWindow->setStatusBar(statusbar);
-
-        menubar->addAction(menuConquest_of_Pirkanmaa->menuAction());
 
         retranslateUi(MapWindow);
 
@@ -218,7 +212,6 @@ public:
         turnNameLabel->setText(QString());
         buildPushButton->setText(QApplication::translate("MapWindow", "Build", Q_NULLPTR));
         tileInfoLabel->setText(QString());
-        menuConquest_of_Pirkanmaa->setTitle(QApplication::translate("MapWindow", "Colonizing Pirkanmaa", Q_NULLPTR));
     } // retranslateUi
 
 };

@@ -27,7 +27,7 @@ MapWindow::MapWindow(QWidget *parent,
 
     dialogwindow.exec();
 
-    QStringList buildings = {"Headquarter", "Outpost", "Farm", "Mine", "Trawler", "Sawmill"};
+    QStringList buildings = {"HeadQuarters", "Outpost", "Farm", "Mine", "Trawler", "Sawmill"};
     m_ui->buildingsComboBox->addItems(buildings);
 
     Student::GameScene* sgs_rawptr = m_scene.get();
@@ -58,6 +58,9 @@ MapWindow::MapWindow(QWidget *parent,
     std::shared_ptr<Student::Player> playerInTurn = m_GEHandler->getPlayerInTurn();
     this->updateLabels();
 
+    QMediaPlayer *mediaPlayer = new QMediaPlayer();
+    mediaPlayer->setMedia(QUrl("qrc:/sounds/flute_salad.mp3"));
+    mediaPlayer->play();
 }
 
 MapWindow::~MapWindow()
@@ -107,64 +110,67 @@ void MapWindow::actionBuild()
         return;
     }
 
-    QString temporary = m_ui->buildingsComboBox->currentText();
-    std::string wantedBuilding = temporary.toStdString();
-
     std::shared_ptr<Course::BuildingBase> building;
+    constructWantedBuilding(building);
 
-    if(wantedBuilding == "Headquarter"){
-
-
-        building = std::make_shared<Course::HeadQuarters>(m_GEHandler,
-                                    m_objM, m_GEHandler->getPlayerInTurn());
-    }
-    else if(wantedBuilding == "Outpost"){
-        building = std::make_shared<Course::Outpost>(m_GEHandler,
-                                    m_objM, m_GEHandler->getPlayerInTurn());
-    }
-//    else if(wantedBuilding == "Farm"){
-//        clickedTileObj->addBuilding();
-//    }
-//    else if(wantedBuilding == "Mine"){
-//        clickedTileObj->addBuilding();
-//    }
-//    else if(wantedBuilding == "Trawler"){
-//        clickedTileObj->addBuilding();
-//    }
-//    else if(wantedBuilding == "Sawmill" ){
-//        clickedTileObj->addBuilding();
-//    }
-
-    if(not building->canBePlacedOnTile(clickedTileObj)){
+    if(!building->canBePlacedOnTile(clickedTileObj)){
+        qDebug() << "Cannot build the wanted building on this tile!";
         return;
     }
-
-    if(not m_GEHandler->modifyResources(m_GEHandler->getPlayerInTurn(),
-       m_GEHandler->resourcemapMakeNegative(building->BUILD_COST))){
+    if(!m_GEHandler->modifyResources(m_GEHandler->getPlayerInTurn(),
+       m_GEHandler->resourcemapMakeNegative(building->BUILD_COST)))
+    {
         qDebug() << "Too few resources to build";
         return;
     }
-    if(not building->canBePlacedOnTile(clickedTileObj)){
-        return;
-    }
-    if(building->getType() == "HeadQuarters"){
         clickedTileObj->setOwner(m_GEHandler->getPlayerInTurn());
+        clickedTileObj->addBuilding(building);
+
+        m_objM->addBuilding(building);
+        building->onBuildAction();
+        m_scene->drawItem(building);
+
+        this->updateLabels();
+        this->updateTileInfo();
+
+}
+
+void MapWindow::constructWantedBuilding(
+        std::shared_ptr<Course::BuildingBase>& building)
+{
+    std::string wantedBuilding = m_ui->buildingsComboBox->
+                                currentText().toStdString();
+
+    if(wantedBuilding == "HeadQuarters")
+    {
+        building = std::make_shared<Course::HeadQuarters>(m_GEHandler,
+                                    m_objM, m_GEHandler->getPlayerInTurn());
     }
-
-    clickedTileObj->addBuilding(building);
-
-
-    m_objM->addBuilding(building);
-
-    building->onBuildAction();
-
-    m_scene->drawItem(building);
-
-
-    this->updateLabels();
-    this->updateTileInfo();
-
-
+    else if(wantedBuilding == "Outpost")
+    {
+        building = std::make_shared<Course::Outpost>(m_GEHandler,
+                                    m_objM, m_GEHandler->getPlayerInTurn());
+    }
+    else if(wantedBuilding == "Farm")
+    {
+        building = std::make_shared<Course::Farm>(m_GEHandler,
+                                    m_objM, m_GEHandler->getPlayerInTurn());
+    }
+    else if(wantedBuilding == "Mine")
+    {
+        building = std::make_shared<Student::Mine>(m_GEHandler,
+                                    m_objM, m_GEHandler->getPlayerInTurn());
+    }
+    else if(wantedBuilding == "Trawler")
+    {
+        building = std::make_shared<Student::Trawler>(m_GEHandler,
+                                    m_objM, m_GEHandler->getPlayerInTurn());
+    }
+    else if(wantedBuilding == "Sawmill" )
+    {
+        building = std::make_shared<Student::Sawmill>(m_GEHandler,
+                                    m_objM, m_GEHandler->getPlayerInTurn());
+    }
 }
 
 void MapWindow::setGEHandler(std::shared_ptr<Student::GameEventHandler> nHandler)

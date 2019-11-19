@@ -41,14 +41,17 @@ private:
     static std::map<std::string, QColor> c_mapcolors;
     static void addNewColor(std::string type);
 
-        QImage imageForest_ = QImage("Images/forest.png");
-        QImage imageCobblestone_ = QImage("Images/mountain.png");
-        QImage imageWater_ = QImage("Images/water.png");
-        QImage imageSwamp_ = QImage("Images/swamp.png");
-        QImage imageGrass_ = QImage("Images/grass.png");
-        QImage imageHeadquarters_ = QImage("Images/headquarters.png");
-        QImage imageOutpost_ = QImage("Images/outpost.png");
-
+    std::map<std::string, QImage> images_ = {{"Forest", QImage("Images/forest.png")},
+                                            {"Water", QImage("Images/water.png")},
+                                            {"Swamp", QImage("Images/swamp.png")},
+                                            {"Cobblestone", QImage("Images/mountain.png")},
+                                            {"Grassland", QImage("Images/grass.png")},
+                                            {"Farm", QImage("Images/farm.png")},
+                                            {"HeadQuarters", QImage("Images/headquarters.png")},
+                                            {"Outpost", QImage("Images/outpost.png")},
+                                            {"Mine", QImage("Images/mine.png")},
+                                            {"Trawler", QImage("Images/trawler.png")},
+                                            {"Sawmill", QImage("Images/sawmill.png")}};
 
 };
 } // Namespace
