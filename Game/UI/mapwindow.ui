@@ -174,37 +174,59 @@
    <widget class="QWidget" name="gridLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>1100</x>
-      <y>50</y>
+      <x>1070</x>
+      <y>280</y>
       <width>131</width>
       <height>91</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="0">
-      <widget class="QComboBox" name="buildingsComboBox"/>
-     </item>
-     <item row="1" column="0">
+     <item row="2" column="0">
       <widget class="QPushButton" name="buildPushButton">
        <property name="text">
         <string>Build</string>
        </property>
       </widget>
      </item>
+     <item row="1" column="0">
+      <widget class="QComboBox" name="buildingsComboBox"/>
+     </item>
     </layout>
    </widget>
    <widget class="QLabel" name="tileInfoLabel">
     <property name="geometry">
      <rect>
-      <x>1080</x>
-      <y>160</y>
+      <x>1070</x>
+      <y>40</y>
       <width>201</width>
-      <height>131</height>
+      <height>161</height>
      </rect>
     </property>
     <property name="text">
      <string/>
     </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>390</y>
+      <width>131</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QComboBox" name="recruitsComboBox"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="recruitPushButton">
+       <property name="text">
+        <string>Recruit</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

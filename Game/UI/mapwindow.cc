@@ -23,12 +23,16 @@ MapWindow::MapWindow(QWidget *parent,
                            this, SLOT(getPlayer(std::vector<std::shared_ptr<Student::Player>>)));
     connect(m_ui->endTurnPushButton, SIGNAL(clicked(bool)), this, SLOT(changeTurn()));
     connect(m_ui->buildPushButton, SIGNAL(clicked(bool)), this, SLOT(actionBuild()));
+    connect(m_ui->recruitPushButton, SIGNAL(clicked(bool)), this, SLOT(actionRecruit()));
     
 
     dialogwindow.exec();
 
     QStringList buildings = {"HeadQuarters", "Outpost", "Farm", "Mine", "Trawler", "Sawmill"};
     m_ui->buildingsComboBox->addItems(buildings);
+
+    QStringList workers = {"BasicWorker","Fisher", "Miner"};
+    m_ui->recruitsComboBox->addItems(workers);
 
     Student::GameScene* sgs_rawptr = m_scene.get();
     m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
@@ -136,6 +140,29 @@ void MapWindow::actionBuild()
 
 }
 
+void MapWindow::actionRecruit()
+{
+    if (clickedTileObj->getOwner() != m_GEHandler->getPlayerInTurn()){
+        return;
+    }
+
+    std::shared_ptr<Course::WorkerBase> recruit;
+    constructWantedRecruit(recruit);
+
+    if(!recruit->canBePlacedOnTile(clickedTileObj)){
+        return;
+    }
+    if(!m_GEHandler->modifyResources(m_GEHandler->getPlayerInTurn(),
+            m_GEHandler->resourcemapMakeNegative(recruit->RECRUITMENT_COST))){
+        return;
+    }
+    clickedTileObj->addWorker(recruit);
+    m_objM->addWorker(recruit);
+
+    this->updateLabels();
+    this->updateTileInfo();
+}
+
 void MapWindow::constructWantedBuilding(
         std::shared_ptr<Course::BuildingBase>& building)
 {
@@ -171,6 +198,24 @@ void MapWindow::constructWantedBuilding(
     {
         building = std::make_shared<Student::Sawmill>(m_GEHandler,
                                     m_objM, m_GEHandler->getPlayerInTurn());
+    }
+}
+
+void MapWindow::constructWantedRecruit(std::shared_ptr<Course::WorkerBase> &worker)
+{
+    std::string wantedRecruit = m_ui->recruitsComboBox->
+            currentText().toStdString();
+    if (wantedRecruit == "BasicWorker") {
+            worker = std::make_shared<Course::BasicWorker>(m_GEHandler,
+                                                           m_objM, m_GEHandler->getPlayerInTurn());
+    }
+    else if (wantedRecruit == "Miner") {
+            worker = std::make_shared<Student::Miner>(m_GEHandler,
+                                                           m_objM, m_GEHandler->getPlayerInTurn());
+    }
+    else if (wantedRecruit == "Fisher") {
+            worker = std::make_shared<Student::Fisher>(m_GEHandler,
+                                                           m_objM, m_GEHandler->getPlayerInTurn());
     }
 }
 
@@ -245,11 +290,20 @@ void MapWindow::updateTileInfo()
     for (auto building : tile->getBuildings()){
         buildings.push_back(QString::fromStdString(building->getType()));
     }
+    QStringList workers;
+    for (auto worker : tile->getWorkers()){
+        workers.push_back(QString::fromStdString(worker->getType()));
+    }
+
     m_ui->tileInfoLabel->setText("(" + x + "," + y + ") " + type + "\n"
                                  + "Owner: " + owner + "\n"
                                  + "Buildings:"+ "\n");
     for (auto building : buildings){
-        m_ui->tileInfoLabel->setText(m_ui->tileInfoLabel->text() + building + "\n");
+        m_ui->tileInfoLabel->setText(m_ui->tileInfoLabel->text() + "-- " + building + "\n");
+    }
+    m_ui->tileInfoLabel->setText(m_ui->tileInfoLabel->text() + "Workers:"+ "\n");
+    for (auto worker : workers){
+        m_ui->tileInfoLabel->setText(m_ui->tileInfoLabel->text() + "-- " + worker + "\n");
     }
     m_ui->tileInfoLabel->setWordWrap(true);
     m_ui->tileInfoLabel->setAlignment(Qt::AlignTop);

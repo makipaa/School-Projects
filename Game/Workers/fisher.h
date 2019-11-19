@@ -5,6 +5,10 @@
 #include "interfaces/igameeventhandler.h"
 #include "Student_tiles/water.h"
 
+namespace Student {
+
+
+
 class Fisher : public Course::WorkerBase
 {
 public:
@@ -21,7 +25,9 @@ public:
             );
     ~Fisher() = default;
 
-    virtual const Course::ResourceMapDouble tileWorkAction();
+    virtual void doSpecialAction() override;
+
+    virtual const Course::ResourceMapDouble tileWorkAction() override;
 
     virtual bool canBePlacedOnTile(
             const std::shared_ptr<Course::TileBase> &target) const override;
@@ -31,5 +37,5 @@ public:
 
 
 };
-
+} //Namespace
 #endif // FISHER_H

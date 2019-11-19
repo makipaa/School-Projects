@@ -1,5 +1,7 @@
 #include "miner.h"
 
+namespace Student{
+
 Miner::Miner(const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
                          const std::shared_ptr<Course::iObjectManager>& objectmanager,
                          const std::shared_ptr<Course::PlayerBase>& owner,
@@ -13,6 +15,11 @@ Miner::Miner(const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
         tilespaces,
         cost,
         efficiency)
+{
+
+}
+
+void Miner::doSpecialAction()
 {
 
 }
@@ -64,4 +71,6 @@ bool Miner::canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) c
 std::string Miner::getType() const
 {
     return "Miner";
+}
+
 }

@@ -16,18 +16,26 @@
 #include "objectmanager.h"
 #include "gameeventhandler.h"
 #include "UI/dialog.h"
+
 #include "tiles/forest.h"
 #include "tiles/grassland.h"
 #include "Student_tiles/swamp.h"
 #include "Student_tiles/water.h"
 #include "Student_tiles/cobblestone.h"
+
 #include "core/basicresources.h"
+
 #include "buildings/headquarters.h"
 #include "buildings/outpost.h"
 #include "buildings/farm.h"
 #include "Buildings/mine.h"
 #include "Buildings/trawler.h"
 #include "Buildings/sawmill.h"
+
+#include "workers/basicworker.h"
+#include "Workers/fisher.h"
+#include "Workers/miner.h"
+
 #include "core/resourcemaps.h"
 #include "exceptions/illegalaction.h"
 
@@ -68,6 +76,7 @@ public slots:
     void changeTurn();
     void getId(unsigned int Id);
     void actionBuild();
+    void actionRecruit();
 
 private:
     Ui::MapWindow* m_ui;
@@ -78,6 +87,7 @@ private:
     std::shared_ptr<Course::TileBase> clickedTileObj = nullptr;
 
     void constructWantedBuilding(std::shared_ptr<Course::BuildingBase> &building);
+    void constructWantedRecruit(std::shared_ptr<Course::WorkerBase> &worker);
 
 };
 

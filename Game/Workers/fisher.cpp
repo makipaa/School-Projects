@@ -1,5 +1,8 @@
 #include "fisher.h"
 
+namespace Student {
+
+
 
 Fisher::Fisher(const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
                          const std::shared_ptr<Course::iObjectManager>& objectmanager,
@@ -7,13 +10,18 @@ Fisher::Fisher(const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
                          const int& tilespaces,
                          const Course::ResourceMap& cost,
                          const Course::ResourceMapDouble& efficiency):
-    WorkerBase(
+    Course::WorkerBase(
         eventhandler,
         objectmanager,
         owner,
         tilespaces,
         cost,
         efficiency)
+{
+
+}
+
+void Fisher::doSpecialAction()
 {
 
 }
@@ -66,3 +74,5 @@ std::string Fisher::getType() const
 {
     return "Fisher";
 }
+
+} // Namespace

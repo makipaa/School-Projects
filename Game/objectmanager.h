@@ -4,6 +4,7 @@
 #include "tiles/tilebase.h"
 #include "core/playerbase.h"
 #include "core/basicresources.h"
+#include "workers/workerbase.h"
 
 namespace Student
 {
@@ -25,8 +26,10 @@ public:
     virtual std::vector<std::shared_ptr<Course::TileBase>> getTiles(
             const std::vector<Course::Coordinate>& coordinates);
 
-    void addBuilding(
-            const std::shared_ptr<Course::BuildingBase>& building);
+    void addBuilding(const std::shared_ptr<Course::BuildingBase>& building);
+
+    void addWorker(const std::shared_ptr<Course::WorkerBase>& worker);
+
     std::shared_ptr<Course::BuildingBase> getBuilding(Course::ObjectId building_id);
 
 
@@ -39,6 +42,7 @@ public:
 private:
     std::vector<std::shared_ptr<Course::TileBase>> tiles_;
     std::vector<std::shared_ptr<Course::BuildingBase>> buildings_;
+    std::vector<std::shared_ptr<Course::WorkerBase>> workers_;
 };
 }
 #endif // OBJECTMANAGER_H

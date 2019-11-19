@@ -6,6 +6,9 @@
 #include "interfaces/igameeventhandler.h"
 #include "Student_tiles/water.h"
 
+namespace Student {
+
+
 class Miner : public Course::WorkerBase
 {
 public:
@@ -22,7 +25,9 @@ public:
             );
     ~Miner() = default;
 
-    virtual const Course::ResourceMapDouble tileWorkAction();
+    virtual void doSpecialAction() override;
+
+    virtual const Course::ResourceMapDouble tileWorkAction() override;
 
     virtual bool canBePlacedOnTile(
             const std::shared_ptr<Course::TileBase> &target) const override;
@@ -32,5 +37,7 @@ public:
 
 
 };
+
+} //namespace
 
 #endif // MINER_H

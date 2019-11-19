@@ -30,6 +30,11 @@ void ObjectManager::addBuilding(const std::shared_ptr<Course::BuildingBase> &bui
     buildings_.push_back(building);
 }
 
+void ObjectManager::addWorker(const std::shared_ptr<Course::WorkerBase> &worker)
+{
+    workers_.push_back(worker);
+}
+
 std::vector<std::shared_ptr<Course::TileBase>> ObjectManager::getTiles()
 {
     return tiles_;

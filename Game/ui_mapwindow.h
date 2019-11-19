@@ -24,6 +24,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -54,9 +55,13 @@ public:
     QLabel *turnNameLabel;
     QWidget *gridLayoutWidget_2;
     QGridLayout *gridLayout_2;
-    QComboBox *buildingsComboBox;
     QPushButton *buildPushButton;
+    QComboBox *buildingsComboBox;
     QLabel *tileInfoLabel;
+    QWidget *verticalLayoutWidget;
+    QVBoxLayout *verticalLayout;
+    QComboBox *recruitsComboBox;
+    QPushButton *recruitPushButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -162,23 +167,39 @@ public:
 
         gridLayoutWidget_2 = new QWidget(centralwidget);
         gridLayoutWidget_2->setObjectName(QStringLiteral("gridLayoutWidget_2"));
-        gridLayoutWidget_2->setGeometry(QRect(1100, 50, 131, 91));
+        gridLayoutWidget_2->setGeometry(QRect(1070, 280, 131, 91));
         gridLayout_2 = new QGridLayout(gridLayoutWidget_2);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         gridLayout_2->setContentsMargins(0, 0, 0, 0);
-        buildingsComboBox = new QComboBox(gridLayoutWidget_2);
-        buildingsComboBox->setObjectName(QStringLiteral("buildingsComboBox"));
-
-        gridLayout_2->addWidget(buildingsComboBox, 0, 0, 1, 1);
-
         buildPushButton = new QPushButton(gridLayoutWidget_2);
         buildPushButton->setObjectName(QStringLiteral("buildPushButton"));
 
-        gridLayout_2->addWidget(buildPushButton, 1, 0, 1, 1);
+        gridLayout_2->addWidget(buildPushButton, 2, 0, 1, 1);
+
+        buildingsComboBox = new QComboBox(gridLayoutWidget_2);
+        buildingsComboBox->setObjectName(QStringLiteral("buildingsComboBox"));
+
+        gridLayout_2->addWidget(buildingsComboBox, 1, 0, 1, 1);
 
         tileInfoLabel = new QLabel(centralwidget);
         tileInfoLabel->setObjectName(QStringLiteral("tileInfoLabel"));
-        tileInfoLabel->setGeometry(QRect(1080, 160, 201, 131));
+        tileInfoLabel->setGeometry(QRect(1070, 40, 201, 161));
+        verticalLayoutWidget = new QWidget(centralwidget);
+        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
+        verticalLayoutWidget->setGeometry(QRect(1070, 390, 131, 91));
+        verticalLayout = new QVBoxLayout(verticalLayoutWidget);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        recruitsComboBox = new QComboBox(verticalLayoutWidget);
+        recruitsComboBox->setObjectName(QStringLiteral("recruitsComboBox"));
+
+        verticalLayout->addWidget(recruitsComboBox);
+
+        recruitPushButton = new QPushButton(verticalLayoutWidget);
+        recruitPushButton->setObjectName(QStringLiteral("recruitPushButton"));
+
+        verticalLayout->addWidget(recruitPushButton);
+
         MapWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MapWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
@@ -212,6 +233,7 @@ public:
         turnNameLabel->setText(QString());
         buildPushButton->setText(QApplication::translate("MapWindow", "Build", Q_NULLPTR));
         tileInfoLabel->setText(QString());
+        recruitPushButton->setText(QApplication::translate("MapWindow", "Recruit", Q_NULLPTR));
     } // retranslateUi
 
 };
