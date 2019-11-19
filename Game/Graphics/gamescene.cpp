@@ -1,10 +1,5 @@
 #include "Graphics/gamescene.h"
-#include "Graphics/mapitem.h"
 
-#include <QEvent>
-#include <QGraphicsSceneMouseEvent>
-
-#include <math.h>
 
 namespace Student {
 
@@ -101,25 +96,20 @@ bool GameScene::event(QEvent *event)
             point.rx() = floor(point.rx());
             point.ry() = floor(point.ry());
 
-            QGraphicsItem* pressed = itemAt(point * m_scale, QTransform());
+            auto objects = items(point * m_scale);
 
-
-            if ( pressed == m_mapBoundRect ){
+            if (objects.size() == 1){
                 qDebug() << "Click on map area.";
             }
+            // Get the clicked tile
+            // Tile is the second lowest in the scene after the scene itself
             else{
+                QGraphicsItem* pressed = (objects.end()[-2]);
                 auto clicked_object = static_cast<Student::MapItem*>(pressed)
                         ->getBoundObject();
+                emit sendID(static_cast<Student::MapItem*>(pressed)
+                            ->getBoundObject()->ID);
 
-                // When building is clicked gets the location tile id
-                if(auto item = std::dynamic_pointer_cast<Course::BuildingBase>(clicked_object)){
-                    emit sendID(item->currentLocationTile()->ID);
-                }
-                // Tile was clicked
-                else{
-                    emit sendID(static_cast<Student::MapItem*>(pressed)
-                                ->getBoundObject()->ID);
-                }
 
                 return true;
             }
@@ -138,19 +128,41 @@ void GameScene::removeItem(std::shared_ptr<Course::GameObject> obj)
         qDebug() << "Nothing to be removed at the location pointed by given obj.";
     } else {
         for ( auto item : items_list ){
-            MapItem* mapitem = static_cast<MapItem*>(item);
-            if ( mapitem->isSameObj(obj) ){
-                delete mapitem;
+            if (MapItem* mapitem = dynamic_cast<MapItem*>(item)){
+                if ( mapitem->isSameObj(obj) ){
+                    delete mapitem;
+                }
             }
         }
     }
 }
+
 
 void GameScene::drawItem( std::shared_ptr<Course::GameObject> obj)
 {
     MapItem* nItem = new MapItem(obj, m_scale);
     addItem(nItem);
 
+}
+
+void GameScene::drawBorder(QColor color, QPoint location)
+{
+    TileBorder* border = new TileBorder(color,location,m_scale);
+    addItem(border);
+}
+
+void GameScene::removeBorder(QPoint location)
+{
+    QList<QGraphicsItem*> items_list = items(location);
+    if ( items_list.size() == 1 ){
+        qDebug() << "Nothing to be removed at the location pointed by given obj.";
+    } else {
+        for ( auto item : items_list ){
+            if (TileBorder* border = dynamic_cast<TileBorder*>(item)){
+                delete border;
+            }
+        }
+    }
 }
 
 }

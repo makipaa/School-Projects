@@ -17,6 +17,7 @@ public:
     Course::ResourceMap getResources();
     bool modifyResources(Course::ResourceMap resources);
     bool modifyResource(Course::BasicResource resource, int amount);
+    QColor getColor();
 
 private:
     QColor color_;

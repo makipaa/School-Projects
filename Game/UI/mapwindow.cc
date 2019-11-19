@@ -132,6 +132,7 @@ void MapWindow::actionBuild()
 
         this->updateLabels();
         this->updateTileInfo();
+        updateTileBorders();
 
 }
 
@@ -253,6 +254,16 @@ void MapWindow::updateTileInfo()
     m_ui->tileInfoLabel->setWordWrap(true);
     m_ui->tileInfoLabel->setAlignment(Qt::AlignTop);
 
+}
+
+void MapWindow::updateTileBorders()
+{
+    for (auto tile : m_objM->getTiles()){
+        if (auto owner = tile->getOwner()){
+            auto player = std::dynamic_pointer_cast<Student::Player>(owner);
+            m_scene->drawBorder(player->getColor(),tile->getCoordinate().asQpoint());
+        }
+    }
 }
 
 
