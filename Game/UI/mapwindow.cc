@@ -31,7 +31,7 @@ MapWindow::MapWindow(QWidget *parent,
     QStringList buildings = {"HeadQuarters", "Outpost", "Farm", "Mine", "Trawler", "Sawmill"};
     m_ui->buildingsComboBox->addItems(buildings);
 
-    QStringList workers = {"BasicWorker","Fisher", "Miner"};
+    QStringList workers = {"BasicWorker","Fisher", "Miner", "Lumberjack", "PeatWorker", "Farmer"};
     m_ui->recruitsComboBox->addItems(workers);
 
     Student::GameScene* sgs_rawptr = m_scene.get();
@@ -222,6 +222,18 @@ void MapWindow::constructWantedRecruit(std::shared_ptr<Course::WorkerBase> &work
     }
     else if (wantedRecruit == "Fisher") {
             worker = std::make_shared<Student::Fisher>(m_GEHandler,
+                                                           m_objM, m_GEHandler->getPlayerInTurn());
+    }
+    else if (wantedRecruit == "Farmer") {
+            worker = std::make_shared<Student::Farmer>(m_GEHandler,
+                                                           m_objM, m_GEHandler->getPlayerInTurn());
+    }
+    else if (wantedRecruit == "Lumberjack") {
+            worker = std::make_shared<Student::Lumberjack>(m_GEHandler,
+                                                           m_objM, m_GEHandler->getPlayerInTurn());
+    }
+    else if (wantedRecruit == "PeatWorker") {
+            worker = std::make_shared<Student::PeatWorker>(m_GEHandler,
                                                            m_objM, m_GEHandler->getPlayerInTurn());
     }
 }

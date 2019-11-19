@@ -1,5 +1,6 @@
-#ifndef MINER_H
-#define MINER_H
+#ifndef PEATWORKER_H
+#define PEATWORKER_H
+
 
 #include "workers/workerbase.h"
 #include "core/resourcemaps.h"
@@ -10,12 +11,13 @@
 namespace Student {
 
 
-class Miner : public Course::WorkerBase
+
+class PeatWorker : public Course::WorkerBase
 {
 public:
-    Miner() = delete;
+    PeatWorker() = delete;
 
-    Miner(const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
+    PeatWorker(const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
             const std::shared_ptr<Course::iObjectManager>& objectmanager,
             const std::shared_ptr<Course::PlayerBase>& owner,
             const int& tilespaces = 1,
@@ -24,7 +26,7 @@ public:
             const Course::ResourceMapDouble& efficiency =
                 Course::ConstResourceMaps::BW_WORKER_EFFICIENCY
             );
-    ~Miner() = default;
+    ~PeatWorker() = default;
 
     virtual void doSpecialAction() override;
 
@@ -38,7 +40,6 @@ public:
 
 
 };
+} //Namespace
 
-} //namespace
-
-#endif // MINER_H
+#endif // PEATWORKER_H

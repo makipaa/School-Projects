@@ -1,5 +1,5 @@
-#ifndef MINER_H
-#define MINER_H
+#ifndef LUBERJACK_H
+#define LUBERJACK_H
 
 #include "workers/workerbase.h"
 #include "core/resourcemaps.h"
@@ -7,15 +7,17 @@
 #include "tiles/tilebase.h"
 
 
+
 namespace Student {
 
 
-class Miner : public Course::WorkerBase
+
+class Lumberjack : public Course::WorkerBase
 {
 public:
-    Miner() = delete;
+    Lumberjack() = delete;
 
-    Miner(const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
+    Lumberjack(const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
             const std::shared_ptr<Course::iObjectManager>& objectmanager,
             const std::shared_ptr<Course::PlayerBase>& owner,
             const int& tilespaces = 1,
@@ -24,7 +26,7 @@ public:
             const Course::ResourceMapDouble& efficiency =
                 Course::ConstResourceMaps::BW_WORKER_EFFICIENCY
             );
-    ~Miner() = default;
+    ~Lumberjack() = default;
 
     virtual void doSpecialAction() override;
 
@@ -38,7 +40,6 @@ public:
 
 
 };
+} //Namespace
 
-} //namespace
-
-#endif // MINER_H
+#endif // LUBERJACK_H

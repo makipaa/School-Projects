@@ -36,6 +36,9 @@
 #include "workers/basicworker.h"
 #include "Workers/fisher.h"
 #include "Workers/miner.h"
+#include "Workers/farmer.h"
+#include "Workers/luberjack.h"
+#include "Workers/peatworker.h"
 
 #include "core/resourcemaps.h"
 #include "exceptions/illegalaction.h"

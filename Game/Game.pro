@@ -28,7 +28,10 @@ SOURCES += \
     Graphics/tileborder.cpp \
     Buildings/studentOutpost.cpp \
     Buildings/studentfarm.cpp \
-    Buildings/studentHeadQuarters.cpp
+    Buildings/studentHeadQuarters.cpp \
+    Workers/farmer.cpp \
+    Workers/luberjack.cpp \
+    Workers/peatworker.cpp
 
 HEADERS += \
     UI/mapwindow.hh \
@@ -51,7 +54,10 @@ HEADERS += \
     Graphics/tileborder.h \
     Buildings/studentOutpost.h \
     Buildings/studentfarm.h \
-    Buildings/studentHeadQuarters.h
+    Buildings/studentHeadQuarters.h \
+    Workers/farmer.h \
+    Workers/luberjack.h \
+    Workers/peatworker.h
 
 
 win32:CONFIG(release, debug|release): LIBS += \

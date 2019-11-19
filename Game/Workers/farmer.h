@@ -1,21 +1,21 @@
-#ifndef MINER_H
-#define MINER_H
+#ifndef FARMER_H
+#define FARMER_H
 
 #include "workers/workerbase.h"
 #include "core/resourcemaps.h"
 #include "interfaces/igameeventhandler.h"
 #include "tiles/tilebase.h"
 
-
 namespace Student {
 
 
-class Miner : public Course::WorkerBase
+
+class Farmer : public Course::WorkerBase
 {
 public:
-    Miner() = delete;
+    Farmer() = delete;
 
-    Miner(const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
+    Farmer(const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
             const std::shared_ptr<Course::iObjectManager>& objectmanager,
             const std::shared_ptr<Course::PlayerBase>& owner,
             const int& tilespaces = 1,
@@ -24,7 +24,7 @@ public:
             const Course::ResourceMapDouble& efficiency =
                 Course::ConstResourceMaps::BW_WORKER_EFFICIENCY
             );
-    ~Miner() = default;
+    ~Farmer() = default;
 
     virtual void doSpecialAction() override;
 
@@ -38,7 +38,6 @@ public:
 
 
 };
+} //Namespace
 
-} //namespace
-
-#endif // MINER_H
+#endif // FARMER_H
