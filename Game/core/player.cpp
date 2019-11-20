@@ -50,6 +50,16 @@ QColor Player::getColor()
     return color_;
 }
 
+bool Player::funcHasBuiltHq()
+{
+    return hasBuiltHQ;
+}
+
+void Player::changeHQBuildStatus()
+{
+    hasBuiltHQ = true;
+}
+
 
 
 

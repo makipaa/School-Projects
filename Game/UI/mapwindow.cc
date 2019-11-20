@@ -108,13 +108,23 @@ void MapWindow::getId(unsigned int Id)
 
 void MapWindow::actionBuild()
 {
-    if (!clickedTileObj ||
-        (clickedTileObj->getOwner()
-            && clickedTileObj->getOwner() != m_GEHandler->getPlayerInTurn())){
-        return;
+
+    if (clickedTileObj->getOwner() != m_GEHandler->getPlayerInTurn()){
+        if(m_ui->buildingsComboBox->currentText().toStdString() != "HeadQuarters" &&
+                m_ui->buildingsComboBox->currentText().toStdString() != "Outpost"){
+            qDebug() << "Cannot build on unowned tile";
+            return;
+        }
     }
 
     std::shared_ptr<Course::BuildingBase> building;
+
+    std::shared_ptr<Student::Player> tempPlayer = m_GEHandler->getPlayerInTurn();
+    if(tempPlayer->funcHasBuiltHq() &&
+            m_ui->buildingsComboBox->currentText().toStdString() == "HeadQuarters"){
+        qDebug() << "Cannot build more than one HQ!";
+        return;
+    }
     constructWantedBuilding(building);
 
     if(!building->canBePlacedOnTile(clickedTileObj)){
@@ -134,16 +144,21 @@ void MapWindow::actionBuild()
         qDebug() << "Building capacity is already maxed";
         return;
     }
-        clickedTileObj->setOwner(m_GEHandler->getPlayerInTurn());
-        clickedTileObj->addBuilding(building);
 
-        m_objM->addBuilding(building);
-        building->onBuildAction();
-        m_scene->drawItem(building);
+    clickedTileObj->setOwner(m_GEHandler->getPlayerInTurn());
+    clickedTileObj->addBuilding(building);
 
-        this->updateLabels();
-        this->updateTileInfo();
-        updateTileBorders();
+    m_objM->addBuilding(building);
+    building->onBuildAction();
+    m_scene->drawItem(building);
+
+    this->updateLabels();
+    this->updateTileInfo();
+    updateTileBorders();
+
+    if(m_ui->buildingsComboBox->currentText().toStdString() == "HeadQuarters"){
+        tempPlayer->changeHQBuildStatus();
+    }
 
 }
 
@@ -176,7 +191,7 @@ void MapWindow::constructWantedBuilding(
     std::string wantedBuilding = m_ui->buildingsComboBox->
                                 currentText().toStdString();
 
-    if(wantedBuilding == "HeadQuarters")
+    if(wantedBuilding == "HeadQuarters" )
     {
         building = std::make_shared<Student::StudentHeadQuarters>(m_GEHandler,
                                     m_objM, m_GEHandler->getPlayerInTurn());

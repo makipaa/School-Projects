@@ -16,6 +16,7 @@
 #include "objectmanager.h"
 #include "gameeventhandler.h"
 #include "UI/dialog.h"
+#include "core/player.h"
 
 #include "tiles/forest.h"
 #include "tiles/grassland.h"

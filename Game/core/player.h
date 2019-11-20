@@ -18,10 +18,13 @@ public:
     bool modifyResources(Course::ResourceMap resources);
     bool modifyResource(Course::BasicResource resource, int amount);
     QColor getColor();
+    bool funcHasBuiltHq();
+    void changeHQBuildStatus();
 
 private:
     QColor color_;
     Course::ResourceMap resources_;
+    bool hasBuiltHQ = false;
 
 };
 
