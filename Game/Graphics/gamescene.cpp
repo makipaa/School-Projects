@@ -31,13 +31,14 @@ void GameScene::setSize(int width, int height)
     resize();
 }
 
-void GameScene::setScale(int scale)
+void GameScene::setScale(double scale)
 {
     if ( scale >= SCENE_SCALE_LIMITS.first && scale <= SCENE_SCALE_LIMITS.second )
     {
         m_scale = scale;
     }
     resize();
+    qDebug() << m_scale;
 }
 
 void GameScene::resize()
@@ -48,11 +49,11 @@ void GameScene::resize()
 
     // Calculates rect with middle at (0,0).
     // Basically left upper corner coords and then width and height
-    QRect rect = QRect(0, 0, m_width * m_scale, m_height * m_scale);
+    QRectF rect = QRectF(0,0, m_width * m_scale, m_height * m_scale);
 
-    addRect(rect, QPen(Qt::black));
+    addRect(rect);
     setSceneRect(rect);
-    m_mapBoundRect = itemAt(rect.topLeft(), QTransform());
+    m_mapBoundRect = items().back();
     // Draw on the bottom of all items
     m_mapBoundRect->setZValue(-1);
 }
@@ -145,7 +146,7 @@ void GameScene::drawItem( std::shared_ptr<Course::GameObject> obj)
 
 }
 
-void GameScene::drawBorder(QColor color, QPoint location)
+void GameScene::drawBorder(QColor color, QPointF location)
 {
     TileBorder* border = new TileBorder(color,location,m_scale);
     addItem(border);

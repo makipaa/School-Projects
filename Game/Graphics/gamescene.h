@@ -36,7 +36,7 @@ public:
 
     void setSize(int width, int height);
 
-    void setScale(int scale);
+    void setScale(double scale);
 
     void resize();
 
@@ -46,7 +46,7 @@ public:
 
     void drawItem( std::shared_ptr<Course::GameObject> obj);
 
-    void drawBorder(QColor color, QPoint location);
+    void drawBorder(QColor color, QPointF location);
 
     void removeBorder(QPoint location);
 
@@ -64,7 +64,7 @@ private:
     QGraphicsItem* m_mapBoundRect;
     int m_width;
     int m_height;
-    int m_scale;
+    double m_scale;
 };
 
 } // Namespace

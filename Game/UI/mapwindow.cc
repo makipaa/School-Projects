@@ -34,12 +34,17 @@ MapWindow::MapWindow(QWidget *parent,
     QStringList workers = {"BasicWorker","Fisher", "Miner", "Lumberjack", "PeatWorker", "Farmer"};
     m_ui->recruitsComboBox->addItems(workers);
 
-    Student::GameScene* sgs_rawptr = m_scene.get();
-    m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
-    this->setSize(2*m_size, m_size);
-    this->setScale((m_ui->graphicsView->height())/m_size-1);
 
-    connect(sgs_rawptr, SIGNAL(sendID(unsigned int)), this, SLOT(getId(unsigned int)));
+    this->setSize(2*m_size, m_size);
+    this->setScale(50);
+    m_ui->graphicsView->setFrameStyle(0);
+    m_ui->graphicsView->setScene(m_scene.get());
+    m_ui->graphicsView->setAutoFillBackground(true);
+    m_ui->graphicsView->setBackgroundBrush(Qt::lightGray);
+
+
+
+    connect(m_scene.get(), SIGNAL(sendID(unsigned int)), this, SLOT(getId(unsigned int)));
 
     m_objM = std::make_shared<Student::ObjectManager>();
     m_GEHandler->setObjectManager(m_objM);
@@ -56,7 +61,7 @@ MapWindow::MapWindow(QWidget *parent,
     std::vector<std::shared_ptr<Course::TileBase>> tiles = m_objM->getTiles();
     for(auto brick : tiles)
     {
-        sgs_rawptr->drawItem(brick);
+        m_scene->drawItem(brick);
     }
 
     std::shared_ptr<Student::Player> playerInTurn = m_GEHandler->getPlayerInTurn();
@@ -65,6 +70,9 @@ MapWindow::MapWindow(QWidget *parent,
     QMediaPlayer *mediaPlayer = new QMediaPlayer();
     mediaPlayer->setMedia(QUrl("qrc:/sounds/flute_salad.wav"));
     mediaPlayer->play();
+
+
+
 }
 
 MapWindow::~MapWindow()
@@ -168,6 +176,17 @@ void MapWindow::actionRecruit()
 
     this->updateLabels();
     this->updateTileInfo();
+
+}
+
+void MapWindow::resizeEvent(QResizeEvent *event)
+{
+    QMainWindow::resizeEvent(event);
+       m_ui->graphicsView->setFixedWidth(2*(m_ui->graphicsView->height()));
+
+       if(m_ui->graphicsView->scene()){
+           m_ui->graphicsView->fitInView(m_ui->graphicsView->scene()->sceneRect(),Qt::KeepAspectRatio);
+       }
 }
 
 void MapWindow::constructWantedBuilding(
@@ -248,7 +267,7 @@ void MapWindow::setSize(int width, int height)
     m_scene->setSize(width, height);
 }
 
-void MapWindow::setScale(int scale)
+void MapWindow::setScale(double scale)
 {
     m_scene->setScale(scale);
 }

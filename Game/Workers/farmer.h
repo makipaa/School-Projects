@@ -20,9 +20,9 @@ public:
             const std::shared_ptr<Course::PlayerBase>& owner,
             const int& tilespaces = 1,
             const Course::ResourceMap& cost =
-                Course::ConstResourceMaps::BW_RECRUITMENT_COST,
+                Course::ConstResourceMaps::FARMER_RECRUITMENT_COST,
             const Course::ResourceMapDouble& efficiency =
-                Course::ConstResourceMaps::BW_WORKER_EFFICIENCY
+                Course::ConstResourceMaps::FARMER_WORKER_EFFICIENCY
             );
     ~Farmer() = default;
 

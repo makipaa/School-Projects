@@ -2,7 +2,7 @@
 
 
 
-Student::TileBorder::TileBorder(QColor bordercolor, QPoint location, int size)
+Student::TileBorder::TileBorder(QColor bordercolor, QPointF location, double size)
 {
     borderColor_ = bordercolor;
     m_scenelocation_ = location;
@@ -17,7 +17,7 @@ QRectF Student::TileBorder::boundingRect() const
 void Student::TileBorder::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED( option ); Q_UNUSED( widget );
-    QPen borderSetting(borderColor_, 1);
+    QPen borderSetting(borderColor_, 2);
     painter->setPen(borderSetting);
 
     // Offset so the border is inside the tile
@@ -27,7 +27,7 @@ void Student::TileBorder::paint(QPainter *painter, const QStyleOptionGraphicsIte
                       boundingRect().height()-borderSetting.width());
 }
 
-QPoint Student::TileBorder::getLocation()
+QPointF Student::TileBorder::getLocation()
 {
     return m_scenelocation_;
 }

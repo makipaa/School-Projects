@@ -5,7 +5,7 @@ namespace Student {
 std::map<std::string, QColor> MapItem::c_mapcolors = {};
 
 
-MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, int size ):
+MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, double size ):
     m_gameobject(obj), m_scenelocation(m_gameobject->getCoordinatePtr()->asQpoint()), m_size(size)
 {
     addNewColor(m_gameobject->getType());
@@ -14,7 +14,7 @@ MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, int size ):
 QRectF MapItem::boundingRect() const
 {
     return QRectF(m_scenelocation * m_size, m_scenelocation * m_size +
-                  QPoint(m_size, m_size));
+                  QPointF(m_size, m_size));
 }
 
 void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,

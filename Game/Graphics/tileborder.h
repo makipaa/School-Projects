@@ -17,7 +17,7 @@ class TileBorder : public QGraphicsItem
 {
 public:
 
-    TileBorder(QColor bordercolor, QPoint location, int size);
+    TileBorder(QColor bordercolor, QPointF location, double size);
 
     QRectF boundingRect() const override;
 
@@ -25,12 +25,12 @@ public:
                const QStyleOptionGraphicsItem *option,
                QWidget *widget);
 
-    QPoint getLocation();
+    QPointF getLocation();
 
 
 private:
     QColor borderColor_;
-    QPoint m_scenelocation_;
+    QPointF m_scenelocation_;
     int m_size_;
 
 };

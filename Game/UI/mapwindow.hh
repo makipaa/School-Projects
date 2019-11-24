@@ -63,7 +63,7 @@ public:
 
     int getGridSize();
     void setSize(int width, int height);
-    void setScale(int scale);
+    void setScale(double scale);
     void resize();
 
     void drawItem( std::shared_ptr<Course::GameObject> obj);
@@ -81,6 +81,7 @@ public slots:
     void getId(unsigned int Id);
     void actionBuild();
     void actionRecruit();
+    void resizeEvent(QResizeEvent *event);
 
 private:
     Ui::MapWindow* m_ui;
@@ -89,6 +90,8 @@ private:
     std::shared_ptr<Student::GameScene> m_scene = nullptr;
     int m_size = 0;
     std::shared_ptr<Course::TileBase> clickedTileObj = nullptr;
+
+
 
     void constructWantedBuilding(std::shared_ptr<Course::BuildingBase> &building);
     void constructWantedRecruit(std::shared_ptr<Course::WorkerBase> &worker);

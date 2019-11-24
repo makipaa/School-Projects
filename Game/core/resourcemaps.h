@@ -100,6 +100,81 @@ const ResourceMap BW_RECRUITMENT_COST = {
     {FOOD, 25}
 };
 
+// Worker - Fisher
+const ResourceMapDouble FISHER_WORKER_EFFICIENCY = {
+    {MONEY, 0.25},
+    {FOOD, 5.00},
+    {WOOD, 0.75},
+    {STONE, 0.50}
+};
+
+const ResourceMap FISHER_RECRUITMENT_COST = {
+    {MONEY, 10},
+    {FOOD, 25},
+    {WOOD, 35},
+    {STONE, 5}
+};
+
+// Worker - Farmer
+const ResourceMapDouble FARMER_WORKER_EFFICIENCY = {
+    {MONEY, 0.25},
+    {FOOD, 5.00},
+    {WOOD, 0.75},
+    {STONE, 0.50},
+    {ORE, 0.50}
+};
+
+const ResourceMap FARMER_RECRUITMENT_COST = {
+    {MONEY, 10},
+    {FOOD, 25},
+    {WOOD, 35},
+    {STONE, 5}
+};
+
+// Worker - Miner
+const ResourceMapDouble MINER_WORKER_EFFICIENCY = {
+    {MONEY, 0.25},
+    {FOOD, 1.00},
+    {WOOD, 0.75},
+    {STONE, 5.00}
+};
+
+const ResourceMap MINER_RECRUITMENT_COST = {
+    {MONEY, 10},
+    {FOOD, 25},
+    {WOOD, 35},
+    {STONE, 45}
+};
+
+// Worker - PeatWorker
+const ResourceMapDouble PEATWORKER_WORKER_EFFICIENCY = {
+    {MONEY, 5.00},
+    {FOOD, 1.00},
+    {WOOD, 0.75},
+    {STONE, 0.50}
+};
+
+const ResourceMap PEATWORKER_RECRUITMENT_COST = {
+    {MONEY, 10},
+    {FOOD, 25},
+    {WOOD, 35},
+    {STONE, 5},
+};
+
+// Worker - Lumberjack
+const ResourceMapDouble LUMBERJACK_WORKER_EFFICIENCY = {
+    {MONEY, 0.25},
+    {FOOD, 5.00},
+    {WOOD, 0.75},
+    {STONE, 5.00},
+};
+
+const ResourceMap LUMBERJACK_RECRUITMENT_COST = {
+    {MONEY, 10},
+    {FOOD, 25},
+    {WOOD, 35},
+    {STONE, 45}
+};
 
 const ResourceMap FOREST_BP = {
     {MONEY, 1},

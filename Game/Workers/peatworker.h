@@ -22,9 +22,9 @@ public:
             const std::shared_ptr<Course::PlayerBase>& owner,
             const int& tilespaces = 1,
             const Course::ResourceMap& cost =
-                Course::ConstResourceMaps::BW_RECRUITMENT_COST,
+                Course::ConstResourceMaps::PEATWORKER_RECRUITMENT_COST,
             const Course::ResourceMapDouble& efficiency =
-                Course::ConstResourceMaps::BW_WORKER_EFFICIENCY
+                Course::ConstResourceMaps::PEATWORKER_WORKER_EFFICIENCY
             );
     ~PeatWorker() = default;
 

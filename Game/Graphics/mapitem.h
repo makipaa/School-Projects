@@ -15,7 +15,7 @@ class MapItem : public QGraphicsItem
 {
 public:
 
-    MapItem(const std::shared_ptr<Course::GameObject> &obj, int size);
+    MapItem(const std::shared_ptr<Course::GameObject> &obj, double size);
 
     QRectF boundingRect() const override;
 
@@ -35,8 +35,8 @@ public:
 
 private:
     const std::shared_ptr<Course::GameObject> m_gameobject;
-    QPoint m_scenelocation;
-    int m_size;
+    QPointF m_scenelocation;
+    double m_size;
 
     static std::map<std::string, QColor> c_mapcolors;
     static void addNewColor(std::string type);
