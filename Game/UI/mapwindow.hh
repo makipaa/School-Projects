@@ -7,7 +7,7 @@
 #include <QMouseEvent>
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
-#include <QMediaPlayer>
+#include <math.h>
 #include <map>
 
 #include "interfaces/igameeventhandler.h"
