@@ -29,7 +29,8 @@ SOURCES += \
     Buildings/studentHeadQuarters.cpp \
     Workers/farmer.cpp \
     Workers/luberjack.cpp \
-    Workers/peatworker.cpp
+    Workers/peatworker.cpp \
+    Graphics/tilemarker.cpp
 
 HEADERS += \
     UI/mapwindow.hh \
@@ -55,7 +56,8 @@ HEADERS += \
     Buildings/studentHeadQuarters.h \
     Workers/farmer.h \
     Workers/luberjack.h \
-    Workers/peatworker.h
+    Workers/peatworker.h \
+    Graphics/tilemarker.h
 
 
 win32:CONFIG(release, debug|release): LIBS += \
@@ -98,6 +100,7 @@ DISTFILES += \
     Images/water.png \
     Images/trawler.png \
     Images/mine.png \
-    Images/sawmill.png
+    Images/sawmill.png \
+    Images/background.jpg
 
 RESOURCES +=

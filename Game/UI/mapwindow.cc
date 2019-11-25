@@ -22,7 +22,8 @@ MapWindow::MapWindow(QWidget *parent,
     connect(m_ui->endTurnPushButton, SIGNAL(clicked(bool)), this, SLOT(changeTurn()));
     connect(m_ui->buildPushButton, SIGNAL(clicked(bool)), this, SLOT(actionBuild()));
     connect(m_ui->recruitPushButton, SIGNAL(clicked(bool)), this, SLOT(actionRecruit()));
-    
+    connect(m_scene.get(), SIGNAL(sendID(unsigned int)), this, SLOT(getId(unsigned int)));
+
 
     dialogwindow.exec();
 
@@ -40,9 +41,30 @@ MapWindow::MapWindow(QWidget *parent,
     m_ui->graphicsView->setAutoFillBackground(true);
     m_ui->graphicsView->setBackgroundBrush(Qt::lightGray);
 
+    QPalette textLabelPalette;
+    textLabelPalette.setColor(QPalette::WindowText, Qt::black);
+
+    m_ui->resourcesLabel->setPalette(textLabelPalette);
+
+    m_ui->moneyLabel->setPalette(textLabelPalette);
+    m_ui->moneyAmountLabel->setPalette(textLabelPalette);
+
+    m_ui->foodLabel->setPalette(textLabelPalette);
+    m_ui->foodAmountLabel->setPalette(textLabelPalette);
+
+    m_ui->woodLabel->setPalette(textLabelPalette);
+    m_ui->woodAmountLabel->setPalette(textLabelPalette);
+
+    m_ui->stoneLabel->setPalette(textLabelPalette);
+    m_ui->stoneAmountLabel->setPalette(textLabelPalette);
+
+    m_ui->turnLabel->setPalette(textLabelPalette);
+    m_ui->turnNameLabel->setPalette(textLabelPalette);
+    m_ui->roundLabel->setPalette(textLabelPalette);
+    m_ui->roundNumberLabel->setPalette(textLabelPalette);
 
 
-    connect(m_scene.get(), SIGNAL(sendID(unsigned int)), this, SLOT(getId(unsigned int)));
+
 
     m_objM = std::make_shared<Student::ObjectManager>();
     m_GEHandler->setObjectManager(m_objM);
@@ -53,7 +75,6 @@ MapWindow::MapWindow(QWidget *parent,
     worldG->addConstructor<Student::Swamp>(4);
     worldG->addConstructor<Student::Water>(3);
     worldG->addConstructor<Student::Cobblestone>(2);
-
     worldG->generateMap(2*m_size, m_size,1, m_objM, m_GEHandler);
 
     std::vector<std::shared_ptr<Course::TileBase>> tiles = m_objM->getTiles();
@@ -65,6 +86,11 @@ MapWindow::MapWindow(QWidget *parent,
     std::shared_ptr<Student::Player> playerInTurn = m_GEHandler->getPlayerInTurn();
     this->updateLabels();
 
+//    QPixmap backgroundImage("Images/background.jpg");
+//    backgroundImage = backgroundImage.scaled(this->size(), Qt::IgnoreAspectRatio);
+    QPalette backgroundPalette;
+    backgroundPalette.setBrush(QPalette::Background, Qt::lightGray);
+    this->setPalette(backgroundPalette);
 
 }
 
@@ -95,6 +121,7 @@ void MapWindow::changeTurn()
 
     clickedTileObj = nullptr;
     m_ui->tileInfoLabel->clear();
+    m_scene->removeMarker();
 }
 
 void MapWindow::getId(unsigned int Id)
@@ -105,6 +132,7 @@ void MapWindow::getId(unsigned int Id)
         qDebug() << "# of buildings: " << clickedTileObj->getBuildingCount();
     }
     this->updateTileInfo();
+    m_scene->drawMarker(clickedTileObj->getCoordinate().asQpoint());
 }
 
 void MapWindow::actionBuild()
@@ -189,13 +217,15 @@ void MapWindow::actionRecruit()
 
 void MapWindow::resizeEvent(QResizeEvent *event)
 {
-    QMainWindow::resizeEvent(event);
-       m_ui->graphicsView->setFixedWidth(2*(m_ui->graphicsView->height()));
+    m_ui->graphicsView->setFixedWidth(2*(m_ui->graphicsView->height()));
 
-       if(m_ui->graphicsView->scene()){
-           m_ui->graphicsView->fitInView(m_ui->graphicsView->scene()->sceneRect(),Qt::KeepAspectRatio);
-       }
+    if(m_ui->graphicsView->scene()){
+        m_ui->graphicsView->fitInView(m_ui->graphicsView->scene()->sceneRect(),Qt::KeepAspectRatio);
+    }
+
 }
+
+
 
 void MapWindow::constructWantedBuilding(
         std::shared_ptr<Course::BuildingBase>& building)

@@ -14,7 +14,8 @@
 #include "core/gameobject.h"
 #include "tiles/tilebase.h"
 #include "Graphics/mapitem.h"
-#include"Graphics/tileborder.h"
+#include "Graphics/tileborder.h"
+#include "Graphics/tilemarker.h"
 
 namespace Student {
 
@@ -48,6 +49,10 @@ public:
 
     void drawBorder(QColor color, QPointF location);
 
+    void drawMarker(QPointF location);
+
+    void removeMarker();
+
     void removeBorder(QPoint location);
 
     void removeItem( std::shared_ptr<Course::GameObject> obj);
@@ -65,6 +70,10 @@ private:
     int m_width;
     int m_height;
     double m_scale;
+
+    TileMarker* current_marker;
+
+
 };
 
 } // Namespace

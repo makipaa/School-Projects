@@ -22,6 +22,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
@@ -58,6 +59,7 @@ public:
     QLabel *turnLabel;
     QLabel *turnNameLabel;
     QGraphicsView *graphicsView;
+    QSpacerItem *horizontalSpacer;
     QMenuBar *menubar;
     QStatusBar *statusbar;
     QToolBar *toolBar;
@@ -265,6 +267,10 @@ public:
         graphicsView->setLineWidth(0);
 
         gridLayout_3->addWidget(graphicsView, 1, 0, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_3->addItem(horizontalSpacer, 0, 2, 1, 1);
 
         MapWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MapWindow);

@@ -7,6 +7,7 @@
 #include <QMouseEvent>
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
+#include <QTimer>
 #include <math.h>
 #include <map>
 
@@ -91,6 +92,7 @@ private:
     std::shared_ptr<Student::GameScene> m_scene = nullptr;
     int m_size = 0;
     std::shared_ptr<Course::TileBase> clickedTileObj = nullptr;
+
 
 
 
