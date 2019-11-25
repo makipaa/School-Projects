@@ -1,9 +1,5 @@
-
 #include "UI/mapwindow.hh"
 #include "ui_mapwindow.h"
-#include "iostream"
-
-#include <math.h>
 
 
 MapWindow::MapWindow(QWidget *parent,
@@ -14,9 +10,11 @@ MapWindow::MapWindow(QWidget *parent,
     m_scene(new Student::GameScene(this))
 {
     m_ui->setupUi(this);
+    this->setWindowTitle("Colonizing Pirkanmaa");
     m_GEHandler = std::make_shared<Student::GameEventHandler>(Student::GameEventHandler());
 
     Dialog dialogwindow;
+    dialogwindow.setWindowTitle("Colonizing Pirkanmaa");
     connect(&dialogwindow, SIGNAL(sendValue(int)), this,
             SLOT(setGridSize(int)));
     connect(&dialogwindow, SIGNAL(sendPlayer(std::vector<std::shared_ptr<Student::Player>>)),
@@ -50,11 +48,11 @@ MapWindow::MapWindow(QWidget *parent,
     m_GEHandler->setObjectManager(m_objM);
 
     Course::WorldGenerator* worldG = &Course::WorldGenerator::getInstance();
-    worldG->addConstructor<Course::Forest>(1);
-    worldG->addConstructor<Course::Grassland>(1);
-    worldG->addConstructor<Student::Swamp>(1);
-    worldG->addConstructor<Student::Water>(1);
-    worldG->addConstructor<Student::Cobblestone>(1);
+    worldG->addConstructor<Course::Forest>(8);
+    worldG->addConstructor<Course::Grassland>(15);
+    worldG->addConstructor<Student::Swamp>(4);
+    worldG->addConstructor<Student::Water>(3);
+    worldG->addConstructor<Student::Cobblestone>(2);
 
     worldG->generateMap(2*m_size, m_size,1, m_objM, m_GEHandler);
 
@@ -66,11 +64,6 @@ MapWindow::MapWindow(QWidget *parent,
 
     std::shared_ptr<Student::Player> playerInTurn = m_GEHandler->getPlayerInTurn();
     this->updateLabels();
-
-    QMediaPlayer *mediaPlayer = new QMediaPlayer();
-    mediaPlayer->setMedia(QUrl("qrc:/sounds/flute_salad.wav"));
-    mediaPlayer->play();
-
 
 
 }

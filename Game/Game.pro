@@ -2,8 +2,6 @@
 TARGET = TheGame
 
 QT += core gui widgets \
-      location \
-      multimedia
 
 CONFIG += c++14
 
@@ -102,5 +100,4 @@ DISTFILES += \
     Images/mine.png \
     Images/sawmill.png
 
-RESOURCES += \
-    resources.qrc
+RESOURCES +=
