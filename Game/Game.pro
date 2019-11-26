@@ -30,7 +30,8 @@ SOURCES += \
     Workers/farmer.cpp \
     Workers/luberjack.cpp \
     Workers/peatworker.cpp \
-    Graphics/tilemarker.cpp
+    Graphics/tilemarker.cpp \
+    UI/enddialog.cpp
 
 HEADERS += \
     UI/mapwindow.hh \
@@ -57,7 +58,8 @@ HEADERS += \
     Workers/farmer.h \
     Workers/luberjack.h \
     Workers/peatworker.h \
-    Graphics/tilemarker.h
+    Graphics/tilemarker.h \
+    UI/enddialog.h
 
 
 win32:CONFIG(release, debug|release): LIBS += \
@@ -86,7 +88,8 @@ else:unix: PRE_TARGETDEPS += \
 
 FORMS += \
     UI/mapwindow.ui \
-    UI/dialog.ui
+    UI/dialog.ui \
+    UI/enddialog.ui
 
 DISTFILES += \
     Images/farm.png \

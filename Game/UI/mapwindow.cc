@@ -19,7 +19,7 @@ MapWindow::MapWindow(QWidget *parent,
     connect(&dialogwindow, SIGNAL(sendMapValue(int)), this,
             SLOT(setGridSize(int)));
     connect(&dialogwindow, SIGNAL(sendRoundValue(int)), this,
-            SLOT(setGridSize(int)));
+            SLOT(setRounds(int)));
     connect(&dialogwindow,
             SIGNAL(sendPlayer(std::vector<std::shared_ptr<Student::Player>>)),
             this,
@@ -93,8 +93,6 @@ MapWindow::MapWindow(QWidget *parent,
     std::shared_ptr<Student::Player> playerInTurn = m_GEHandler->getPlayerInTurn();
     this->updateLabels();
 
-//    QPixmap backgroundImage("Images/background.jpg");
-//    backgroundImage = backgroundImage.scaled(this->size(), Qt::IgnoreAspectRatio);
     QPalette backgroundPalette;
     backgroundPalette.setBrush(QPalette::Background, Qt::lightGray);
     this->setPalette(backgroundPalette);
@@ -133,14 +131,23 @@ void MapWindow::getPlayer(std::vector<std::shared_ptr<Student::Player>> players)
 
 void MapWindow::changeTurn()
 {
+
     m_GEHandler->changeTurn();
 
-    std::shared_ptr<Student::Player> playerInTurn = m_GEHandler->getPlayerInTurn();
+    if(m_GEHandler->getRoundNumber() > gameRounds){
+        EndDialog ending(this,m_GEHandler->getScores());
+        connect(&ending, SIGNAL(finished(int)), this, SLOT(exitGame(int)));
+        ending.exec();
+
+    }
+
     this->updateLabels();
 
     clickedTileObj = nullptr;
     m_ui->tileInfoLabel->clear();
     m_scene->removeMarker();
+
+
 }
 
 void MapWindow::getId(unsigned int Id)
@@ -156,6 +163,9 @@ void MapWindow::getId(unsigned int Id)
 
 void MapWindow::actionBuild()
 {
+    if (!clickedTileObj){
+        return;
+    }
 
     if (clickedTileObj->getOwner() != m_GEHandler->getPlayerInTurn()){
         if(m_ui->buildingsComboBox->currentText().toStdString() != "HeadQuarters" &&
@@ -197,6 +207,7 @@ void MapWindow::actionBuild()
 
     clickedTileObj->setOwner(m_GEHandler->getPlayerInTurn());
     clickedTileObj->addBuilding(building);
+    m_GEHandler->getPlayerInTurn()->addObject(building);
 
     m_objM->addBuilding(building);
     building->onBuildAction();
@@ -214,6 +225,10 @@ void MapWindow::actionBuild()
 
 void MapWindow::actionRecruit()
 {
+    if (!clickedTileObj){
+        return;
+    }
+
     if (clickedTileObj->getOwner() != m_GEHandler->getPlayerInTurn()){
         return;
     }
@@ -229,7 +244,9 @@ void MapWindow::actionRecruit()
         return;
     }
     clickedTileObj->addWorker(recruit);
+    m_GEHandler->getPlayerInTurn()->addObject(recruit);
     m_objM->addWorker(recruit);
+
 
     this->updateLabels();
     this->updateTileInfo();
@@ -238,10 +255,21 @@ void MapWindow::actionRecruit()
 
 void MapWindow::resizeEvent(QResizeEvent *event)
 {
+    Q_UNUSED(event);
     m_ui->graphicsView->setFixedWidth(2*(m_ui->graphicsView->height()));
 
     if(m_ui->graphicsView->scene()){
         m_ui->graphicsView->fitInView(m_ui->graphicsView->scene()->sceneRect(),Qt::KeepAspectRatio);
+    }
+}
+
+void MapWindow::exitGame(int code)
+{
+    if(code){
+        qApp->exit(1000);
+    }
+    else{
+        qApp->exit(0);
     }
 }
 

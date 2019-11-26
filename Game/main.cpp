@@ -6,10 +6,14 @@
 
 int main(int argc, char* argv[])
 {
+     int currentExitCode = 0;
 
-    QApplication app(argc, argv);
+     do {
+      QApplication app(argc, argv);
+      MapWindow mapWindow;
+      mapWindow.showMaximized();
+      currentExitCode = app.exec();
+     } while( currentExitCode == 1000);
 
-    MapWindow mapWindow;
-    mapWindow.showMaximized();
-    return app.exec();
+     return currentExitCode;
 }

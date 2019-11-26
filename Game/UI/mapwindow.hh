@@ -17,6 +17,7 @@
 #include "objectmanager.h"
 #include "gameeventhandler.h"
 #include "UI/dialog.h"
+#include "enddialog.h"
 #include "core/player.h"
 
 #include "tiles/forest.h"
@@ -86,6 +87,7 @@ public slots:
     void actionBuild();
     void actionRecruit();
     void resizeEvent(QResizeEvent *event);
+    void exitGame(int code);
 
 private:
     Ui::MapWindow* m_ui;

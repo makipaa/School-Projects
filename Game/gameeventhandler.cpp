@@ -28,6 +28,7 @@ void GameEventHandler::new_round()
     }
 
     roundNumber_ ++;
+
 }
 
 void GameEventHandler::changeTurn()
@@ -80,6 +81,35 @@ Course::ResourceMap GameEventHandler::resourcemapMakeNegative
         result[pair.first] = -pair.second;
     }
     return result;
+}
+
+std::map<std::string, int> GameEventHandler::getScores()
+{
+    std::map<std::string, int> scoreMap;
+    for (auto player : players_){
+        scoreMap[player->getName()] = countScore(player);
+    }
+    return scoreMap;
+}
+
+int GameEventHandler::countScore(std::shared_ptr<Player> player)
+{
+    int score = 0;
+    Course::ResourceMap cumulativeResources;
+    cumulativeResources = Course::mergeResourceMaps(player->getResources(), cumulativeResources);
+    for (auto object : player->getObjects()){
+        if (auto building = std::dynamic_pointer_cast<Course::BuildingBase>(object)){
+            cumulativeResources = Course::mergeResourceMaps(building->BUILD_COST, cumulativeResources);
+        }
+        else if (auto worker = std::dynamic_pointer_cast<Course::WorkerBase>(object)){
+            cumulativeResources = Course::mergeResourceMaps(worker->RECRUITMENT_COST, cumulativeResources);
+        }
+    }
+    for (auto resourse : cumulativeResources){
+        score += resourse.second;
+    }
+    return score;
+
 }
 
 std::shared_ptr<Student::Player> GameEventHandler::getPlayerInTurn(){

@@ -60,7 +60,7 @@ void Dialog::accept(){
     int mapValue = ui->mapSizeSlider->value();
     emit sendMapValue(mapValue);
 
-    int roundValue = ui->mapSizeSlider->value();
+    int roundValue = ui->roundSlider->value();
     emit sendRoundValue(roundValue);
 
     emit sendPlayer(players_);

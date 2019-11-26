@@ -71,7 +71,7 @@ private:
     int m_height;
     double m_scale;
 
-    TileMarker* current_marker;
+    TileMarker* current_marker = nullptr;
 
 
 };

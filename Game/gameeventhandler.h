@@ -42,7 +42,12 @@ public:
     Course::ResourceMap resourcemapMakeNegative
         (Course::ResourceMap resourcemap);
 
+    std::map<std::string, int> getScores();
+
 private:
+    int countScore(std::shared_ptr<Student::Player> player);
+
+
     std::vector<std::shared_ptr<Student::Player>> players_ = {};
     std::shared_ptr<Student::Player> playerInTurn_;
 
