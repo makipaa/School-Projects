@@ -149,7 +149,7 @@ void GameScene::drawItem( std::shared_ptr<Course::GameObject> obj)
 void GameScene::drawBorder(QColor color, QPointF location)
 {
     TileBorder* border = new TileBorder(color,location,m_scale);
-    border->setZValue(3);
+    border->setZValue(2);
     addItem(border);
 }
 
@@ -159,7 +159,7 @@ void GameScene::drawMarker(QPointF location)
        delete current_marker;
     }
     current_marker = new TileMarker(location,m_scale);
-    current_marker->setZValue(2);
+    current_marker->setZValue(3);
     addItem(current_marker);
 
 }
