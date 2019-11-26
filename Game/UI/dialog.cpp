@@ -10,7 +10,14 @@ Dialog::Dialog(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->acceptButton, &QPushButton::clicked, this, &Dialog::accept);
     connect(ui->mapSizeSlider, &QSlider::valueChanged, this, &Dialog::showValue);
+    connect(ui->roundSlider, &QSlider::valueChanged, this, &Dialog::showValue);
     connect(ui->addPlayersButton, &QPushButton::clicked, this, &Dialog::addPlayer);
+
+    QPixmap pixmap("Images/pirkanmaa.png");
+    ui->pic1Label->setPixmap(pixmap);
+    ui->pic1Label->setScaledContents(true);
+    ui->pic1Label->setSizePolicy(QSizePolicy::Ignored,
+                                 QSizePolicy::Ignored);
 
     QPalette pal;
     pal.setColor(QPalette::Background, Qt::black);
@@ -18,9 +25,16 @@ Dialog::Dialog(QWidget *parent) :
     ui->lcdMapSize->setAutoFillBackground(true);
     ui->lcdMapSize->setPalette(pal);
 
+    ui->lcdRounds->setAutoFillBackground(true);
+    ui->lcdRounds->setPalette(pal);
+
     ui->lcdMapSize->display(ui->mapSizeSlider->value());
+    ui->mapSizeSlider->setMinimum(10);
     ui->mapSizeSlider->setMaximum(50);
 
+    ui->lcdRounds->display(ui->roundSlider->value());
+    ui->roundSlider->setMinimum(10);
+    ui->roundSlider->setMaximum(50);
 
     colorOptions_ = {QColor(Qt::red),
                      QColor(Qt::green),
@@ -43,15 +57,22 @@ Dialog::~Dialog()
 
 void Dialog::accept(){
 
-    int value = ui->mapSizeSlider->value();
-    emit sendValue(value);
+    int mapValue = ui->mapSizeSlider->value();
+    emit sendMapValue(mapValue);
+
+    int roundValue = ui->mapSizeSlider->value();
+    emit sendRoundValue(roundValue);
+
     emit sendPlayer(players_);
     QDialog::accept();
 }
 
 void Dialog::showValue(){
-    int value = ui->mapSizeSlider->value();
-    ui->lcdMapSize->display(value);
+    int mapValue = ui->mapSizeSlider->value();
+    ui->lcdMapSize->display(mapValue);
+
+    int roundValue = ui->roundSlider->value();
+    ui->lcdRounds->display(roundValue);
 }
 
 void Dialog::updateColorOptions()
@@ -76,7 +97,7 @@ void Dialog::addPlayer()
     }
     for(auto player : players_){
         if (player->getName() == name){
-            showMessage("Multiple players can't have same name.");
+            showMessage("Multiple players can't have the same name.");
             return;
         }
     }

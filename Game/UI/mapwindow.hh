@@ -63,6 +63,7 @@ public:
     void setGEHandler(std::shared_ptr<Student::GameEventHandler> nHandler);
 
     int getGridSize();
+    int getRoundSize();
     void setSize(int width, int height);
     void setScale(double scale);
     void resize();
@@ -77,6 +78,7 @@ public:
 
 public slots:
     void setGridSize(int size);
+    void setRounds(int amount);
     void getPlayer(std::vector<std::shared_ptr<Student::Player>> players);
     void changeTurn();
     void getId(unsigned int Id);
@@ -89,10 +91,9 @@ private:
     std::shared_ptr<Student::GameEventHandler> m_GEHandler = nullptr;
     std::shared_ptr<Student::ObjectManager> m_objM = nullptr;
     std::shared_ptr<Student::GameScene> m_scene = nullptr;
-    int m_size = 0;
     std::shared_ptr<Course::TileBase> clickedTileObj = nullptr;
-
-
+    int m_size = 0;
+    int gameRounds = 0;
 
     void constructWantedBuilding(std::shared_ptr<Course::BuildingBase> &building);
     void constructWantedRecruit(std::shared_ptr<Course::WorkerBase> &worker);

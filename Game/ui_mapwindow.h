@@ -22,6 +22,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
@@ -35,6 +36,7 @@ public:
     QWidget *centralwidget;
     QGridLayout *gridLayout_3;
     QGridLayout *gridLayout_2;
+    QSpacerItem *verticalSpacer;
     QPushButton *endTurnPushButton;
     QComboBox *recruitsComboBox;
     QVBoxLayout *verticalLayout_2;
@@ -42,6 +44,7 @@ public:
     QComboBox *buildingsComboBox;
     QPushButton *buildPushButton;
     QPushButton *recruitPushButton;
+    QGraphicsView *buildingGraphicsView;
     QGridLayout *gridLayout;
     QLabel *stoneAmountLabel;
     QLabel *foodLabel;
@@ -79,6 +82,10 @@ public:
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         gridLayout_2 = new QGridLayout();
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        verticalSpacer = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Fixed);
+
+        gridLayout_2->addItem(verticalSpacer, 0, 0, 1, 1);
+
         endTurnPushButton = new QPushButton(centralwidget);
         endTurnPushButton->setObjectName(QStringLiteral("endTurnPushButton"));
         sizePolicy.setHeightForWidth(endTurnPushButton->sizePolicy().hasHeightForWidth());
@@ -98,7 +105,7 @@ public:
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
 
-        gridLayout_2->addLayout(verticalLayout_2, 0, 1, 1, 1);
+        gridLayout_2->addLayout(verticalLayout_2, 1, 1, 1, 1);
 
         tileInfoLabel = new QLabel(centralwidget);
         tileInfoLabel->setObjectName(QStringLiteral("tileInfoLabel"));
@@ -106,7 +113,7 @@ public:
         tileInfoLabel->setSizePolicy(sizePolicy);
         tileInfoLabel->setMinimumSize(QSize(130, 200));
 
-        gridLayout_2->addWidget(tileInfoLabel, 0, 0, 10, 1, Qt::AlignLeft|Qt::AlignTop);
+        gridLayout_2->addWidget(tileInfoLabel, 1, 0, 9, 1, Qt::AlignLeft|Qt::AlignTop);
 
         buildingsComboBox = new QComboBox(centralwidget);
         buildingsComboBox->setObjectName(QStringLiteral("buildingsComboBox"));
@@ -131,6 +138,15 @@ public:
         recruitPushButton->setMinimumSize(QSize(130, 0));
 
         gridLayout_2->addWidget(recruitPushButton, 6, 1, 1, 1, Qt::AlignLeft);
+
+        buildingGraphicsView = new QGraphicsView(centralwidget);
+        buildingGraphicsView->setObjectName(QStringLiteral("buildingGraphicsView"));
+        buildingGraphicsView->setEnabled(true);
+        sizePolicy.setHeightForWidth(buildingGraphicsView->sizePolicy().hasHeightForWidth());
+        buildingGraphicsView->setSizePolicy(sizePolicy);
+        buildingGraphicsView->setMinimumSize(QSize(0, 0));
+
+        gridLayout_2->addWidget(buildingGraphicsView, 4, 1, 1, 1);
 
 
         gridLayout_3->addLayout(gridLayout_2, 0, 1, 5, 1);

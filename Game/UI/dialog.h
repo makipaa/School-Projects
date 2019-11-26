@@ -24,8 +24,8 @@ public slots:
 
 signals:
     void sendPlayer(std::vector<std::shared_ptr<Student::Player>> players);
-    void sendValue(int size);
-
+    void sendMapValue(int size);
+    void sendRoundValue(int size);
 
 private:
     void updateColorOptions();

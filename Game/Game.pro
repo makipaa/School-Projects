@@ -98,6 +98,7 @@ DISTFILES += \
     Images/water.png \
     Images/trawler.png \
     Images/mine.png \
-    Images/sawmill.png
+    Images/sawmill.png \
+    Images/pirkanmaa.png
 
 RESOURCES +=
