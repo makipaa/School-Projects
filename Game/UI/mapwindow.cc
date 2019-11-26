@@ -11,14 +11,19 @@ MapWindow::MapWindow(QWidget *parent,
 {
     m_ui->setupUi(this);
     this->setWindowTitle("Colonizing Pirkanmaa");
-    m_GEHandler = std::make_shared<Student::GameEventHandler>(Student::GameEventHandler());
+    m_GEHandler = std::make_shared<Student::GameEventHandler>
+            (Student::GameEventHandler());
 
     Dialog dialogwindow;
     dialogwindow.setWindowTitle("Colonizing Pirkanmaa");
-    connect(&dialogwindow, SIGNAL(sendValue(int)), this,
+    connect(&dialogwindow, SIGNAL(sendMapValue(int)), this,
             SLOT(setGridSize(int)));
-    connect(&dialogwindow, SIGNAL(sendPlayer(std::vector<std::shared_ptr<Student::Player>>)),
-                           this, SLOT(getPlayer(std::vector<std::shared_ptr<Student::Player>>)));
+    connect(&dialogwindow, SIGNAL(sendRoundValue(int)), this,
+            SLOT(setGridSize(int)));
+    connect(&dialogwindow,
+            SIGNAL(sendPlayer(std::vector<std::shared_ptr<Student::Player>>)),
+            this,
+            SLOT(getPlayer(std::vector<std::shared_ptr<Student::Player>>)));
     connect(m_ui->endTurnPushButton, SIGNAL(clicked(bool)), this, SLOT(changeTurn()));
     connect(m_ui->buildPushButton, SIGNAL(clicked(bool)), this, SLOT(actionBuild()));
     connect(m_ui->recruitPushButton, SIGNAL(clicked(bool)), this, SLOT(actionRecruit()));
@@ -27,10 +32,12 @@ MapWindow::MapWindow(QWidget *parent,
 
     dialogwindow.exec();
 
-    QStringList buildings = {"HeadQuarters", "Outpost", "Farm", "Mine", "Trawler", "Sawmill"};
+    QStringList buildings = {"HeadQuarters", "Outpost", "Farm", "Mine",
+                             "Trawler", "Sawmill"};
     m_ui->buildingsComboBox->addItems(buildings);
 
-    QStringList workers = {"BasicWorker","Fisher", "Miner", "Lumberjack", "PeatWorker", "Farmer"};
+    QStringList workers = {"BasicWorker","Fisher", "Miner", "Lumberjack",
+                           "PeatWorker", "Farmer"};
     m_ui->recruitsComboBox->addItems(workers);
 
 
@@ -99,12 +106,24 @@ MapWindow::~MapWindow()
     delete m_ui;
 }
 
-int MapWindow::getGridSize(){
+int MapWindow::getGridSize()
+{
     return m_size;
 }
 
-void MapWindow::setGridSize(int size){
+int MapWindow::getRoundSize()
+{
+    return gameRounds;
+}
+
+void MapWindow::setGridSize(int size)
+{
     m_size = size;
+}
+
+void MapWindow::setRounds(int amount)
+{
+    gameRounds = amount;
 }
 
 void MapWindow::getPlayer(std::vector<std::shared_ptr<Student::Player>> players)
@@ -148,9 +167,11 @@ void MapWindow::actionBuild()
 
     std::shared_ptr<Course::BuildingBase> building;
 
-    std::shared_ptr<Student::Player> tempPlayer = m_GEHandler->getPlayerInTurn();
+    std::shared_ptr<Student::Player> tempPlayer = m_GEHandler->
+            getPlayerInTurn();
     if(tempPlayer->funcHasBuiltHq() &&
-            m_ui->buildingsComboBox->currentText().toStdString() == "HeadQuarters"){
+            m_ui->buildingsComboBox->currentText().toStdString() ==
+            "HeadQuarters"){
         qDebug() << "Cannot build more than one HQ!";
         return;
     }
@@ -222,7 +243,6 @@ void MapWindow::resizeEvent(QResizeEvent *event)
     if(m_ui->graphicsView->scene()){
         m_ui->graphicsView->fitInView(m_ui->graphicsView->scene()->sceneRect(),Qt::KeepAspectRatio);
     }
-
 }
 
 

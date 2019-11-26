@@ -101,6 +101,6 @@ DISTFILES += \
     Images/trawler.png \
     Images/mine.png \
     Images/sawmill.png \
-    Images/background.jpg
+    Images/pirkanmaa.png
 
 RESOURCES +=

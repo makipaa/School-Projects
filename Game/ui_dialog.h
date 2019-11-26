@@ -29,47 +29,58 @@ QT_BEGIN_NAMESPACE
 class Ui_Dialog
 {
 public:
-    QPushButton *acceptButton;
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
-    QLCDNumber *lcdMapSize;
+    QLCDNumber *lcdRounds;
     QLabel *headingLabel;
+    QLabel *roundLabel;
+    QLCDNumber *lcdMapSize;
     QSlider *mapSizeSlider;
+    QSlider *roundSlider;
     QLabel *mapLabel;
+    QLabel *pic1Label;
     QWidget *gridLayoutWidget_2;
     QGridLayout *gridLayout_2;
     QLabel *nameLabel;
-    QLabel *color_label;
     QLineEdit *nameInput;
-    QLabel *addplayers_label;
-    QComboBox *comboBox;
-    QPushButton *addPlayersButton;
-    QLabel *infoLabel;
     QLabel *showPlayersLabel;
+    QLabel *infoLabel;
+    QPushButton *acceptButton;
+    QPushButton *addPlayersButton;
+    QComboBox *comboBox;
+    QLabel *color_label;
+    QLabel *addplayers_label;
 
     void setupUi(QDialog *Dialog)
     {
         if (Dialog->objectName().isEmpty())
             Dialog->setObjectName(QStringLiteral("Dialog"));
-        Dialog->resize(418, 356);
-        acceptButton = new QPushButton(Dialog);
-        acceptButton->setObjectName(QStringLiteral("acceptButton"));
-        acceptButton->setGeometry(QRect(330, 320, 84, 28));
+        Dialog->resize(418, 432);
         gridLayoutWidget = new QWidget(Dialog);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(9, 9, 401, 81));
+        gridLayoutWidget->setGeometry(QRect(9, 9, 401, 161));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        lcdMapSize = new QLCDNumber(gridLayoutWidget);
-        lcdMapSize->setObjectName(QStringLiteral("lcdMapSize"));
+        lcdRounds = new QLCDNumber(gridLayoutWidget);
+        lcdRounds->setObjectName(QStringLiteral("lcdRounds"));
 
-        gridLayout->addWidget(lcdMapSize, 4, 2, 1, 1);
+        gridLayout->addWidget(lcdRounds, 4, 3, 1, 2);
 
         headingLabel = new QLabel(gridLayoutWidget);
         headingLabel->setObjectName(QStringLiteral("headingLabel"));
 
-        gridLayout->addWidget(headingLabel, 4, 0, 1, 1);
+        gridLayout->addWidget(headingLabel, 3, 0, 1, 1);
+
+        roundLabel = new QLabel(gridLayoutWidget);
+        roundLabel->setObjectName(QStringLiteral("roundLabel"));
+
+        gridLayout->addWidget(roundLabel, 4, 0, 1, 1);
+
+        lcdMapSize = new QLCDNumber(gridLayoutWidget);
+        lcdMapSize->setObjectName(QStringLiteral("lcdMapSize"));
+
+        gridLayout->addWidget(lcdMapSize, 3, 3, 1, 2);
 
         mapSizeSlider = new QSlider(gridLayoutWidget);
         mapSizeSlider->setObjectName(QStringLiteral("mapSizeSlider"));
@@ -77,16 +88,28 @@ public:
         mapSizeSlider->setMaximum(100);
         mapSizeSlider->setOrientation(Qt::Horizontal);
 
-        gridLayout->addWidget(mapSizeSlider, 4, 1, 1, 1);
+        gridLayout->addWidget(mapSizeSlider, 3, 1, 1, 2);
+
+        roundSlider = new QSlider(gridLayoutWidget);
+        roundSlider->setObjectName(QStringLiteral("roundSlider"));
+        roundSlider->setOrientation(Qt::Horizontal);
+
+        gridLayout->addWidget(roundSlider, 4, 1, 1, 2);
 
         mapLabel = new QLabel(gridLayoutWidget);
         mapLabel->setObjectName(QStringLiteral("mapLabel"));
 
-        gridLayout->addWidget(mapLabel, 1, 0, 1, 3, Qt::AlignHCenter);
+        gridLayout->addWidget(mapLabel, 0, 0, 1, 2);
+
+        pic1Label = new QLabel(gridLayoutWidget);
+        pic1Label->setObjectName(QStringLiteral("pic1Label"));
+        pic1Label->setEnabled(true);
+
+        gridLayout->addWidget(pic1Label, 0, 3, 1, 2);
 
         gridLayoutWidget_2 = new QWidget(Dialog);
         gridLayoutWidget_2->setObjectName(QStringLiteral("gridLayoutWidget_2"));
-        gridLayoutWidget_2->setGeometry(QRect(10, 110, 401, 116));
+        gridLayoutWidget_2->setGeometry(QRect(10, 180, 401, 251));
         gridLayout_2 = new QGridLayout(gridLayoutWidget_2);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         gridLayout_2->setContentsMargins(0, 0, 0, 0);
@@ -95,39 +118,46 @@ public:
 
         gridLayout_2->addWidget(nameLabel, 1, 0, 1, 1);
 
+        nameInput = new QLineEdit(gridLayoutWidget_2);
+        nameInput->setObjectName(QStringLiteral("nameInput"));
+
+        gridLayout_2->addWidget(nameInput, 3, 0, 1, 1);
+
+        showPlayersLabel = new QLabel(gridLayoutWidget_2);
+        showPlayersLabel->setObjectName(QStringLiteral("showPlayersLabel"));
+
+        gridLayout_2->addWidget(showPlayersLabel, 4, 0, 3, 1);
+
+        infoLabel = new QLabel(gridLayoutWidget_2);
+        infoLabel->setObjectName(QStringLiteral("infoLabel"));
+
+        gridLayout_2->addWidget(infoLabel, 7, 0, 1, 1);
+
+        acceptButton = new QPushButton(gridLayoutWidget_2);
+        acceptButton->setObjectName(QStringLiteral("acceptButton"));
+
+        gridLayout_2->addWidget(acceptButton, 7, 1, 1, 1);
+
+        addPlayersButton = new QPushButton(gridLayoutWidget_2);
+        addPlayersButton->setObjectName(QStringLiteral("addPlayersButton"));
+
+        gridLayout_2->addWidget(addPlayersButton, 4, 1, 1, 1);
+
+        comboBox = new QComboBox(gridLayoutWidget_2);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+
+        gridLayout_2->addWidget(comboBox, 3, 1, 1, 1);
+
         color_label = new QLabel(gridLayoutWidget_2);
         color_label->setObjectName(QStringLiteral("color_label"));
 
         gridLayout_2->addWidget(color_label, 1, 1, 1, 1);
 
-        nameInput = new QLineEdit(gridLayoutWidget_2);
-        nameInput->setObjectName(QStringLiteral("nameInput"));
-
-        gridLayout_2->addWidget(nameInput, 2, 0, 1, 1);
-
         addplayers_label = new QLabel(gridLayoutWidget_2);
         addplayers_label->setObjectName(QStringLiteral("addplayers_label"));
 
-        gridLayout_2->addWidget(addplayers_label, 0, 0, 1, 2, Qt::AlignHCenter);
+        gridLayout_2->addWidget(addplayers_label, 0, 0, 1, 2);
 
-        comboBox = new QComboBox(gridLayoutWidget_2);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
-
-        gridLayout_2->addWidget(comboBox, 2, 1, 1, 1);
-
-        addPlayersButton = new QPushButton(gridLayoutWidget_2);
-        addPlayersButton->setObjectName(QStringLiteral("addPlayersButton"));
-
-        gridLayout_2->addWidget(addPlayersButton, 3, 1, 1, 1);
-
-        infoLabel = new QLabel(gridLayoutWidget_2);
-        infoLabel->setObjectName(QStringLiteral("infoLabel"));
-
-        gridLayout_2->addWidget(infoLabel, 3, 0, 1, 1);
-
-        showPlayersLabel = new QLabel(Dialog);
-        showPlayersLabel->setObjectName(QStringLiteral("showPlayersLabel"));
-        showPlayersLabel->setGeometry(QRect(20, 240, 158, 99));
 
         retranslateUi(Dialog);
 
@@ -137,15 +167,17 @@ public:
     void retranslateUi(QDialog *Dialog)
     {
         Dialog->setWindowTitle(QApplication::translate("Dialog", "Dialog", Q_NULLPTR));
-        acceptButton->setText(QApplication::translate("Dialog", "Accept", Q_NULLPTR));
         headingLabel->setText(QApplication::translate("Dialog", "Set map size", Q_NULLPTR));
-        mapLabel->setText(QApplication::translate("Dialog", "Map size", Q_NULLPTR));
+        roundLabel->setText(QApplication::translate("Dialog", "Set rounds", Q_NULLPTR));
+        mapLabel->setText(QApplication::translate("Dialog", "Game Settings", Q_NULLPTR));
+        pic1Label->setText(QString());
         nameLabel->setText(QApplication::translate("Dialog", "Name", Q_NULLPTR));
+        showPlayersLabel->setText(QString());
+        infoLabel->setText(QString());
+        acceptButton->setText(QApplication::translate("Dialog", "Accept", Q_NULLPTR));
+        addPlayersButton->setText(QApplication::translate("Dialog", "Add", Q_NULLPTR));
         color_label->setText(QApplication::translate("Dialog", "Color", Q_NULLPTR));
         addplayers_label->setText(QApplication::translate("Dialog", "Add players", Q_NULLPTR));
-        addPlayersButton->setText(QApplication::translate("Dialog", "Add", Q_NULLPTR));
-        infoLabel->setText(QString());
-        showPlayersLabel->setText(QString());
     } // retranslateUi
 
 };
