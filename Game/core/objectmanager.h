@@ -42,9 +42,9 @@ public:
     std::vector<std::shared_ptr<Course::TileBase>> getTiles();
 
 private:
-    std::vector<std::shared_ptr<Course::TileBase>> tiles_;
-    std::vector<std::shared_ptr<Course::BuildingBase>> buildings_;
-    std::vector<std::shared_ptr<Course::WorkerBase>> workers_;
+    std::vector<std::shared_ptr<Course::TileBase>> tiles_ = {};
+    std::vector<std::shared_ptr<Course::BuildingBase>> buildings_ {};
+    std::vector<std::shared_ptr<Course::WorkerBase>> workers_ {};
 };
 } // Namespace Student
 
