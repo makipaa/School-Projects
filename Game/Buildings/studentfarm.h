@@ -3,8 +3,9 @@
 
 #include "buildings/farm.h"
 #include "core/resourcemaps.h"
-#include "gameeventhandler.h"
-#include "objectmanager.h"
+#include "core/gameeventhandler.h"
+#include "core/objectmanager.h"
+
 
 namespace Student {
 
@@ -18,14 +19,17 @@ public:
             const std::shared_ptr<ObjectManager>& objectmanager,
             const std::shared_ptr<Course::PlayerBase>& owner,
             const int& tilespaces = 1,
-            const Course::ResourceMap& buildcost = Course::ConstResourceMaps::FARM_BUILD_COST,
-            const Course::ResourceMap& production = Course::ConstResourceMaps::FARM_PRODUCTION
+            const Course::ResourceMap& buildcost =
+                Course::ConstResourceMaps::FARM_BUILD_COST,
+            const Course::ResourceMap& production =
+                Course::ConstResourceMaps::FARM_PRODUCTION
             );
 
     virtual ~StudentFarm() = default;
 
-    virtual bool canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) const;
+    virtual bool canBePlacedOnTile(const std::shared_ptr<Course::TileBase>
+                                   &target) const;
 };
+} // Namespace Student
 
-} // Namespace
 #endif // STUDENTFARM_H

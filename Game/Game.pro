@@ -7,9 +7,8 @@ CONFIG += c++14
 
 SOURCES += \
     main.cpp \
-    UI/mapwindow.cc \
-    gameeventhandler.cpp \
-    objectmanager.cpp \
+    core/gameeventhandler.cpp \
+    core/objectmanager.cpp \
     core/player.cpp \
     UI/dialog.cpp \
     Graphics/gamescene.cpp \
@@ -29,12 +28,13 @@ SOURCES += \
     Workers/farmer.cpp \
     Workers/luberjack.cpp \
     Workers/peatworker.cpp \
-    Graphics/tilemarker.cpp
+    Graphics/tilemarker.cpp \
+    UI/enddialog.cpp \
+    UI/mainwindow.cc
 
 HEADERS += \
-    UI/mapwindow.hh \
-    gameeventhandler.h \
-    objectmanager.h \
+    core/gameeventhandler.h \
+    core/objectmanager.h \
     core/player.h \
     UI/dialog.h \
     Graphics/gamescene.h \
@@ -55,7 +55,9 @@ HEADERS += \
     Workers/farmer.h \
     Workers/luberjack.h \
     Workers/peatworker.h \
-    Graphics/tilemarker.h
+    Graphics/tilemarker.h \
+    UI/enddialog.h \
+    UI/mainwindow.hh
 
 
 win32:CONFIG(release, debug|release): LIBS += \
@@ -83,8 +85,9 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 FORMS += \
-    UI/mapwindow.ui \
-    UI/dialog.ui
+    UI/dialog.ui \
+    UI/enddialog.ui \
+    UI/mainwindow.ui
 
 DISTFILES += \
     Images/farm.png \
@@ -100,5 +103,3 @@ DISTFILES += \
     Images/mine.png \
     Images/sawmill.png \
     Images/pirkanmaa.png
-
-RESOURCES +=

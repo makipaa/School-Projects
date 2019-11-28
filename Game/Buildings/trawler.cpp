@@ -26,10 +26,10 @@ std::string Trawler::getType() const
     return "Trawler";
 }
 
-bool Trawler::canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) const
+bool Trawler::canBePlacedOnTile(
+        const std::shared_ptr<Course::TileBase> &target) const
 {
     return target->getType() == "Water";
 }
 
-
-} // namespace Student
+} // Namespace Student

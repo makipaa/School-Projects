@@ -1,7 +1,6 @@
 #ifndef SWAMP_H
 #define SWAMP_H
 
-
 #include "tiles/tilebase.h"
 
 
@@ -10,7 +9,6 @@ namespace Student {
 class Swamp : public Course::TileBase
 {
 public:
-
     Swamp() = delete;
 
     Swamp(const Course::Coordinate& location,
@@ -18,18 +16,17 @@ public:
            const std::shared_ptr<Course::iObjectManager>& objectmanager,
            const unsigned int& max_build = 1,
            const unsigned int& max_work = 2,
-           const Course::ResourceMap& production = Course::ConstResourceMaps::SWAMP_BP);
+           const Course::ResourceMap& production =
+                Course::ConstResourceMaps::SWAMP_BP);
 
     virtual ~Swamp() = default;
 
     virtual std::string getType() const override;
 
-    void addBuilding(const std::shared_ptr<Course::BuildingBase>& building) override;
+    void addBuilding(
+            const std::shared_ptr<Course::BuildingBase>& building) override;
 
 };
-
-} // namespace Student
-
-
+} // Namespace Student
 
 #endif // SWAMP_H

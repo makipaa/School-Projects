@@ -1,5 +1,5 @@
 #include "player.h"
-#include "core/resourcemaps.h"
+
 
 namespace Student {
 
@@ -52,16 +52,13 @@ QColor Player::getColor()
 
 bool Player::funcHasBuiltHq()
 {
-    return hasBuiltHQ;
+    return hasBuiltHQ_;
 }
 
 void Player::changeHQBuildStatus()
 {
-    hasBuiltHQ = true;
+    hasBuiltHQ_ = true;
 }
 
-
-
-
-} // Namespace
+} // Namespace Student
 

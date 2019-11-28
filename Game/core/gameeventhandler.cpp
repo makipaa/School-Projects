@@ -1,6 +1,7 @@
 #include "gameeventhandler.h"
 #include "iostream"
 
+
 namespace Student {
 
 GameEventHandler::GameEventHandler()
@@ -8,7 +9,8 @@ GameEventHandler::GameEventHandler()
 
 }
 
-void GameEventHandler::add_player(std::vector<std::shared_ptr<Student::Player>> players)
+void GameEventHandler::add_player(
+        std::vector<std::shared_ptr<Student::Player>> players)
 {
    players_ = std::vector<std::shared_ptr<Student::Player>>(players);
    playerInTurn_ = players_.at(0);
@@ -28,6 +30,7 @@ void GameEventHandler::new_round()
     }
 
     roundNumber_ ++;
+
 }
 
 void GameEventHandler::changeTurn()
@@ -46,8 +49,9 @@ void GameEventHandler::changeTurn()
     }
 }
 
-bool GameEventHandler::modifyResources(std::shared_ptr<Course::PlayerBase> player,
-                                       Course::ResourceMap resources)
+bool GameEventHandler::modifyResources(
+            std::shared_ptr<Course::PlayerBase> player,
+            Course::ResourceMap resources)
 {
     for (auto found_player : players_){
         if (found_player->getName() == player->getName()){
@@ -59,8 +63,9 @@ bool GameEventHandler::modifyResources(std::shared_ptr<Course::PlayerBase> playe
 
 }
 
-bool GameEventHandler::modifyResource(std::shared_ptr<Course::PlayerBase> player,
-                                      Course::BasicResource resource, int amount)
+bool GameEventHandler::modifyResource(
+        std::shared_ptr<Course::PlayerBase> player,
+        Course::BasicResource resource, int amount)
 {
 
     for (auto found_player : players_){
@@ -72,14 +77,48 @@ bool GameEventHandler::modifyResource(std::shared_ptr<Course::PlayerBase> player
     return false;
 }
 
-Course::ResourceMap GameEventHandler::resourcemapMakeNegative
-    (Course::ResourceMap resourcemap)
+Course::ResourceMap GameEventHandler::resourcemapMakeNegative(
+        Course::ResourceMap resourcemap)
 {
     Course::ResourceMap result = resourcemap;
     for ( std::pair<Course::BasicResource,int> pair : result){
         result[pair.first] = -pair.second;
     }
     return result;
+}
+
+std::map<std::string, int> GameEventHandler::getScores()
+{
+    std::map<std::string, int> scoreMap;
+    for (auto player : players_){
+        scoreMap[player->getName()] = countScore(player);
+    }
+    return scoreMap;
+}
+
+int GameEventHandler::countScore(std::shared_ptr<Player> player)
+{
+    int score = 0;
+    Course::ResourceMap cumulativeResources;
+    cumulativeResources =
+       Course::mergeResourceMaps(player->getResources(), cumulativeResources);
+    for (auto object : player->getObjects()){
+        if (auto building =
+                std::dynamic_pointer_cast<Course::BuildingBase>(object)){
+            cumulativeResources = Course::mergeResourceMaps(
+                        building->BUILD_COST, cumulativeResources);
+        }
+        else if (auto worker =
+                 std::dynamic_pointer_cast<Course::WorkerBase>(object)){
+            cumulativeResources = Course::mergeResourceMaps(
+                        worker->RECRUITMENT_COST, cumulativeResources);
+        }
+    }
+    for (auto resourse : cumulativeResources){
+        score += resourse.second;
+    }
+    return score;
+
 }
 
 std::shared_ptr<Student::Player> GameEventHandler::getPlayerInTurn(){
@@ -90,4 +129,4 @@ int GameEventHandler::getRoundNumber(){
     return roundNumber_;
 }
 
-} // namespace
+} // Namespace Student

@@ -1,5 +1,6 @@
 #include "cobblestone.h"
 
+
 namespace Student {
 
 Cobblestone::Cobblestone(const Course::Coordinate& location,
@@ -22,7 +23,8 @@ std::string Cobblestone::getType() const
     return "Cobblestone";
 }
 
-void Cobblestone::addBuilding(const std::shared_ptr<Course::BuildingBase>& building)
+void Cobblestone::addBuilding(
+        const std::shared_ptr<Course::BuildingBase>& building)
 {
     TileBase::addBuilding(building);
     building->addHoldMarkers(1);

@@ -1,5 +1,6 @@
 #include "swamp.h"
 
+
 namespace Student {
 
 Swamp::Swamp(const Course::Coordinate& location,
@@ -22,7 +23,8 @@ std::string Swamp::getType() const
     return "Swamp";
 }
 
-void Swamp::addBuilding(const std::shared_ptr<Course::BuildingBase>& building)
+void Swamp::addBuilding(
+        const std::shared_ptr<Course::BuildingBase>& building)
 {
     TileBase::addBuilding(building);
     building->addHoldMarkers(2);

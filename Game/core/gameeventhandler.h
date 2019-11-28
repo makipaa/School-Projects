@@ -13,9 +13,7 @@ namespace Student {
 
 class GameEventHandler : public Course::iGameEventHandler
 {
-
 public:
-
     GameEventHandler();
 
     virtual ~GameEventHandler() = default;
@@ -35,21 +33,23 @@ public:
 
     void changeTurn();
 
-    std::shared_ptr<Student::Player> getPlayerInTurn();
-
     int getRoundNumber();
+
+    std::shared_ptr<Student::Player> getPlayerInTurn();
 
     Course::ResourceMap resourcemapMakeNegative
         (Course::ResourceMap resourcemap);
 
-private:
+    std::map<std::string, int> getScores();
+
+private:   
     std::vector<std::shared_ptr<Student::Player>> players_ = {};
     std::shared_ptr<Student::Player> playerInTurn_;
-
     std::shared_ptr<Student::ObjectManager> objM_;
 
     int roundNumber_ = 1;
-
+    int countScore(std::shared_ptr<Student::Player> player);
 };
-}
+} // Namespace Student
+
 #endif // GAMEEVENTHANDLER_H

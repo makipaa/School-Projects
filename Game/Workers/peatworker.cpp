@@ -1,15 +1,15 @@
 #include "peatworker.h"
 
+
 namespace Student {
 
-
-
-PeatWorker::PeatWorker(const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
-                         const std::shared_ptr<Course::iObjectManager>& objectmanager,
-                         const std::shared_ptr<Course::PlayerBase>& owner,
-                         const int& tilespaces,
-                         const Course::ResourceMap& cost,
-                         const Course::ResourceMapDouble& efficiency):
+PeatWorker::PeatWorker(
+         const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
+         const std::shared_ptr<Course::iObjectManager>& objectmanager,
+         const std::shared_ptr<Course::PlayerBase>& owner,
+         const int& tilespaces,
+         const Course::ResourceMap& cost,
+         const Course::ResourceMapDouble& efficiency):
     Course::WorkerBase(
         eventhandler,
         objectmanager,
@@ -35,10 +35,10 @@ const Course::ResourceMapDouble PeatWorker::tileWorkAction()
 
     Course::ResourceMapDouble final_modifier;
 
-    if ( events->modifyResource(player, Course::BasicResource::FOOD, -1) )
+    if ( events->modifyResource(player, Course::BasicResource::FOOD, -1))
     {
         satisfaction = 0.5;
-        if ( events->modifyResource(player, Course::BasicResource::MONEY, -1) )
+        if ( events->modifyResource(player, Course::BasicResource::MONEY, -1))
         {
             satisfaction = 1;
         }
@@ -63,7 +63,8 @@ const Course::ResourceMapDouble PeatWorker::tileWorkAction()
     return final_modifier;
 }
 
-bool PeatWorker::canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) const
+bool PeatWorker::canBePlacedOnTile(
+        const std::shared_ptr<Course::TileBase> &target) const
 {
     return target->getOwner() == getOwner() and
             WorkerBase::canBePlacedOnTile(target) and
@@ -75,4 +76,4 @@ std::string PeatWorker::getType() const
     return "PeatWorker";
 }
 
-} // Namespace
+} // Namespace Student

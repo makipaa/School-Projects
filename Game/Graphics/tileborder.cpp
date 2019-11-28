@@ -1,20 +1,23 @@
 #include "tileborder.h"
 
 
+namespace Student {
 
-Student::TileBorder::TileBorder(QColor bordercolor, QPointF location, double size)
+TileBorder::TileBorder(QColor bordercolor, QPointF location, double size)
 {
     borderColor_ = bordercolor;
     m_scenelocation_ = location;
     m_size_ = size;
 }
 
-QRectF Student::TileBorder::boundingRect() const
+QRectF TileBorder::boundingRect() const
 {
-    return QRectF(m_scenelocation_ * m_size_, m_scenelocation_ * m_size_ + QPoint(m_size_, m_size_));
+    return QRectF(m_scenelocation_ * m_size_,
+                  m_scenelocation_ * m_size_ + QPoint(m_size_, m_size_));
 }
 
-void Student::TileBorder::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void TileBorder::paint(QPainter *painter,
+                      const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED( option ); Q_UNUSED( widget );
     QPen borderSetting(borderColor_, 2);
@@ -27,9 +30,9 @@ void Student::TileBorder::paint(QPainter *painter, const QStyleOptionGraphicsIte
                       boundingRect().height()-borderSetting.width());
 }
 
-QPointF Student::TileBorder::getLocation()
+QPointF TileBorder::getLocation()
 {
     return m_scenelocation_;
 }
 
-
+} // Namespace Student

@@ -1,7 +1,7 @@
 #include "objectmanager.h"
 
-namespace Student {
 
+namespace Student {
 
 ObjectManager::ObjectManager()
 {
@@ -25,12 +25,14 @@ std::vector<std::shared_ptr<Course::TileBase>> ObjectManager::getTiles
     return found_tiles;
 }
 
-void ObjectManager::addBuilding(const std::shared_ptr<Course::BuildingBase> &building)
+void ObjectManager::addBuilding(
+        const std::shared_ptr<Course::BuildingBase> &building)
 {
     buildings_.push_back(building);
 }
 
-void ObjectManager::addWorker(const std::shared_ptr<Course::WorkerBase> &worker)
+void ObjectManager::addWorker(
+        const std::shared_ptr<Course::WorkerBase> &worker)
 {
     workers_.push_back(worker);
 }
@@ -43,7 +45,8 @@ std::vector<std::shared_ptr<Course::TileBase>> ObjectManager::getTiles()
 
 
 
-std::shared_ptr<Course::TileBase> ObjectManager::getTile(const Course::ObjectId &id)
+std::shared_ptr<Course::TileBase> ObjectManager::getTile(
+        const Course::ObjectId &id)
 {
     for(std::shared_ptr<Course::TileBase> tile : tiles_){
         if ((*tile).ID == id){
@@ -53,7 +56,8 @@ std::shared_ptr<Course::TileBase> ObjectManager::getTile(const Course::ObjectId 
     return nullptr;
 }
 
-std::shared_ptr<Course::TileBase> ObjectManager::getTile(const Course::Coordinate &coordinate)
+std::shared_ptr<Course::TileBase> ObjectManager::getTile(
+        const Course::Coordinate &coordinate)
 {
     for(std::shared_ptr<Course::TileBase> tile : tiles_){
         if ((*tile).getCoordinate() == coordinate){
@@ -64,11 +68,12 @@ std::shared_ptr<Course::TileBase> ObjectManager::getTile(const Course::Coordinat
 
 }
 
-void ObjectManager::addTiles(const std::vector<std::shared_ptr<Course::TileBase> > &tiles)
+void ObjectManager::addTiles(
+        const std::vector<std::shared_ptr<Course::TileBase> > &tiles)
 {
     for(std::shared_ptr<Course::TileBase> tile : tiles){
         tiles_.push_back(tile);
     }
 }
 
-} // student
+} // Namespace Student

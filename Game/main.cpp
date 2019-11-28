@@ -1,15 +1,17 @@
-#include "UI/mapwindow.hh"
-
+#include "UI/mainwindow.hh"
 #include <QApplication>
-
 
 
 int main(int argc, char* argv[])
 {
+     int currentExitCode = 0;
 
-    QApplication app(argc, argv);
+     do {
+      QApplication app(argc, argv);
+      MainWindow mapWindow;
+      mapWindow.showMaximized();
+      currentExitCode = app.exec();
+     } while( currentExitCode == 1000);
 
-    MapWindow mapWindow;
-    mapWindow.showMaximized();
-    return app.exec();
+     return currentExitCode;
 }

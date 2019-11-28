@@ -9,7 +9,6 @@
 
 namespace Student {
 
-
 class Miner : public Course::WorkerBase
 {
 public:
@@ -35,10 +34,7 @@ public:
 
     virtual std::string getType() const override;
 
-
-
 };
-
-} //namespace
+} // Namespace Student
 
 #endif // MINER_H

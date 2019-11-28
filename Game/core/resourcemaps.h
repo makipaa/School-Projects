@@ -3,12 +3,12 @@
 
 #include "core/basicresources.h"
 
+
 namespace Course {
 
 namespace ConstResourceMaps {
 
 const ResourceMap EMPTY = {};
-
 
 // Building - Farm
 const ResourceMap FARM_BUILD_COST = {
@@ -22,7 +22,6 @@ const ResourceMap FARM_PRODUCTION = {
     {BasicResource::FOOD, 5}
 };
 
-
 // Building - HeadQuarters
 const ResourceMap HQ_BUILD_COST = {
     {BasicResource::MONEY, 750},
@@ -34,7 +33,6 @@ const ResourceMap HQ_PRODUCTION = {
     {BasicResource::MONEY, 10},
     {BasicResource::FOOD, 2},
 };
-
 
 // Building - Outpost
 const ResourceMap OUTPOST_BUILD_COST = {
