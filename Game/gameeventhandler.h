@@ -27,7 +27,9 @@ public:
     virtual bool modifyResources(std::shared_ptr<Course::PlayerBase> player,
                                  Course::ResourceMap resources);
 
-    void add_player(std::vector<std::shared_ptr<Student::Player>> players);
+    void addPlayers(std::vector<std::shared_ptr<Student::Player>> players);
+
+    std::vector<std::shared_ptr<Student::Player>> getPlayers();
 
     void setObjectManager(std::shared_ptr<Student::ObjectManager> objM);
 

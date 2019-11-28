@@ -1,6 +1,6 @@
 #ifndef OBJECTMANAGER_H
 #define OBJECTMANAGER_H
-#include "interfaces/iobjectmanager.h"
+#include "interfaces/igameeventhandler.h"
 #include "tiles/tilebase.h"
 #include "core/playerbase.h"
 #include "core/basicresources.h"
@@ -32,6 +32,7 @@ public:
 
     std::shared_ptr<Course::BuildingBase> getBuilding(Course::ObjectId building_id);
 
+    std::shared_ptr<Course::WorkerBase> getWorker(Course::ObjectId workerID);
 
     std::vector<std::shared_ptr<Course::BuildingBase>> getBuildings();
 

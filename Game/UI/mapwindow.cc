@@ -126,7 +126,7 @@ void MapWindow::setRounds(int amount)
 
 void MapWindow::getPlayer(std::vector<std::shared_ptr<Student::Player>> players)
 {
-    m_GEHandler->add_player(players);
+    m_GEHandler->addPlayers(players);
 }
 
 void MapWindow::changeTurn()
