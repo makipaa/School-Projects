@@ -7,10 +7,7 @@
 #include "tiles/tilebase.h"
 
 
-
 namespace Student {
-
-
 
 class Lumberjack : public Course::WorkerBase
 {
@@ -37,9 +34,7 @@ public:
 
     virtual std::string getType() const override;
 
-
-
 };
-} //Namespace
+} //Namespace Student
 
 #endif // LUBERJACK_H

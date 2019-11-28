@@ -1,5 +1,6 @@
 #include "studentHeadQuarters.h"
 
+
 namespace Student {
 
 StudentHeadQuarters::StudentHeadQuarters(
@@ -21,7 +22,8 @@ StudentHeadQuarters::StudentHeadQuarters(
 {
 }
 
-bool StudentHeadQuarters::canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) const
+bool StudentHeadQuarters::canBePlacedOnTile(
+        const std::shared_ptr<Course::TileBase> &target) const
 {
     return target->getType() != "Water";
 }

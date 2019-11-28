@@ -1,5 +1,6 @@
 #include "studentOutpost.h"
 
+
 namespace Student {
 
 StudentOutpost::StudentOutpost(
@@ -21,7 +22,8 @@ StudentOutpost::StudentOutpost(
 {
 }
 
-bool StudentOutpost::canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) const
+bool StudentOutpost::canBePlacedOnTile(
+        const std::shared_ptr<Course::TileBase> &target) const
 {
     return target->getType() != "Water";
 }

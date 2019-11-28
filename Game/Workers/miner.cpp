@@ -1,13 +1,14 @@
 #include "miner.h"
 
+
 namespace Student{
 
 Miner::Miner(const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
-                         const std::shared_ptr<Course::iObjectManager>& objectmanager,
-                         const std::shared_ptr<Course::PlayerBase>& owner,
-                         const int& tilespaces,
-                         const Course::ResourceMap& cost,
-                         const Course::ResourceMapDouble& efficiency):
+                 const std::shared_ptr<Course::iObjectManager>& objectmanager,
+                 const std::shared_ptr<Course::PlayerBase>& owner,
+                 const int& tilespaces,
+                 const Course::ResourceMap& cost,
+                 const Course::ResourceMapDouble& efficiency):
     WorkerBase(
         eventhandler,
         objectmanager,
@@ -33,10 +34,10 @@ const Course::ResourceMapDouble Miner::tileWorkAction()
 
     Course::ResourceMapDouble final_modifier;
 
-    if ( events->modifyResource(player, Course::BasicResource::FOOD, -1) )
+    if ( events->modifyResource(player, Course::BasicResource::FOOD, -1))
     {
         satisfaction = 0.5;
-        if ( events->modifyResource(player, Course::BasicResource::MONEY, -1) )
+        if ( events->modifyResource(player, Course::BasicResource::MONEY, -1))
         {
             satisfaction = 1;
         }
@@ -61,7 +62,8 @@ const Course::ResourceMapDouble Miner::tileWorkAction()
     return final_modifier;
 }
 
-bool Miner::canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) const
+bool Miner::canBePlacedOnTile(
+        const std::shared_ptr<Course::TileBase> &target) const
 {
     return target->getOwner() == getOwner() and
             WorkerBase::canBePlacedOnTile(target) and
@@ -73,4 +75,4 @@ std::string Miner::getType() const
     return "Miner";
 }
 
-}
+} // Namespace Student

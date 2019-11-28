@@ -28,8 +28,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         tst_objectmanagertest.cpp \
-        ../../Game/objectmanager.cpp \
-        ../../Game/gameeventhandler.cpp \
+        ../../Game/core/objectmanager.cpp \
+        ../../Game/core/gameeventhandler.cpp \
     ../../Game/Buildings/mine.cpp \
     ../../Game/Buildings/sawmill.cpp \
     ../../Game/Buildings/studentfarm.cpp \
@@ -37,7 +37,6 @@ SOURCES += \
     ../../Game/Buildings/studentOutpost.cpp \
     ../../Game/Buildings/trawler.cpp \
     ../../Game/core/player.cpp \
-    ../../Game/core/worldmap.cpp \
     ../../Game/Student_tiles/cobblestone.cpp \
     ../../Game/Student_tiles/swamp.cpp \
     ../../Game/Student_tiles/water.cpp \
@@ -63,8 +62,8 @@ SOURCES += \
     ../../Course/CourseLib/workers/workerbase.cpp
 
 HEADERS += \
-        ../../Game/objectmanager.h \
-        ../../Game/gameeventhandler.h \
+        ../../Game/core/objectmanager.h \
+        ../../Game/core/gameeventhandler.h \
     ../../Game/Buildings/mine.h \
     ../../Game/Buildings/sawmill.h \
     ../../Game/Buildings/studentfarm.h \
@@ -73,7 +72,6 @@ HEADERS += \
     ../../Game/Buildings/trawler.h \
     ../../Game/core/player.h \
     ../../Game/core/resourcemaps.h \
-    ../../Game/core/worldmap.h \
     ../../Game/Student_tiles/cobblestone.h \
     ../../Game/Student_tiles/swamp.h \
     ../../Game/Student_tiles/water.h \

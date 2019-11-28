@@ -9,7 +9,6 @@ namespace Student {
 class Water : public Course::TileBase
 {
 public:
-
     Water() = delete;
 
     Water(const Course::Coordinate& location,
@@ -17,16 +16,17 @@ public:
            const std::shared_ptr<Course::iObjectManager>& objectmanager,
            const unsigned int& max_build = 1,
            const unsigned int& max_work = 3,
-           const Course::ResourceMap& production = Course::ConstResourceMaps::WATER_BP);
+           const Course::ResourceMap& production =
+                Course::ConstResourceMaps::WATER_BP);
 
     virtual ~Water() = default;
 
     virtual std::string getType() const override;
 
-     void addBuilding(const std::shared_ptr<Course::BuildingBase>& building) override;
+     void addBuilding(
+             const std::shared_ptr<Course::BuildingBase>& building) override;
+
 };
-
-} // namespace Student
-
+} // Namespace Student
 
 #endif // WATER_H

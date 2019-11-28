@@ -18,7 +18,7 @@ public:
 
 private:
     QString aligmentMarks(int wordLength);
-    Ui::EndDialog *ui;
+    Ui::EndDialog *ui_;
 };
 
 #endif // ENDDIALOG_H

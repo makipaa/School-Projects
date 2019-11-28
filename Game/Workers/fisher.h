@@ -1,5 +1,6 @@
 #ifndef FISHER_H
 #define FISHER_H
+
 #include "workers/workerbase.h"
 #include "core/resourcemaps.h"
 #include "interfaces/igameeventhandler.h"
@@ -7,8 +8,6 @@
 
 
 namespace Student {
-
-
 
 class Fisher : public Course::WorkerBase
 {
@@ -35,8 +34,7 @@ public:
 
     virtual std::string getType() const override;
 
-
-
 };
-} //Namespace
+} //Namespace Student
+
 #endif // FISHER_H

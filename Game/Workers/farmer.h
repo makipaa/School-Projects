@@ -6,9 +6,8 @@
 #include "interfaces/igameeventhandler.h"
 #include "tiles/tilebase.h"
 
+
 namespace Student {
-
-
 
 class Farmer : public Course::WorkerBase
 {
@@ -35,9 +34,7 @@ public:
 
     virtual std::string getType() const override;
 
-
-
 };
-} //Namespace
+} //Namespace Student
 
 #endif // FARMER_H

@@ -1,17 +1,22 @@
 #include "tilemarker.h"
 
-Student::TileMarker::TileMarker(QPointF location, double size)
+
+namespace Student {
+
+TileMarker::TileMarker(QPointF location, double size)
 {
     m_scenelocation_ = location;
     m_size_ = size;
 }
 
-QRectF Student::TileMarker::boundingRect() const
+QRectF TileMarker::boundingRect() const
 {
-    return QRectF(m_scenelocation_ * m_size_, m_scenelocation_ * m_size_ + QPoint(m_size_, m_size_));
+    return QRectF(m_scenelocation_ * m_size_,
+                  m_scenelocation_ * m_size_ + QPoint(m_size_, m_size_));
 }
 
-void Student::TileMarker::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void TileMarker::paint(QPainter *painter,
+                      const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED( option ); Q_UNUSED( widget );
     QBrush borderSetting(Qt::white);
@@ -23,3 +28,4 @@ void Student::TileMarker::paint(QPainter *painter, const QStyleOptionGraphicsIte
     painter->drawRect(boundingRect());
 }
 
+} // Namespace Student

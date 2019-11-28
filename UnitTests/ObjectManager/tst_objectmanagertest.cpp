@@ -1,5 +1,5 @@
-#include <objectmanager.h>
-#include <gameeventhandler.h>
+#include <core/objectmanager.h>
+#include <core/gameeventhandler.h>
 #include <QString>
 #include <QtTest>
 #include <workers/basicworker.h>

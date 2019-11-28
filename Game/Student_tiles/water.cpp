@@ -1,5 +1,6 @@
 #include "water.h"
 
+
 namespace Student {
 
 Water::Water(const Course::Coordinate& location,
@@ -22,7 +23,8 @@ std::string Water::getType() const
     return "Water";
 }
 
-void Water::addBuilding(const std::shared_ptr<Course::BuildingBase>& building)
+void Water::addBuilding(
+        const std::shared_ptr<Course::BuildingBase>& building)
 {
     TileBase::addBuilding(building);
     building->addHoldMarkers(1);

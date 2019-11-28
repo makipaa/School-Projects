@@ -1,7 +1,6 @@
 #ifndef PEATWORKER_H
 #define PEATWORKER_H
 
-
 #include "workers/workerbase.h"
 #include "core/resourcemaps.h"
 #include "interfaces/igameeventhandler.h"
@@ -9,8 +8,6 @@
 
 
 namespace Student {
-
-
 
 class PeatWorker : public Course::WorkerBase
 {
@@ -37,9 +34,7 @@ public:
 
     virtual std::string getType() const override;
 
-
-
 };
-} //Namespace
+} //Namespace Student
 
 #endif // PEATWORKER_H

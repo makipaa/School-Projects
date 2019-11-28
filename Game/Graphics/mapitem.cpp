@@ -1,14 +1,16 @@
 #include "mapitem.h"
 #include "qdebug.h"
+
+
 namespace Student {
 
-std::map<std::string, QColor> MapItem::c_mapcolors = {};
-
-
-MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, double size ):
-    m_gameobject(obj), m_scenelocation(m_gameobject->getCoordinatePtr()->asQpoint()), m_size(size)
+MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, double size,
+                 QImage image):
+    m_gameobject(obj),
+    m_scenelocation(m_gameobject->getCoordinatePtr()->asQpoint()),
+    m_size(size),
+    image_(image)
 {
-    addNewColor(m_gameobject->getType());
 }
 
 QRectF MapItem::boundingRect() const
@@ -21,32 +23,12 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                     QWidget *widget)
 {
     Q_UNUSED( option ); Q_UNUSED( widget );
-    painter->setBrush(QBrush(c_mapcolors.at(m_gameobject->getType())));
-
-    std::map<std::string, QImage>::iterator iter = images_.find(
-                                        m_gameobject->getType());
-
-    if(iter != images_.end()){
-        painter->drawImage(boundingRect(), images_[m_gameobject->getType()]);
-    }
-    else {
-        painter->drawRect(boundingRect());
-    }
+    painter->drawImage(boundingRect(), image_);
 }
 
 const std::shared_ptr<Course::GameObject> &MapItem::getBoundObject()
 {
     return m_gameobject;
-}
-
-void MapItem::updateLoc()
-{
-    if ( !m_gameobject ){
-        delete this;
-    } else {
-        update(boundingRect()); // Test if necessary
-        m_scenelocation = m_gameobject->getCoordinate().asQpoint();
-    }
 }
 
 bool MapItem::isSameObj(std::shared_ptr<Course::GameObject> obj)
@@ -66,13 +48,4 @@ void MapItem::setSize(int size)
     }
 }
 
-void MapItem::addNewColor(std::string type)
-{
-    if ( c_mapcolors.find(type) == c_mapcolors.end() ){
-        std::size_t hash = std::hash<std::string>{}(type);
-        c_mapcolors.insert({type, QColor((hash & 0xFF0000) >> 16, (hash & 0x00FF00 ) >> 8, (hash & 0x0000FF))});
-
-    }
-}
-
-} // Namespace
+} // Namespace Student

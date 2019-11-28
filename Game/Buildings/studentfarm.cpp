@@ -1,5 +1,6 @@
 #include "studentfarm.h"
 
+
 namespace Student {
 
 StudentFarm::StudentFarm(
@@ -21,7 +22,8 @@ StudentFarm::StudentFarm(
 {
 }
 
-bool StudentFarm::canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) const
+bool StudentFarm::canBePlacedOnTile(
+        const std::shared_ptr<Course::TileBase> &target) const
 {
     return target->getType() == "Grassland";
 }

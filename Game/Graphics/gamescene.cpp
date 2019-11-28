@@ -9,10 +9,10 @@ GameScene::GameScene(QWidget* parent,
                      int scale):
 
     QGraphicsScene(parent),
-    m_mapBoundRect(nullptr),
-    m_width(21),
-    m_height(11),
-    m_scale(50)
+    m_mapBoundRect_(nullptr),
+    m_width_(20),
+    m_height_(10),
+    m_scale_(50)
 {
     setSize(width, height);
     setScale(scale);
@@ -20,67 +20,51 @@ GameScene::GameScene(QWidget* parent,
 
 void GameScene::setSize(int width, int height)
 {
-    if ( width >= SCENE_WIDTH_LIMITS.first && width <= SCENE_WIDTH_LIMITS.second )
+    if(width >= SCENE_WIDTH_LIMITS.first &&
+         width <= SCENE_WIDTH_LIMITS.second)
     {
-        m_width = width;
+        m_width_ = width;
     }
-    if ( height >= SCENE_HEIGHT_LIMITS.first && height <= SCENE_HEIGHT_LIMITS.second )
+    if(height >= SCENE_HEIGHT_LIMITS.first &&
+            height <= SCENE_HEIGHT_LIMITS.second)
     {
-        m_height = height;
+        m_height_ = height;
     }
     resize();
 }
 
 void GameScene::setScale(double scale)
 {
-    if ( scale >= SCENE_SCALE_LIMITS.first && scale <= SCENE_SCALE_LIMITS.second )
+    if(scale >= SCENE_SCALE_LIMITS.first &&
+            scale <= SCENE_SCALE_LIMITS.second)
     {
-        m_scale = scale;
+        m_scale_ = scale;
     }
     resize();
-    qDebug() << m_scale;
 }
 
 void GameScene::resize()
 {
-    if ( m_mapBoundRect != nullptr ){
-        QGraphicsScene::removeItem(m_mapBoundRect);
+    if ( m_mapBoundRect_ != nullptr ){
+        QGraphicsScene::removeItem(m_mapBoundRect_);
     }
-
-    // Calculates rect with middle at (0,0).
-    // Basically left upper corner coords and then width and height
-    QRectF rect = QRectF(0,0, m_width * m_scale, m_height * m_scale);
+    QRectF rect = QRectF(0,0, m_width_ * m_scale_, m_height_ * m_scale_);
 
     addRect(rect);
     setSceneRect(rect);
-    m_mapBoundRect = items().back();
+    m_mapBoundRect_ = items().back();
     // Draw on the bottom of all items
-    m_mapBoundRect->setZValue(-1);
+    m_mapBoundRect_->setZValue(-1);
 }
 
 int GameScene::getScale() const
 {
-    return m_scale;
+    return m_scale_;
 }
 
 std::pair<int, int> GameScene::getSize() const
 {
-    return {m_width, m_height};
-}
-
-void GameScene::updateItem(std::shared_ptr<Course::GameObject> obj)
-{
-    QList<QGraphicsItem*> items_list = items();
-    if ( items_list.size() == 1 ){
-        qDebug() << "Nothing to update.";
-    } else {
-        for ( auto item : items_list ){
-            MapItem* mapItem = static_cast<MapItem*>(item);
-            if (mapItem->isSameObj(obj)){
-                mapItem->updateLoc();
-            }
-        }
-    }
+    return {m_width_, m_height_};
 }
 
 bool GameScene::event(QEvent *event)
@@ -92,98 +76,70 @@ bool GameScene::event(QEvent *event)
 
         if ( sceneRect().contains(mouse_event->scenePos())){
 
-            QPointF point = mouse_event->scenePos() / m_scale;
+            QPointF point = mouse_event->scenePos() / m_scale_;
 
             point.rx() = floor(point.rx());
             point.ry() = floor(point.ry());
 
-            auto objects = items(point * m_scale);
+            auto objects = items(point * m_scale_);
 
-            if (objects.size() == 1){
-                qDebug() << "Click on map area.";
-            }
-            // Get the clicked tile
-            // Tile is the second lowest in the scene after the scene itself
-            else{
+            if (objects.size() != 1){
+                // Get the clicked tile
+                // Tile is second lowest in the scene after the scene itself
                 QGraphicsItem* pressed = (objects.end()[-2]);
                 auto clicked_object = static_cast<Student::MapItem*>(pressed)
                         ->getBoundObject();
                 emit sendID(static_cast<Student::MapItem*>(pressed)
                             ->getBoundObject()->ID);
-
-
                 return true;
             }
-
         }
     }
 
     return QGraphicsScene::event(event);
 }
 
-
-void GameScene::removeItem(std::shared_ptr<Course::GameObject> obj)
+QImage GameScene::getImage(std::string buildingName)
 {
-    QList<QGraphicsItem*> items_list = items(obj->getCoordinate().asQpoint());
-    if ( items_list.size() == 1 ){
-        qDebug() << "Nothing to be removed at the location pointed by given obj.";
-    } else {
-        for ( auto item : items_list ){
-            if (MapItem* mapitem = dynamic_cast<MapItem*>(item)){
-                if ( mapitem->isSameObj(obj) ){
-                    delete mapitem;
-                }
-            }
-        }
-    }
+    return images_.at(buildingName);
 }
 
-
-void GameScene::drawItem( std::shared_ptr<Course::GameObject> obj)
+void GameScene::drawItem(std::shared_ptr<Course::GameObject> obj)
 {
-    MapItem* nItem = new MapItem(obj, m_scale);
-    addItem(nItem);
+    std::map<std::string, QImage>::iterator iter = images_.find(obj->getType());
+
+    if(iter != images_.end()){
+        QImage image = images_[obj->getType()];
+        MapItem* nItem = new MapItem(obj, m_scale_, image);
+        addItem(nItem);
+    }
 
 }
 
 void GameScene::drawBorder(QColor color, QPointF location)
 {
-    TileBorder* border = new TileBorder(color,location,m_scale);
+    TileBorder* border = new TileBorder(color,location,m_scale_);
     border->setZValue(2);
     addItem(border);
 }
 
 void GameScene::drawMarker(QPointF location)
 {
-    if (current_marker){
-       delete current_marker;
+    if (current_marker_){
+       delete current_marker_;
     }
-    current_marker = new TileMarker(location,m_scale);
-    current_marker->setZValue(3);
-    addItem(current_marker);
+    current_marker_ = new TileMarker(location,m_scale_);
+    current_marker_->setZValue(3);
+    addItem(current_marker_);
 
 }
 
 void GameScene::removeMarker()
 {
-    if (current_marker){
-       delete current_marker;
+    if (current_marker_){
+       delete current_marker_;
     }
-    current_marker = nullptr;
+    current_marker_ = nullptr;
 }
 
-void GameScene::removeBorder(QPoint location)
-{
-    QList<QGraphicsItem*> items_list = items(location);
-    if ( items_list.size() == 1 ){
-        qDebug() << "Nothing to be removed at the location pointed by given obj.";
-    } else {
-        for ( auto item : items_list ){
-            if (TileBorder* border = dynamic_cast<TileBorder*>(item)){
-                delete border;
-            }
-        }
-    }
-}
-
-}
+} // Namespace Student

@@ -47,16 +47,21 @@ public:
 
         scoresHeaderLabel = new QLabel(EndDialog);
         scoresHeaderLabel->setObjectName(QStringLiteral("scoresHeaderLabel"));
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(scoresHeaderLabel->sizePolicy().hasHeightForWidth());
+        scoresHeaderLabel->setSizePolicy(sizePolicy);
 
         verticalLayout->addWidget(scoresHeaderLabel);
 
         scoreLabel = new QLabel(EndDialog);
         scoreLabel->setObjectName(QStringLiteral("scoreLabel"));
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(scoreLabel->sizePolicy().hasHeightForWidth());
-        scoreLabel->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(scoreLabel->sizePolicy().hasHeightForWidth());
+        scoreLabel->setSizePolicy(sizePolicy1);
 
         verticalLayout->addWidget(scoreLabel);
 

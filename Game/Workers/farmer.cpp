@@ -1,15 +1,14 @@
 #include "farmer.h"
 
+
 namespace Student {
 
-
-
 Farmer::Farmer(const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
-                         const std::shared_ptr<Course::iObjectManager>& objectmanager,
-                         const std::shared_ptr<Course::PlayerBase>& owner,
-                         const int& tilespaces,
-                         const Course::ResourceMap& cost,
-                         const Course::ResourceMapDouble& efficiency):
+                     const std::shared_ptr<Course::iObjectManager>& objectmanager,
+                     const std::shared_ptr<Course::PlayerBase>& owner,
+                     const int& tilespaces,
+                     const Course::ResourceMap& cost,
+                     const Course::ResourceMapDouble& efficiency):
     Course::WorkerBase(
         eventhandler,
         objectmanager,
@@ -38,12 +37,11 @@ const Course::ResourceMapDouble Farmer::tileWorkAction()
     if ( events->modifyResource(player, Course::BasicResource::FOOD, -1) )
     {
         satisfaction = 0.5;
-        if ( events->modifyResource(player, Course::BasicResource::MONEY, -1) )
+        if ( events->modifyResource(player, Course::BasicResource::MONEY, -1))
         {
             satisfaction = 1;
         }
     }
-
 
     if( focus != Course::BasicResource::NONE )
     {
@@ -63,7 +61,8 @@ const Course::ResourceMapDouble Farmer::tileWorkAction()
     return final_modifier;
 }
 
-bool Farmer::canBePlacedOnTile(const std::shared_ptr<Course::TileBase> &target) const
+bool Farmer::canBePlacedOnTile(
+        const std::shared_ptr<Course::TileBase> &target) const
 {
     return target->getOwner() == getOwner() and
             WorkerBase::canBePlacedOnTile(target) and
@@ -75,4 +74,4 @@ std::string Farmer::getType() const
     return "Farmer";
 }
 
-} // Namespace
+} // Namespace Student

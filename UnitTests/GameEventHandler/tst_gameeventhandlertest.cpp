@@ -1,6 +1,6 @@
 #include <QString>
 #include <QtTest>
-#include <gameeventhandler.h>
+#include <core/gameeventhandler.h>
 
 class GameEventHandlerTest : public QObject
 {
