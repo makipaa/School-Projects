@@ -8,7 +8,6 @@ CONFIG += c++14
 SOURCES += \
     main.cpp \
     UI/mapwindow.cc \
-    core/worldmap.cpp \
     gameeventhandler.cpp \
     objectmanager.cpp \
     core/player.cpp \
@@ -34,7 +33,6 @@ SOURCES += \
 
 HEADERS += \
     UI/mapwindow.hh \
-    core/worldmap.h \
     gameeventhandler.h \
     objectmanager.h \
     core/player.h \

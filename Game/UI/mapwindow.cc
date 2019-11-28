@@ -13,9 +13,10 @@ MapWindow::MapWindow(QWidget *parent,
     this->setWindowTitle("Colonizing Pirkanmaa");
     m_GEHandler = std::make_shared<Student::GameEventHandler>
             (Student::GameEventHandler());
-
+    timer_ = new QTimer(this);
     Dialog dialogwindow;
     dialogwindow.setWindowTitle("Colonizing Pirkanmaa");
+
     connect(&dialogwindow, SIGNAL(sendMapValue(int)), this,
             SLOT(setGridSize(int)));
     connect(&dialogwindow, SIGNAL(sendRoundValue(int)), this,
@@ -28,9 +29,13 @@ MapWindow::MapWindow(QWidget *parent,
     connect(m_ui->buildPushButton, SIGNAL(clicked(bool)), this, SLOT(actionBuild()));
     connect(m_ui->recruitPushButton, SIGNAL(clicked(bool)), this, SLOT(actionRecruit()));
     connect(m_scene.get(), SIGNAL(sendID(unsigned int)), this, SLOT(getId(unsigned int)));
+    connect(m_ui->buildingsComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(updateBuildingInfo(QString)));
+    connect(m_ui->recruitsComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(updateWorkerInfo(QString)));
+    connect(timer_,SIGNAL(timeout()), this, SLOT(timeOut()));
 
-
-    dialogwindow.exec();
+    if(dialogwindow.exec() == 0){
+        exit(0);
+    }
 
     QStringList buildings = {"HeadQuarters", "Outpost", "Farm", "Mine",
                              "Trawler", "Sawmill"};
@@ -47,31 +52,6 @@ MapWindow::MapWindow(QWidget *parent,
     m_ui->graphicsView->setScene(m_scene.get());
     m_ui->graphicsView->setAutoFillBackground(true);
     m_ui->graphicsView->setBackgroundBrush(Qt::lightGray);
-
-    QPalette textLabelPalette;
-    textLabelPalette.setColor(QPalette::WindowText, Qt::black);
-
-    m_ui->resourcesLabel->setPalette(textLabelPalette);
-
-    m_ui->moneyLabel->setPalette(textLabelPalette);
-    m_ui->moneyAmountLabel->setPalette(textLabelPalette);
-
-    m_ui->foodLabel->setPalette(textLabelPalette);
-    m_ui->foodAmountLabel->setPalette(textLabelPalette);
-
-    m_ui->woodLabel->setPalette(textLabelPalette);
-    m_ui->woodAmountLabel->setPalette(textLabelPalette);
-
-    m_ui->stoneLabel->setPalette(textLabelPalette);
-    m_ui->stoneAmountLabel->setPalette(textLabelPalette);
-
-    m_ui->turnLabel->setPalette(textLabelPalette);
-    m_ui->turnNameLabel->setPalette(textLabelPalette);
-    m_ui->roundLabel->setPalette(textLabelPalette);
-    m_ui->roundNumberLabel->setPalette(textLabelPalette);
-
-
-
 
     m_objM = std::make_shared<Student::ObjectManager>();
     m_GEHandler->setObjectManager(m_objM);
@@ -90,11 +70,8 @@ MapWindow::MapWindow(QWidget *parent,
         m_scene->drawItem(brick);
     }
 
-    std::shared_ptr<Student::Player> playerInTurn = m_GEHandler->getPlayerInTurn();
     this->updateLabels();
 
-//    QPixmap backgroundImage("Images/background.jpg");
-//    backgroundImage = backgroundImage.scaled(this->size(), Qt::IgnoreAspectRatio);
     QPalette backgroundPalette;
     backgroundPalette.setBrush(QPalette::Background, Qt::lightGray);
     this->setPalette(backgroundPalette);
@@ -135,32 +112,27 @@ void MapWindow::changeTurn()
 {
     m_GEHandler->changeTurn();
 
-    std::shared_ptr<Student::Player> playerInTurn = m_GEHandler->getPlayerInTurn();
     this->updateLabels();
 
     clickedTileObj = nullptr;
     m_ui->tileInfoLabel->clear();
     m_scene->removeMarker();
+    timeOut();
 }
 
 void MapWindow::getId(unsigned int Id)
 {
     clickedTileObj = m_objM->getTile(Id);
-    if (clickedTileObj->getOwner()){
-        qDebug() << "Owner: " << (clickedTileObj->getOwner()->getName()).c_str();
-        qDebug() << "# of buildings: " << clickedTileObj->getBuildingCount();
-    }
     this->updateTileInfo();
     m_scene->drawMarker(clickedTileObj->getCoordinate().asQpoint());
 }
 
 void MapWindow::actionBuild()
 {
-
     if (clickedTileObj->getOwner() != m_GEHandler->getPlayerInTurn()){
         if(m_ui->buildingsComboBox->currentText().toStdString() != "HeadQuarters" &&
                 m_ui->buildingsComboBox->currentText().toStdString() != "Outpost"){
-            qDebug() << "Cannot build on unowned tile";
+            updateGameInfo("Cannot build on unowned tile!");
             return;
         }
     }
@@ -172,26 +144,26 @@ void MapWindow::actionBuild()
     if(tempPlayer->funcHasBuiltHq() &&
             m_ui->buildingsComboBox->currentText().toStdString() ==
             "HeadQuarters"){
-        qDebug() << "Cannot build more than one HQ!";
+        updateGameInfo("Cannot build more than one HQ!");
         return;
     }
     constructWantedBuilding(building);
 
     if(!building->canBePlacedOnTile(clickedTileObj)){
-        qDebug() << "Cannot build the wanted building on this tile!";
+        updateGameInfo("Cannot build this building on the tile!");
         return;
     }
 
     if(!m_GEHandler->modifyResources(m_GEHandler->getPlayerInTurn(),
        m_GEHandler->resourcemapMakeNegative(building->BUILD_COST)))
     {
-        qDebug() << "Too few resources to build";
+        updateGameInfo("Too few resources to build!");
         return;
     }
 
-    if(!clickedTileObj->hasSpaceForBuildings(1))
+    if(clickedTileObj->getBuildingCount() != 0)
     {
-        qDebug() << "Building capacity is already maxed";
+        updateGameInfo("Building capacity is already maxed!");
         return;
     }
 
@@ -245,7 +217,74 @@ void MapWindow::resizeEvent(QResizeEvent *event)
     }
 }
 
+void MapWindow::updateBuildingInfo(QString buildingName)
+{
+    QImage image = m_scene->getImage(buildingName.toStdString());
+    m_ui->buildingInfoLabel->setPixmap(QPixmap::fromImage(image));
 
+    Course::ResourceMap resourcemap;
+
+    if(buildingName == "HeadQuarters"){
+        resourcemap = Course::ConstResourceMaps::HQ_BUILD_COST;
+    }
+    else if(buildingName == "Outpost"){
+        resourcemap = Course::ConstResourceMaps::OUTPOST_BUILD_COST;
+    }
+    else if(buildingName == "Farm"){
+        resourcemap = Course::ConstResourceMaps::FARM_BUILD_COST;
+    }
+    else if(buildingName == "Mine"){
+        resourcemap = Course::ConstResourceMaps::MINE_BUILD_COST;
+    }
+    else if(buildingName == "Trawler"){
+        resourcemap = Course::ConstResourceMaps::TRAWLER_BUILD_COST;
+    }
+    else if(buildingName == "Sawmill"){
+        resourcemap = Course::ConstResourceMaps::SAWMILL_BUILD_COST;
+    }
+
+    m_ui->BuildCostAmntLabel->setText(
+        QString::number(resourcemap.at(Course::BasicResource::MONEY)) + "\n" +
+        QString::number(resourcemap.at(Course::BasicResource::FOOD)) + "\n" +
+        QString::number(resourcemap.at(Course::BasicResource::WOOD)) + "\n" +
+        QString::number(resourcemap.at(Course::BasicResource::STONE)));
+}
+
+void MapWindow::updateWorkerInfo(QString workerName)
+{
+    Course::ResourceMap resourcemap;
+
+    if(workerName == "BasicWorker"){
+        resourcemap = Course::ConstResourceMaps::BW_RECRUITMENT_COST;
+    }
+    else if(workerName== "Fisher"){
+        resourcemap = Course::ConstResourceMaps::FISHER_RECRUITMENT_COST;
+    }
+    else if(workerName == "Miner"){
+        resourcemap = Course::ConstResourceMaps::MINER_RECRUITMENT_COST;
+    }
+    else if(workerName == "Lumberjack"){
+        resourcemap = Course::ConstResourceMaps::LUMBERJACK_RECRUITMENT_COST;
+    }
+    else if(workerName == "PeatWorker"){
+        resourcemap = Course::ConstResourceMaps::PEATWORKER_RECRUITMENT_COST;
+    }
+    else if(workerName == "Farmer"){
+        resourcemap = Course::ConstResourceMaps::FARMER_RECRUITMENT_COST;
+    }
+
+    m_ui->RecruitCostAmntLabel->setText(
+        QString::number(resourcemap.at(Course::BasicResource::MONEY)) + "\n" +
+        QString::number(resourcemap.at(Course::BasicResource::FOOD)) + "\n" +
+        QString::number(resourcemap.at(Course::BasicResource::WOOD)) + "\n" +
+                QString::number(resourcemap.at(Course::BasicResource::STONE)));
+}
+
+void MapWindow::timeOut()
+{
+    timer_->stop();
+    m_ui->gameInfoLabel->setText("");
+}
 
 void MapWindow::constructWantedBuilding(
         std::shared_ptr<Course::BuildingBase>& building)
@@ -335,11 +374,6 @@ void MapWindow::resize()
     m_scene->resize();
 }
 
-void MapWindow::updateItem(std::shared_ptr<Course::GameObject> obj)
-{
-    m_scene->updateItem(obj);
-}
-
 void MapWindow::updateLabels()
 {
     auto playerInTurn = m_GEHandler->getPlayerInTurn();
@@ -416,14 +450,8 @@ void MapWindow::updateTileBorders()
     }
 }
 
-
-void MapWindow::removeItem(std::shared_ptr<Course::GameObject> obj)
+void MapWindow::updateGameInfo(std::string infoText)
 {
-    m_scene->removeItem(obj);
+    m_ui->gameInfoLabel->setText(QString::fromStdString(infoText));
+    timer_->start(5000);
 }
-
-void MapWindow::drawItem( std::shared_ptr<Course::GameObject> obj)
-{
-    m_scene->drawItem(obj);
-}
-

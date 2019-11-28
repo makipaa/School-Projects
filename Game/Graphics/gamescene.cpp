@@ -10,8 +10,8 @@ GameScene::GameScene(QWidget* parent,
 
     QGraphicsScene(parent),
     m_mapBoundRect(nullptr),
-    m_width(21),
-    m_height(11),
+    m_width(20),
+    m_height(10),
     m_scale(50)
 {
     setSize(width, height);
@@ -38,7 +38,6 @@ void GameScene::setScale(double scale)
         m_scale = scale;
     }
     resize();
-    qDebug() << m_scale;
 }
 
 void GameScene::resize()
@@ -46,9 +45,6 @@ void GameScene::resize()
     if ( m_mapBoundRect != nullptr ){
         QGraphicsScene::removeItem(m_mapBoundRect);
     }
-
-    // Calculates rect with middle at (0,0).
-    // Basically left upper corner coords and then width and height
     QRectF rect = QRectF(0,0, m_width * m_scale, m_height * m_scale);
 
     addRect(rect);
@@ -71,9 +67,7 @@ std::pair<int, int> GameScene::getSize() const
 void GameScene::updateItem(std::shared_ptr<Course::GameObject> obj)
 {
     QList<QGraphicsItem*> items_list = items();
-    if ( items_list.size() == 1 ){
-        qDebug() << "Nothing to update.";
-    } else {
+    if ( items_list.size() != 1 ){
         for ( auto item : items_list ){
             MapItem* mapItem = static_cast<MapItem*>(item);
             if (mapItem->isSameObj(obj)){
@@ -99,28 +93,26 @@ bool GameScene::event(QEvent *event)
 
             auto objects = items(point * m_scale);
 
-            if (objects.size() == 1){
-                qDebug() << "Click on map area.";
-            }
-            // Get the clicked tile
-            // Tile is the second lowest in the scene after the scene itself
-            else{
+            if (objects.size() != 1){
+                // Get the clicked tile
+                // Tile is the second lowest in the scene after the scene itself
                 QGraphicsItem* pressed = (objects.end()[-2]);
                 auto clicked_object = static_cast<Student::MapItem*>(pressed)
                         ->getBoundObject();
                 emit sendID(static_cast<Student::MapItem*>(pressed)
                             ->getBoundObject()->ID);
-
-
                 return true;
             }
-
         }
     }
 
     return QGraphicsScene::event(event);
 }
 
+QImage GameScene::getImage(std::string buildingName)
+{
+    return images_.at(buildingName);
+}
 
 void GameScene::removeItem(std::shared_ptr<Course::GameObject> obj)
 {
@@ -139,10 +131,18 @@ void GameScene::removeItem(std::shared_ptr<Course::GameObject> obj)
 }
 
 
-void GameScene::drawItem( std::shared_ptr<Course::GameObject> obj)
+void GameScene::drawItem(std::shared_ptr<Course::GameObject> obj)
 {
-    MapItem* nItem = new MapItem(obj, m_scale);
-    addItem(nItem);
+    std::map<std::string, QImage>::iterator iter = images_.find(obj->getType());
+
+    if(iter != images_.end()){
+        QImage image = images_[obj->getType()];
+        MapItem* nItem = new MapItem(obj, m_scale, image);
+        addItem(nItem);
+    }
+    else {
+        qDebug() << "Image not found.";
+    }
 
 }
 

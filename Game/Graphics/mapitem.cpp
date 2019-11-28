@@ -5,8 +5,8 @@ namespace Student {
 std::map<std::string, QColor> MapItem::c_mapcolors = {};
 
 
-MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, double size ):
-    m_gameobject(obj), m_scenelocation(m_gameobject->getCoordinatePtr()->asQpoint()), m_size(size)
+MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, double size , QImage image):
+    m_gameobject(obj), m_scenelocation(m_gameobject->getCoordinatePtr()->asQpoint()), m_size(size), image_(image)
 {
     addNewColor(m_gameobject->getType());
 }
@@ -23,15 +23,7 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     Q_UNUSED( option ); Q_UNUSED( widget );
     painter->setBrush(QBrush(c_mapcolors.at(m_gameobject->getType())));
 
-    std::map<std::string, QImage>::iterator iter = images_.find(
-                                        m_gameobject->getType());
-
-    if(iter != images_.end()){
-        painter->drawImage(boundingRect(), images_[m_gameobject->getType()]);
-    }
-    else {
-        painter->drawRect(boundingRect());
-    }
+    painter->drawImage(boundingRect(), image_);
 }
 
 const std::shared_ptr<Course::GameObject> &MapItem::getBoundObject()

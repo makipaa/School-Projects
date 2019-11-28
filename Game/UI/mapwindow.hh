@@ -10,6 +10,7 @@
 #include <QTimer>
 #include <math.h>
 #include <map>
+#include <QPixmap>
 
 #include "interfaces/igameeventhandler.h"
 #include "Graphics/gamescene.h"
@@ -50,32 +51,26 @@ namespace Ui {
 class MapWindow;
 }
 
-
 class MapWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
     explicit MapWindow(QWidget *parent = 0,
-                       std::shared_ptr<Student::GameEventHandler> GEHandler = {}
-                       );
+                       std::shared_ptr<Student::GameEventHandler>
+                       GEHandler = {});
     ~MapWindow();
-
-    void setGEHandler(std::shared_ptr<Student::GameEventHandler> nHandler);
 
     int getGridSize();
     int getRoundSize();
     void setSize(int width, int height);
     void setScale(double scale);
     void resize();
-
-    void drawItem( std::shared_ptr<Course::GameObject> obj);
-    void removeItem( std::shared_ptr<Course::GameObject> obj);
-    void updateItem( std::shared_ptr<Course::GameObject> obj);
-
     void updateLabels();
     void updateTileInfo();
     void updateTileBorders();
+    void updateGameInfo(std::string infoText);
+    void setGEHandler(std::shared_ptr<Student::GameEventHandler> nHandler);
 
 public slots:
     void setGridSize(int size);
@@ -86,8 +81,12 @@ public slots:
     void actionBuild();
     void actionRecruit();
     void resizeEvent(QResizeEvent *event);
+    void updateBuildingInfo(QString buildingName);
+    void updateWorkerInfo(QString workerName);
+    void timeOut();
 
 private:
+    QTimer* timer_ = nullptr;
     Ui::MapWindow* m_ui;
     std::shared_ptr<Student::GameEventHandler> m_GEHandler = nullptr;
     std::shared_ptr<Student::ObjectManager> m_objM = nullptr;
@@ -96,10 +95,10 @@ private:
     int m_size = 0;
     int gameRounds = 0;
 
-
-    void constructWantedBuilding(std::shared_ptr<Course::BuildingBase> &building);
-    void constructWantedRecruit(std::shared_ptr<Course::WorkerBase> &worker);
-
+    void constructWantedBuilding(
+         std::shared_ptr<Course::BuildingBase> &building);
+    void constructWantedRecruit(
+         std::shared_ptr<Course::WorkerBase> &worker);
 };
 
 

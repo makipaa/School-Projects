@@ -13,6 +13,7 @@ Dialog::Dialog(QWidget *parent) :
     connect(ui->roundSlider, &QSlider::valueChanged, this, &Dialog::showValue);
     connect(ui->addPlayersButton, &QPushButton::clicked, this, &Dialog::addPlayer);
 
+
     QPixmap pixmap("Images/pirkanmaa.png");
     ui->pic1Label->setPixmap(pixmap);
     ui->pic1Label->setScaledContents(true);
@@ -93,6 +94,10 @@ void Dialog::addPlayer()
     std::string name = ui->nameInput->text().toStdString();
     if (name == ""){
         showMessage("Player needs a name.");
+        return;
+    }
+    if(name.size() > 10){
+        showMessage("Too lengthy name!");
         return;
     }
     for(auto player : players_){
