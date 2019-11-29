@@ -10,6 +10,7 @@ QT       += gui
 
 TARGET = tst_objectmanagertest
 CONFIG   += console
+CONFIG   += c++14
 CONFIG   -= app_bundle
 
 TEMPLATE = app
