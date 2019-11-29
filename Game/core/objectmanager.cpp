@@ -36,6 +36,31 @@ void ObjectManager::addWorker(
     workers_.push_back(worker);
 }
 
+std::shared_ptr<Course::BuildingBase> ObjectManager::getBuilding(Course::ObjectId building_id)
+{
+    for(std::shared_ptr<Course::BuildingBase> building : buildings_){
+        if (building->ID == building_id){
+            return building;
+        }
+    }
+    return nullptr;
+}
+
+std::shared_ptr<Course::WorkerBase> ObjectManager::getWorker(Course::ObjectId workerID)
+{
+    for(std::shared_ptr<Course::WorkerBase> worker : workers_){
+        if (worker->ID == workerID){
+            return worker;
+        }
+    }
+    return nullptr;
+}
+
+std::vector<std::shared_ptr<Course::BuildingBase> > ObjectManager::getBuildings()
+{
+    return buildings_;
+}
+
 std::vector<std::shared_ptr<Course::TileBase>> ObjectManager::getTiles()
 {
     return tiles_;

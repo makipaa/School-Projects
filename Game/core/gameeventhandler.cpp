@@ -9,11 +9,18 @@ GameEventHandler::GameEventHandler()
 
 }
 
-void GameEventHandler::add_player(
+
+void GameEventHandler::addPlayers(
         std::vector<std::shared_ptr<Student::Player>> players)
+
 {
    players_ = std::vector<std::shared_ptr<Student::Player>>(players);
    playerInTurn_ = players_.at(0);
+}
+
+std::vector<std::shared_ptr<Player> > GameEventHandler::getPlayers()
+{
+    return players_;
 }
 
 void GameEventHandler::setObjectManager(std::shared_ptr<ObjectManager> objM)

@@ -34,8 +34,8 @@ bool Player::modifyResources(Course::ResourceMap resources)
 
 bool Player::modifyResource(Course::BasicResource resource, int amount)
 {
-    if (resources_[resource] - amount < 0){
-        resources_[resource] -= amount;
+    if (resources_[resource] + amount >= 0){
+        resources_[resource] += amount;
         return true;
     }
 

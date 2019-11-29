@@ -1,6 +1,6 @@
 #ifndef OBJECTMANAGER_H
 #define OBJECTMANAGER_H
-
+#include "interfaces/igameeventhandler.h"
 #include "interfaces/iobjectmanager.h"
 #include "tiles/tilebase.h"
 #include "core/playerbase.h"
@@ -73,6 +73,8 @@ public:
      */
     void addWorker(const std::shared_ptr<Course::WorkerBase>& worker);
 
+
+    std::shared_ptr<Course::WorkerBase> getWorker(Course::ObjectId workerID);
     std::shared_ptr<Course::BuildingBase> getBuilding(
             Course::ObjectId building_id);
 
@@ -85,9 +87,9 @@ public:
     std::vector<std::shared_ptr<Course::TileBase>> getTiles();
 
 private:
-    std::vector<std::shared_ptr<Course::TileBase>> tiles_;
-    std::vector<std::shared_ptr<Course::BuildingBase>> buildings_;
-    std::vector<std::shared_ptr<Course::WorkerBase>> workers_;
+    std::vector<std::shared_ptr<Course::TileBase>> tiles_ = {};
+    std::vector<std::shared_ptr<Course::BuildingBase>> buildings_ {};
+    std::vector<std::shared_ptr<Course::WorkerBase>> workers_ {};
 };
 } // Namespace Student
 

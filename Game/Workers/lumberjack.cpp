@@ -75,4 +75,4 @@ std::string Lumberjack::getType() const
     return "Lumberjack";
 }
 
-} // Namespace
+} // Namespace Student

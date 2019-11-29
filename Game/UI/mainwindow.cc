@@ -114,7 +114,7 @@ void MainWindow::setRounds(int amount)
 void MainWindow::getPlayer(
         std::vector<std::shared_ptr<Student::Player>> players)
 {
-    m_GEHandler_->add_player(players);
+    m_GEHandler_->addPlayers(players);
 }
 
 void MainWindow::changeTurn()
