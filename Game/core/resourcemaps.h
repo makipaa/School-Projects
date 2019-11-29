@@ -3,7 +3,10 @@
 
 #include "core/basicresources.h"
 
-
+/**
+ * @brief This file contains info about buildings,
+ * workers, their efficiency and build/recruit cost.
+ */
 namespace Course {
 
 namespace ConstResourceMaps {

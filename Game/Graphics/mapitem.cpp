@@ -6,17 +6,17 @@ namespace Student {
 
 MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, double size,
                  QImage image):
-    m_gameobject(obj),
-    m_scenelocation(m_gameobject->getCoordinatePtr()->asQpoint()),
-    m_size(size),
+    m_gameobject_(obj),
+    m_scenelocation_(m_gameobject_->getCoordinatePtr()->asQpoint()),
+    m_size_(size),
     image_(image)
 {
 }
 
 QRectF MapItem::boundingRect() const
 {
-    return QRectF(m_scenelocation * m_size, m_scenelocation * m_size +
-                  QPointF(m_size, m_size));
+    return QRectF(m_scenelocation_ * m_size_, m_scenelocation_ * m_size_ +
+                  QPointF(m_size_, m_size_));
 }
 
 void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
@@ -28,23 +28,18 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 
 const std::shared_ptr<Course::GameObject> &MapItem::getBoundObject()
 {
-    return m_gameobject;
-}
-
-bool MapItem::isSameObj(std::shared_ptr<Course::GameObject> obj)
-{
-    return obj == m_gameobject;
+    return m_gameobject_;
 }
 
 int MapItem::getSize() const
 {
-    return m_size;
+    return m_size_;
 }
 
 void MapItem::setSize(int size)
 {
     if ( size > 0 && size <= 500 ){
-        m_size = size;
+        m_size_ = size;
     }
 }
 

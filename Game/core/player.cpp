@@ -22,8 +22,8 @@ bool Player::modifyResources(Course::ResourceMap resources)
     Course::ResourceMap result_map = Course::mergeResourceMaps
                                      (resources_, resources);
 
-    for(auto resourse : result_map){
-        if (resourse.second < 0){
+    for(auto resource : result_map){
+        if (resource.second < 0){
             return false;
         }
     }

@@ -42,7 +42,7 @@ SOURCES += \
     ../../Game/Student_tiles/water.cpp \
     ../../Game/Workers/farmer.cpp \
     ../../Game/Workers/fisher.cpp \
-    ../../Game/Workers/luberjack.cpp \
+    ../../Game/Workers/lumberjack.cpp \
     ../../Game/Workers/miner.cpp \
     ../../Game/Workers/peatworker.cpp \
     ../../Course/CourseLib/buildings/buildingbase.cpp \
@@ -77,7 +77,7 @@ HEADERS += \
     ../../Game/Student_tiles/water.h \
     ../../Game/Workers/farmer.h \
     ../../Game/Workers/fisher.h \
-    ../../Game/Workers/luberjack.h \
+    ../../Game/Workers/lumberjack.h \
     ../../Game/Workers/miner.h \
     ../../Game/Workers/peatworker.h \
     ../../Course/CourseLib/buildings/buildingbase.h \

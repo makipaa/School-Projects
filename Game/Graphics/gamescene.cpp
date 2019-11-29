@@ -48,10 +48,10 @@ void GameScene::resize()
     if ( m_mapBoundRect_ != nullptr ){
         QGraphicsScene::removeItem(m_mapBoundRect_);
     }
-    QRectF rect = QRectF(0,0, m_width_ * m_scale_, m_height_ * m_scale_);
+    std::shared_ptr<QRectF> rect =std::make_shared<QRectF>(QRectF(0,0, m_width_ * m_scale_, m_height_ * m_scale_));
 
-    addRect(rect);
-    setSceneRect(rect);
+    addRect(*rect);
+    setSceneRect(*rect);
     m_mapBoundRect_ = items().back();
     // Draw on the bottom of all items
     m_mapBoundRect_->setZValue(-1);
