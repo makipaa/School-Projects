@@ -12,17 +12,74 @@ public:
 
 private Q_SLOTS:
 
+    /*!
+     * \brief testModifyResource Tests GameEventHandlers modifyResource -method
+     *        with adding, subtracting and subtracting more than player has
+     */
     void testModifyResource();
+
+    /*!
+     * \brief testModifyResources Tests GameEventHandlers modifyResources
+     *        -method with adding, subtracting and subtracting more than
+     *        player has
+     */
     void testModifyResources();
-    void testAdd_players();
-    void testNew_round();
+
+    /*!
+     * \brief testAdd_players Tests GameEventHandlers addPlayers -method
+     */
+    void testAddPlayers();
+
+    /*!
+     * \brief testNewRound Tests GameEventHandlers newRound -method. Checks
+     *        if the round number changes correctly and resorces are generated
+     *        to players
+     */
+    void testNewRound();
+
+    /*!
+     * \brief testChangeTurn Tests GameEventHandlers changeTurn -method by
+     *        checking if the player player in turn is changed and newRound
+     *        is called after the round's final turn
+     */
     void testChangeTurn();
+
+    /*!
+     * \brief testGetPlayerInTurn Tests GameEventHandlers getPlayerInTurn
+     *        -method
+     */
     void testGetPlayerInTurn();
+
+    /*!
+     * \brief testGetRoundNumber Tests GameEventHandlers getRoundNumber
+     *         -method
+     */
     void testGetRoundNumber();
+
+    /*!
+     * \brief testResourcemapMakeNegative Tests GameEventHandlers
+     *        ResourcemapMakeNegative -method with positive and
+     *        negative value maps
+     *
+     */
     void testResourcemapMakeNegative();
+
+    /*!
+     * \brief testGetScores Tests GameEventHandlers getScores -method by giving
+     *        test players resources and counting the score based on them
+     */
     void testGetScores();
 
 private:
+
+    /*!
+     * \brief createTestTiles Creates tiles used by testfunctions
+     * \param handle
+     * \param manager
+     * \param width Amount of tiles in a row
+     * \param height Amount of tiles in a column
+     * \return Returns vector with shared pointers to the created test tiles
+     */
     std::vector<std::shared_ptr<Course::TileBase>> createTestTiles(
             std::shared_ptr<Student::GameEventHandler> handler,
             std::shared_ptr<Student::ObjectManager> manager,
@@ -139,7 +196,7 @@ void GameEventHandlerTest::testModifyResources()
 
 }
 
-void GameEventHandlerTest::testAdd_players()
+void GameEventHandlerTest::testAddPlayers()
 {
     std::shared_ptr<Student::GameEventHandler> handler = std::make_shared
             <Student::GameEventHandler>(Student::GameEventHandler());
@@ -161,7 +218,7 @@ void GameEventHandlerTest::testAdd_players()
 
 }
 
-void GameEventHandlerTest::testNew_round()
+void GameEventHandlerTest::testNewRound()
 {
     std::shared_ptr<Student::GameEventHandler> handler = std::make_shared
             <Student::GameEventHandler>(Student::GameEventHandler());
@@ -188,7 +245,7 @@ void GameEventHandlerTest::testNew_round()
     }
     int resultRoundNumber = handler->getRoundNumber() + 1;
 
-    handler->new_round();
+    handler->newRound();
 
     for (auto resource : player1->getResources()){
         QCOMPARE(resource.second, resultMap[resource.first]);

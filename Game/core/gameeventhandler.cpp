@@ -28,7 +28,7 @@ void GameEventHandler::setObjectManager(std::shared_ptr<ObjectManager> objM)
     objM_ = objM;
 }
 
-void GameEventHandler::new_round()
+void GameEventHandler::newRound()
 {
     for (auto tile : objM_->getTiles()){
         if(tile->getOwner()){
@@ -44,7 +44,7 @@ void GameEventHandler::changeTurn()
 {
     if (playerInTurn_ == players_.back()){
         playerInTurn_ = players_.front();
-        this->new_round();
+        this->newRound();
     }
     else{
         for (int i = 0; i < int(players_.size()) - 1; i++){

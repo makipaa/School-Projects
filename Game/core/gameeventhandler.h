@@ -31,7 +31,7 @@ public:
 
     void setObjectManager(std::shared_ptr<Student::ObjectManager> objM);
 
-    void new_round();
+    void newRound();
 
     void changeTurn();
 

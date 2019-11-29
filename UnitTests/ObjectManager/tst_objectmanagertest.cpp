@@ -17,15 +17,54 @@ public:
     ObjectManagerTest();
 
 private Q_SLOTS:
+
+    /*!
+     * \brief testAddTiles Tests ObjectManagers addTiles -method
+     */
     void testAddTiles();
+
+    /*!
+     * \brief testGetTile Tests ObjectManagers getTile -method with
+     *                    both coordinate and objectID parameters
+     */
     void testGetTile();
+
+    /*!
+     * \brief testGetTiles Tests ObjectManagers getTiles -method
+     */
     void testGetTiles();
+
+    /*!
+     * \brief testAddBuilding Tests ObjectManagers addBuilding -method
+     */
     void testAddBuilding();
+
+    /*!
+     * \brief testAddWorker Tests ObjectManagers addWorker -method
+     */
     void testAddWorker();
+
+    /*!
+     * \brief testGetBuilding Tests ObjectManagers getBuilding -method
+     *                        with ObjectID as parameter
+     */
     void testGetBuilding();
+
+    /*!
+     * \brief testGetBuildings Tests ObjectManagers -method
+     */
     void testGetBuildings();
 
 private:
+
+    /*!
+     * \brief createTestTiles Creates tiles used by testfunctions
+     * \param handle
+     * \param manager
+     * \param width Amount of tiles in a row
+     * \param height Amount of tiles in a column
+     * \return Returns vector with shared pointers to the created test tiles
+     */
     std::vector<std::shared_ptr<Course::TileBase>> createTestTiles(
             std::shared_ptr<Student::GameEventHandler> handler,
             std::shared_ptr<Student::ObjectManager> manager,

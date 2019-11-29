@@ -53,11 +53,11 @@ HEADERS += \
     Buildings/studentfarm.h \
     Buildings/studentHeadQuarters.h \
     Workers/farmer.h \
-    Workers/luberjack.h \
     Workers/peatworker.h \
     Graphics/tilemarker.h \
     UI/enddialog.h \
-    UI/mainwindow.hh
+    UI/mainwindow.hh \
+    Workers/luberjack.h
 
 
 win32:CONFIG(release, debug|release): LIBS += \
