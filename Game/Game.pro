@@ -26,11 +26,11 @@ SOURCES += \
     Buildings/studentfarm.cpp \
     Buildings/studentHeadQuarters.cpp \
     Workers/farmer.cpp \
-    Workers/luberjack.cpp \
     Workers/peatworker.cpp \
     Graphics/tilemarker.cpp \
     UI/enddialog.cpp \
-    UI/mainwindow.cc
+    UI/mainwindow.cc \
+    Workers/lumberjack.cpp
 
 HEADERS += \
     core/gameeventhandler.h \
@@ -53,11 +53,11 @@ HEADERS += \
     Buildings/studentfarm.h \
     Buildings/studentHeadQuarters.h \
     Workers/farmer.h \
-    Workers/luberjack.h \
     Workers/peatworker.h \
     Graphics/tilemarker.h \
     UI/enddialog.h \
-    UI/mainwindow.hh
+    UI/mainwindow.hh \
+    Workers/lumberjack.h
 
 
 win32:CONFIG(release, debug|release): LIBS += \

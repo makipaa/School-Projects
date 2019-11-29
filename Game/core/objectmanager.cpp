@@ -5,7 +5,6 @@ namespace Student {
 
 ObjectManager::ObjectManager()
 {
-
 }
 
 std::vector<std::shared_ptr<Course::TileBase>> ObjectManager::getTiles
@@ -41,9 +40,6 @@ std::vector<std::shared_ptr<Course::TileBase>> ObjectManager::getTiles()
 {
     return tiles_;
 }
-
-
-
 
 std::shared_ptr<Course::TileBase> ObjectManager::getTile(
         const Course::ObjectId &id)
