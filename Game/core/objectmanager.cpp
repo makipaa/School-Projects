@@ -56,6 +56,7 @@ std::shared_ptr<Course::WorkerBase> ObjectManager::getWorker(Course::ObjectId wo
     return nullptr;
 }
 
+
 std::vector<std::shared_ptr<Course::BuildingBase> > ObjectManager::getBuildings()
 {
     return buildings_;

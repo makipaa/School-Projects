@@ -51,7 +51,6 @@ public:
      * @param Players to be added.
      * @post Exception Guarantee: Strong guarantee.
      */
-
     void addPlayers(std::vector<std::shared_ptr<Student::Player>> players);
 
     std::vector<std::shared_ptr<Student::Player>> getPlayers();
