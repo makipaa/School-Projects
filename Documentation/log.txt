@@ -1,0 +1,420 @@
+commit c67fdf050d1930bba1ca4b1f5780d494806b7258
+Merge: 20f02b1 91f40a2
+Author: Teemu Miettunen <miettune@linux-desktop9.tuni.fi>
+Date:   Fri Nov 29 19:31:39 2019 +0200
+
+    Finished the documentation
+
+commit 91f40a246373485c05f767e6c5adbb5ebf013d76
+Merge: aeeda20 ce5dc86
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Fri Nov 29 17:38:59 2019 +0200
+
+    Fixed another merge conflict
+
+commit 20f02b15100f4baf2a4d9af4590183647a7e2604
+Author: Teemu Miettunen <miettune@linux-desktop9.tuni.fi>
+Date:   Fri Nov 29 17:27:32 2019 +0200
+
+    Added documentation for unit tests
+
+commit aeeda206dd9dd1184ea69d70391188c0877dfe7a
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Fri Nov 29 17:25:47 2019 +0200
+
+    Merge conflict fixed
+
+commit 68db60ef394d5dea04217ac9688dc9e77d62ef19
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Fri Nov 29 17:09:43 2019 +0200
+
+    Interface commenting done
+
+commit ce5dc86f478d23f94c4769c5cb29c524a3258ec5
+Author: Teemu Miettunen <miettune@linux-desktop6.tuni.fi>
+Date:   Fri Nov 29 00:47:53 2019 +0200
+
+    fixed outpost image size and deleted edges on sawmill and travler images, added intialization for private variables in objectmanager, finished unit tests  for eventhandler
+
+commit 787c6050d9484a9017cfeb2370f4fee8feb855fb
+Merge: fbc3e78 e134fdf
+Author: Teemu Miettunen <miettune@linux-desktop6.tuni.fi>
+Date:   Thu Nov 28 16:35:09 2019 +0200
+
+    Fixed merge conflicts
+
+commit e134fdff512c83b9439e0f1310e9a753ad1ce49c
+Merge: 7bd2dde 3e9e02d
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Thu Nov 28 16:20:37 2019 +0200
+
+    Cleaned code
+
+commit fbc3e78fef649e786898e9b6aabef5d5c6c2e93d
+Author: Teemu Miettunen <miettune@linux-desktop6.tuni.fi>
+Date:   Thu Nov 28 16:16:45 2019 +0200
+
+    Added unit tests for o_manager and ge_handler, added few methods for o_manager and ge_handler, fixed bug in ge_hander.addResource
+
+commit 7bd2dde39fb510d346632058bf4f5fb5248a684c
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Thu Nov 28 14:18:41 2019 +0200
+
+    Shows building and worker info in ui
+
+commit 3e9e02d8597412598064c3da81b5d82c0bec705f
+Author: Teemu Miettunen <miettune@linux-desktop4.tuni.fi>
+Date:   Tue Nov 26 20:42:22 2019 +0200
+
+    Added simple score calculation, added enddialog which shows the final score, game can be restarted from the enddialog
+
+commit 5cde6586089013700345ac37336fc7bca5a96876
+Merge: cb4c320 9e2042a
+Author: Teemu Miettunen <miettune@linux-desktop5.tuni.fi>
+Date:   Tue Nov 26 11:59:05 2019 +0200
+
+    Fixed merge conflicts
+
+commit cb4c320c92edb42c7c73af6ba5dc610e7b590e25
+Author: Teemu Miettunen <miettune@linux-desktop5.tuni.fi>
+Date:   Tue Nov 26 11:51:54 2019 +0200
+
+    fixed small error in gamescene
+
+commit 9e2042a134cc7263ea4fcc95d540a052e990af71
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Tue Nov 26 11:49:44 2019 +0200
+
+    Added a pic of Pirkanmaa's banner to the dialog
+
+commit 2acbfdc6e97a2602273403755b4b777e177d9c58
+Author: Teemu Miettunen <miettune@linux-desktop4.tuni.fi>
+Date:   Mon Nov 25 18:40:11 2019 +0200
+
+    Made smaller resolution verions of the images, clicked tile is now highlighted
+
+commit 5f1842a5615399d2f15d073339454e3ef6e83448
+Merge: 77e6d33 cc4cccc
+Author: Teemu Miettunen <miettune@linux-desktop12.tuni.fi>
+Date:   Mon Nov 25 11:59:55 2019 +0200
+
+    fixed merge conflicts
+
+commit cc4cccc4cd21722871337281f4e6a60c18230c99
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Mon Nov 25 11:51:59 2019 +0200
+
+    Building and tiles graphics updated, also added title for the windows
+
+commit 77e6d3366379909ca5147024257b531b10cfbf76
+Merge: 73659e7 f6e7a1b
+Author: Teemu Miettunen <miettune@linux-desktop5.tuni.fi>
+Date:   Sun Nov 24 18:32:10 2019 +0200
+
+    -
+
+commit 73659e713f5727b4b53fed395ddb304a9b4577dd
+Author: Teemu Miettunen <miettune@linux-desktop5.tuni.fi>
+Date:   Sun Nov 24 18:28:50 2019 +0200
+
+    Made UI more scaleable to different size windows, added resourcemaps to student made workers
+
+commit f6e7a1b369b899de4cf0bba4e1f0e02908a501db
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Wed Nov 20 17:47:26 2019 +0200
+
+    Cant build on a unowned tile, also only 1 HQ can be built
+
+commit 85515f4c46365a88377f68db69ae4675018087e7
+Author: Teemu Miettunen <miettune@linux-desktop10.tuni.fi>
+Date:   Tue Nov 19 14:48:24 2019 +0200
+
+    Added new workers: farmer, lumberjack, peatWorker. New workers can be recruited in UI
+
+commit 42ff44efd6a97ee0afdb05ecfeec93731f2eb182
+Merge: bf14e2c e353bc5
+Author: Teemu Miettunen <miettune@linux-desktop7.tuni.fi>
+Date:   Tue Nov 19 13:22:45 2019 +0200
+
+    Fixed merge conflicts
+
+commit e353bc5403f5746c8b7775e20a51b50255d88939
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Tue Nov 19 13:17:35 2019 +0200
+
+    Specific buildings can be placed only on specific tiles
+
+commit bf14e2ced654a62ac0dc69efb18537cbf920ae9c
+Author: Teemu Miettunen <miettune@linux-desktop9.tuni.fi>
+Date:   Tue Nov 19 13:14:09 2019 +0200
+
+    Worker recruiting added to UI
+
+commit b23978fbbeb539f590c589da3deb70c4947b7708
+Merge: 2246ae6 35d7690
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Tue Nov 19 10:59:07 2019 +0200
+
+    Fixed merge conflict
+
+commit 2246ae6a7ce7da6ca3e56d1a767aafb81487e0e5
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Tue Nov 19 10:54:18 2019 +0200
+
+    Added rest of the buildings, also some music testing
+
+commit 35d7690c524179002813234ae13c92982758479c
+Author: Teemu Miettunen <miettune@linux-desktop2.tuni.fi>
+Date:   Mon Nov 18 23:38:02 2019 +0200
+
+    Added player colored borders around owned tiles
+
+commit 0945470f8777479077eeb27e0a246bb096354c65
+Author: Teemu Miettunen <miettune@linux-desktop7.tuni.fi>
+Date:   Mon Nov 18 13:17:39 2019 +0200
+
+    Outpost can be built
+
+commit 7f243a8217f74e1892a14bd9742951ccc5f2da24
+Author: Teemu Miettunen <miettune@linux-desktop6.tuni.fi>
+Date:   Sat Nov 16 22:50:59 2019 +0200
+
+    Tile and hq are now drawn with placeholder images
+
+commit a961f93e429f45acc4b91bc4917e182f67e06800
+Author: Teemu Miettunen <miettune@linux-desktop9.tuni.fi>
+Date:   Sat Nov 16 19:27:44 2019 +0200
+
+    Small ui tweaks
+
+commit ebf893be1f9c6f449ed7176f523be397ae2ee168
+Author: Teemu Miettunen <miettune@linux-desktop5.tuni.fi>
+Date:   Sat Nov 16 18:14:17 2019 +0200
+
+    Headquarters can now be build, added infoscreen for selected tile
+
+commit f0b0893dea9e7fc1b66eb3b83d74d465ac82cb1f
+Merge: c57bffd 36a2762
+Author: Teemu Miettunen <miettune@linux-desktop4.tuni.fi>
+Date:   Fri Nov 15 17:11:20 2019 +0200
+
+    Fixed merge conflict
+
+commit c57bffd5ea0cbf99c3f1027f6c21a4cc8d26c738
+Author: Teemu Miettunen <miettune@linux-desktop4.tuni.fi>
+Date:   Fri Nov 15 17:09:01 2019 +0200
+
+    Created miner class
+
+commit 36a2762d03babee659aed6b165976fc57752d22d
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Fri Nov 15 17:08:52 2019 +0200
+
+    Building constructor added
+
+commit dcf651bdf34f9150c862a3bc5299c96a20a1880d
+Author: Teemu Miettunen <miettune@linux-desktop7.tuni.fi>
+Date:   Fri Nov 15 14:47:02 2019 +0200
+
+    Added placeholder images for tiles and few buildings, finished fisher class
+
+commit 2a2c7e71186a59fa662c3741dde2dec2e29e73e4
+Merge: 8714370 973a402
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Fri Nov 15 14:18:55 2019 +0200
+
+    fixed merge conflict
+
+commit 8714370dd00cef95133352847cce95e2a99388e4
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Fri Nov 15 14:14:55 2019 +0200
+
+    Tile managing
+
+commit 973a4020f701dc010ad3a92a4ef3a691f6bc0924
+Author: Teemu Miettunen <miettune@linux-desktop7.tuni.fi>
+Date:   Fri Nov 15 14:14:16 2019 +0200
+
+    Added worker class fisher
+
+commit 53665da034fb72cab378e4d3db760e7bb9e3c28c
+Author: Teemu Miettunen <miettune@linux-desktop9.tuni.fi>
+Date:   Fri Nov 15 10:24:05 2019 +0200
+
+    Added resource generating to beginning of a new round
+
+commit cc80dea045f2b483aba538d812b562bc70576d13
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Thu Nov 14 20:46:14 2019 +0200
+
+    Combobox for different buildings, also new buildings added
+
+commit 84fef9ca9349e559af0475a94214a2090d4a251a
+Author: Teemu Miettunen <miettune@linux-desktop1.tuni.fi>
+Date:   Thu Nov 14 19:52:12 2019 +0200
+
+    Fixed problem with player creation
+
+commit e473e1efc0f15a613ebb4e7e178ea0cd4e732ddc
+Author: Teemu Miettunen <miettune@linux-desktop1.tuni.fi>
+Date:   Thu Nov 14 17:42:56 2019 +0200
+
+    modified mapwindow, created datastructure for players
+
+commit 5b262df5021aa687fc85cd211bff457db8a7d7e0
+Merge: d11a0f8 c27e17c
+Author: Teemu Miettunen <miettune@linux-desktop6.tuni.fi>
+Date:   Thu Nov 14 14:18:14 2019 +0200
+
+    Merge remote-tracking branch 'refs/remotes/origin/master'
+
+commit d11a0f8fb5d7ed90ad52ca2473391b22a65ed9df
+Author: Teemu Miettunen <miettune@linux-desktop6.tuni.fi>
+Date:   Thu Nov 14 14:18:09 2019 +0200
+
+    apwindow and gameeventhandler can add players from dialog signal
+
+commit c27e17cbe482c3973396eb6df949946f52d90493
+Merge: 995bcdb 61bd696
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Thu Nov 14 14:16:04 2019 +0200
+
+    Merge conflict fixed
+
+commit 995bcdb3b9b9aae8587928528ed3ec6b54735015
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Thu Nov 14 14:11:20 2019 +0200
+
+    Game interface upgraded
+
+commit 61bd6969584d910c48921475b886528df9fe882d
+Merge: 322a0fc 1ca371a
+Author: Teemu Miettunen <miettune@linux-desktop10.tuni.fi>
+Date:   Wed Nov 13 18:40:42 2019 +0200
+
+    Fixed merge conflicts
+
+commit 322a0fc17def78328b61cab2514f843a66388976
+Author: Teemu Miettunen <miettune@linux-desktop10.tuni.fi>
+Date:   Wed Nov 13 18:20:49 2019 +0200
+
+    Added color for player class, Players can now be added in opening dialog
+
+commit 1ca371aa6b9a2f8520c24dff2a46485301ecfdee
+Merge: e7616d0 d721180
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Wed Nov 13 13:42:03 2019 +0200
+
+    Merge conflict fixed
+
+commit e7616d0afe3844a46df296b4f1c66ec4591a8deb
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Wed Nov 13 13:37:55 2019 +0200
+
+    Three new unique tiles added
+
+commit d7211801fe236968d7d7054e1457fafafe1ad06e
+Author: Teemu Miettunen <miettune@linux-desktop14.tuni.fi>
+Date:   Mon Nov 11 15:14:10 2019 +0200
+
+    Map scales to spesific size and tiles spawn inside the map scene, map spawns centered to the screen
+
+commit 99086f51e12049eb946a05ed486079436a2cf9e1
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Fri Nov 8 16:49:05 2019 +0200
+
+    Tiles spawning fixed to coordinate (0,0)
+
+commit bee562056c16190736302769545e617aaf274e99
+Merge: 7870a07 a1e589a
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Fri Nov 8 16:12:23 2019 +0200
+
+    Merge conflict fixed
+
+commit 7870a07c57db02e7ce31ec8a7a780f122c887574
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Fri Nov 8 16:06:33 2019 +0200
+
+    Screen popups maximized, two different tiles spawning
+
+commit a1e589a9c72c3141794a669a333435035f1977b8
+Merge: f95ee71 15d285b
+Author: Teemu Miettunen <miettune@linux-desktop9.tuni.fi>
+Date:   Fri Nov 8 15:09:56 2019 +0200
+
+    Fixed merge conflicts
+
+commit f95ee719d91245fc7471b9eace589e717956c3ab
+Author: Teemu Miettunen <miettune@linux-desktop9.tuni.fi>
+Date:   Fri Nov 8 15:06:23 2019 +0200
+
+    eventhandler required functions created
+
+commit 15d285b9a7ef99bdf13989f5c5738d39af4849fd
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Fri Nov 8 14:53:10 2019 +0200
+
+    Tiles spawning
+
+commit 5bb78cb3aac620fda1fd949be5bb3bbddaaa1490
+Merge: dd39277 8f0a808
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Fri Nov 8 12:27:12 2019 +0200
+
+    Another merge conflict solved
+
+commit dd39277499e8229bd4adbfd37fbafbac92538ed7
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Fri Nov 8 12:19:13 2019 +0200
+
+    Starting dialog created and connected signals for sizing the map
+
+commit 8f0a8084d0b2879758baacbc25328319a12b41e9
+Author: Teemu Miettunen <miettune@linux-desktop1.tuni.fi>
+Date:   Fri Nov 8 11:02:13 2019 +0200
+
+    Created required functions for objectmanager
+
+commit a4677954358d88a0e5622a14192d012ecd98aaef
+Merge: 8e40b4d 9359bb9
+Author: Teemu Miettunen <miettune@linux-desktop10.tuni.fi>
+Date:   Wed Nov 6 10:37:40 2019 +0200
+
+    Fixed conflict in Game.pro
+
+commit 8e40b4d07909621238b63650b09e120b10f43582
+Author: Teemu Miettunen <miettune@linux-desktop10.tuni.fi>
+Date:   Wed Nov 6 10:26:20 2019 +0200
+
+    Added game.pro and worldmap changes to the commit
+
+commit 02b9f04d22e7a4ce46417d15872fbb598eab9d90
+Author: Teemu Miettunen <miettune@linux-desktop10.tuni.fi>
+Date:   Wed Nov 6 10:22:22 2019 +0200
+
+    Created class for worldmap
+
+commit 9359bb9354510b1a8f406e4ac72c5b04c316218d
+Author: Antti-Jussi <antti-jussi.makipaa@tuni.fi>
+Date:   Mon Nov 4 15:24:43 2019 +0200
+
+    Periytetty gameEventHandler ja objectManager
+
+commit d4a2869537a288393db73bb18e6782fec19bc4c2
+Author: Aku Niskanen <aku.niskanen@tuni.fi>
+Date:   Wed Sep 18 16:39:09 2019 +0300
+
+    Updated submodule
+
+commit c6d9f052ec162bdbd5727cd0a626df3affb5f755
+Author: Aku Niskanen <aku.niskanen@tuni.fi>
+Date:   Wed Sep 18 12:26:56 2019 +0300
+
+    Updated submodule
+
+commit 96f7202a43b1ded03a4b6cca8d30091513c5bec4
+Author: Aku Niskanen <aku.niskanen@tuni.fi>
+Date:   Wed Sep 18 11:32:35 2019 +0300
+
+    Initial commit with Project structure.
