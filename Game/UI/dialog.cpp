@@ -15,7 +15,7 @@ Dialog::Dialog(QWidget *parent) :
     connect(ui_->addPlayersButton, &QPushButton::clicked, this,
             &Dialog::addPlayer);
 
-    QPixmap pixmap("Images/pirkanmaa.png");
+    QPixmap pixmap(":/Images/pirkanmaa.png");
     ui_->pic1Label->setPixmap(pixmap);
     ui_->pic1Label->setScaledContents(true);
     ui_->pic1Label->setSizePolicy(QSizePolicy::Ignored,

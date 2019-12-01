@@ -149,17 +149,17 @@ private:
     double m_scale_;
     TileMarker* current_marker_ = nullptr;
     std::map<std::string, QImage> images_ =
-            {{"Forest", QImage("Images/forest.png")},
-            {"Water", QImage("Images/water.png")},
-            {"Swamp", QImage("Images/swamp.png")},
-            {"Cobblestone", QImage("Images/mountain.png")},
-            {"Grassland", QImage("Images/grass.png")},
-            {"Farm", QImage("Images/farm.png")},
-            {"HeadQuarters", QImage("Images/headquarters.png")},
-            {"Outpost", QImage("Images/outpost.png")},
-            {"Mine", QImage("Images/mine.png")},
-            {"Trawler", QImage("Images/trawler.png")},
-            {"Sawmill", QImage("Images/sawmill.png")}};
+            {{"Forest", QImage(":/Images/forest.png")},
+            {"Water", QImage(":/Images/water.png")},
+            {"Swamp", QImage(":/Images/swamp.png")},
+            {"Cobblestone", QImage(":/Images/mountain.png")},
+            {"Grassland", QImage(":/Images/grass.png")},
+            {"Farm", QImage(":/Images/farm.png")},
+            {"HeadQuarters", QImage(":/Images/headquarters.png")},
+            {"Outpost", QImage(":/Images/outpost.png")},
+            {"Mine", QImage(":/Images/mine.png")},
+            {"Trawler", QImage(":/Images/trawler.png")},
+            {"Sawmill", QImage(":/Images/sawmill.png")}};
 
 };
 } // Namespace Student

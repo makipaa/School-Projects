@@ -89,17 +89,5 @@ FORMS += \
     UI/enddialog.ui \
     UI/mainwindow.ui
 
-DISTFILES += \
-    Images/farm.png \
-    Images/farm.png \
-    Images/forest.png \
-    Images/grass.png \
-    Images/headquarters.png \
-    Images/mountain.png \
-    Images/outpost.png \
-    Images/swamp.png \
-    Images/water.png \
-    Images/trawler.png \
-    Images/mine.png \
-    Images/sawmill.png \
-    Images/pirkanmaa.png
+RESOURCES += \
+    images.qrc

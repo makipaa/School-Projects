@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Images/farm.png</file>
+        <file>Images/forest.png</file>
+        <file>Images/grass.png</file>
+        <file>Images/grassland.png</file>
+        <file>Images/headquarters.png</file>
+        <file>Images/mine.png</file>
+        <file>Images/mountain.png</file>
+        <file>Images/outpost.png</file>
+        <file>Images/pirkanmaa.png</file>
+        <file>Images/sawmill.png</file>
+        <file>Images/swamp.png</file>
+        <file>Images/trawler.png</file>
+        <file>Images/water.png</file>
+    </qresource>
+</RCC>
